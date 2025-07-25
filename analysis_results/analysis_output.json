@@ -1,0 +1,150 @@
+{
+    "topic_modeling_results": {
+        "Topic #1": [
+            "progressive",
+            "hands",
+            "branch",
+            "preparing",
+            "performing",
+            "shut",
+            "organizational",
+            "insights",
+            "sidewalks",
+            "instance"
+        ],
+        "Topic #2": [
+            "city",
+            "community",
+            "aarp",
+            "cities",
+            "people",
+            "mayor",
+            "service",
+            "work",
+            "residents",
+            "citizens"
+        ],
+        "Topic #3": [
+            "progressive",
+            "hands",
+            "branch",
+            "preparing",
+            "performing",
+            "shut",
+            "organizational",
+            "insights",
+            "sidewalks",
+            "instance"
+        ],
+        "Topic #4": [
+            "progressive",
+            "hands",
+            "branch",
+            "preparing",
+            "performing",
+            "shut",
+            "organizational",
+            "insights",
+            "sidewalks",
+            "instance"
+        ],
+        "Topic #5": [
+            "progressive",
+            "hands",
+            "branch",
+            "preparing",
+            "performing",
+            "shut",
+            "organizational",
+            "insights",
+            "sidewalks",
+            "instance"
+        ],
+        "Topic #6": [
+            "older",
+            "new",
+            "city",
+            "adults",
+            "nyc",
+            "services",
+            "health",
+            "yorkers",
+            "program",
+            "senior"
+        ],
+        "Topic #7": [
+            "progressive",
+            "hands",
+            "branch",
+            "preparing",
+            "performing",
+            "shut",
+            "organizational",
+            "insights",
+            "sidewalks",
+            "instance"
+        ],
+        "Topic #8": [
+            "progressive",
+            "hands",
+            "branch",
+            "preparing",
+            "performing",
+            "shut",
+            "organizational",
+            "insights",
+            "sidewalks",
+            "instance"
+        ],
+        "Topic #9": [
+            "progressive",
+            "hands",
+            "branch",
+            "preparing",
+            "performing",
+            "shut",
+            "organizational",
+            "insights",
+            "sidewalks",
+            "instance"
+        ],
+        "Topic #10": [
+            "progressive",
+            "hands",
+            "branch",
+            "preparing",
+            "performing",
+            "shut",
+            "organizational",
+            "insights",
+            "sidewalks",
+            "instance"
+        ]
+    },
+    "named_entity_results": {
+        "organizations": {
+            "DFTA": 88,
+            "NYC": 26,
+            "NORC": 18,
+            "Vision Zero": 16,
+            "LGBT": 16,
+            "OATH": 13,
+            "Cities of Service": 13,
+            "DOT": 12,
+            "DOF": 11,
+            "State": 10
+        },
+        "locations": {
+            "New York City": 31,
+            "New York": 12,
+            "Brooklyn": 11,
+            "Bronx": 8,
+            "Manhattan": 8,
+            "San Jos\u00e9": 8,
+            "FY": 7,
+            "Tulsa": 5,
+            "Houston": 5,
+            "New York \nCity": 4
+        }
+    }
+}
