@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age-Friendly Community Reports Q&A</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 font-sans">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-3xl">
+
+        <header class="text-center mb-8">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-800">Age-Friendly Community Q&A</h1>
+            <p class="text-gray-600 mt-2">Ask a question about Age-Friendly Community reports and get answers from an AI
+                assistant.</p>
+        </header>
+
+        <main>
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <form id="qa-form" action="/ask" method="POST">
+                    <label for="question" class="block text-lg font-medium text-gray-700">Your Question:</label>
+                    <textarea name="question" id="question" rows="4"
+                        class="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        placeholder="e.g., What are the primary recommendations for housing?">{{ question if question }}</textarea>
+
+                    <button id="submit-btn" type="submit"
+                        class="mt-4 w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        Ask Question
+                    </button>
+                </form>
+            </div>
+
+            {% if answer or error %}
+            <div class="mt-8 bg-white rounded-lg shadow-md p-6 animate-fade-in">
+                <h2 class="text-xl font-semibold text-gray-800">Answer:</h2>
+                {% if answer %}
+                <p class="mt-4 text-gray-700 leading-relaxed">{{ answer }}</p>
+                {% elif error %}
+                <p class="mt-4 text-red-600 leading-relaxed">{{ error }}</p>
+                {% endif %}
+            </div>
+            {% endif %}
+
+        </main>
+
+        <footer class="text-center mt-12 text-sm text-gray-500">
+            <p>Powered by Flask, LangChain, and Google Gemini.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        // Simple script to show a loading state on the button
+        const form = document.getElementById('qa-form');
+        const submitBtn = document.getElementById('submit-btn');
+
+        form.addEventListener('submit', () => {
+            submitBtn.disabled = true;
+            submitBtn.innerText = 'Thinking...';
+            submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
+        });
+    </script>
+    <style>
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+
+</body>
+
+</html>
