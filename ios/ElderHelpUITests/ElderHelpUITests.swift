@@ -16,6 +16,7 @@ final class ElderHelpUITests: XCTestCase {
         editor.tap()
         editor.typeText("How can communities support older adults?")
         app.buttons["Ask ElderHelp"].tap()
+        XCTAssertTrue(app.keyboards.firstMatch.waitForNonExistence(timeout: 15))
 
         XCTAssertTrue(app.staticTexts["Sources"].waitForExistence(timeout: 15))
         let sourceButton = app.buttons.matching(
