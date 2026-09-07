@@ -24,6 +24,7 @@
 		D1B99E39C08AD48AB3F459E3 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167BD7F657FC64BDD128CF4F /* HistoryView.swift */; };
 		DC6B38DC77A1916DEB356399 /* AskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8CCC25FD36498131CCE49A /* AskView.swift */; };
 		E5863536F091ACA795F2B710 /* ReportsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266E69142D19BFC00D7AD591 /* ReportsView.swift */; };
+		F08E192C35A74EF9E64FA21B /* APIClientIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE2993054C52278735B9A63 /* APIClientIntegrationTests.swift */; };
 		F71E7758360BDE0ACFDCB876 /* AskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D92082BAFA59DD51CAE5F24 /* AskViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +50,7 @@
 		053FD160ACBC8ADE76B8144F /* APIModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIModels.swift; sourceTree = "<group>"; };
 		167BD7F657FC64BDD128CF4F /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		1B8CCC25FD36498131CCE49A /* AskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskView.swift; sourceTree = "<group>"; };
+		1BE2993054C52278735B9A63 /* APIClientIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientIntegrationTests.swift; sourceTree = "<group>"; };
 		1F3CAFECA0C28A81FC774B14 /* ReportsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsViewModel.swift; sourceTree = "<group>"; };
 		21F3EB0BBCAE8EE73C9D396E /* ElderHelp.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = ElderHelp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		266E69142D19BFC00D7AD591 /* ReportsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsView.swift; sourceTree = "<group>"; };
@@ -60,6 +62,7 @@
 		7D92082BAFA59DD51CAE5F24 /* AskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskViewModel.swift; sourceTree = "<group>"; };
 		84B1D2517DFB587B0AC399C9 /* ElderHelpTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = ElderHelpTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		89F9372AE051DE6E733CE650 /* CitationSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitationSheet.swift; sourceTree = "<group>"; };
+		93263A8A5D9A2678E2BA0C8A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		A647209A56430AACF27997E4 /* APIModelsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIModelsTests.swift; sourceTree = "<group>"; };
 		BB967E99CABD30ACC5E2E71B /* ElderHelpUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = ElderHelpUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D47536D1774AB273FC60C817 /* ReportDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportDetailView.swift; sourceTree = "<group>"; };
@@ -92,6 +95,7 @@
 		12551F96321A6830A6ED7DB4 /* ElderHelpTests */ = {
 			isa = PBXGroup;
 			children = (
+				1BE2993054C52278735B9A63 /* APIClientIntegrationTests.swift */,
 				A647209A56430AACF27997E4 /* APIModelsTests.swift */,
 				EAF582041B148B6BD44BBFBE /* PersistenceTests.swift */,
 				D932456853F7FE2111EDC990 /* SSEParserTests.swift */,
@@ -148,6 +152,7 @@
 		DD839FE39D6538B304452365 /* ElderHelp */ = {
 			isa = PBXGroup;
 			children = (
+				93263A8A5D9A2678E2BA0C8A /* Info.plist */,
 				F14AA956DABE41132966ECD9 /* App */,
 				0D9D2FB5958B8C4A2908CF34 /* Core */,
 				EF1C36EA55314462109898E4 /* Features */,
@@ -287,6 +292,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F08E192C35A74EF9E64FA21B /* APIClientIntegrationTests.swift in Sources */,
 				364E3C986BC93E0AC803711B /* APIModelsTests.swift in Sources */,
 				8295C611AD8C02F657F9253E /* PersistenceTests.swift in Sources */,
 				8091322EC14FB9FAFCD7BE34 /* SSEParserTests.swift in Sources */,
@@ -524,10 +530,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_API_BASE_URL = "http://127.0.0.1:8000";
-				INFOPLIST_KEY_CFBundleDisplayName = ElderHelp;
-				INFOPLIST_KEY_NSAppTransportSecurity_NSAllowsLocalNetworking = YES;
+				INFOPLIST_FILE = ElderHelp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -544,10 +547,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_API_BASE_URL = "http://127.0.0.1:8000";
-				INFOPLIST_KEY_CFBundleDisplayName = ElderHelp;
-				INFOPLIST_KEY_NSAppTransportSecurity_NSAllowsLocalNetworking = YES;
+				INFOPLIST_FILE = ElderHelp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
