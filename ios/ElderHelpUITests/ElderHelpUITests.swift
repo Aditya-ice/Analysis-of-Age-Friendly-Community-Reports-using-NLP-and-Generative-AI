@@ -21,8 +21,16 @@ final class ElderHelpUITests: XCTestCase {
         app.buttons.matching(NSPredicate(format: "label CONTAINS 'Age-friendly NYC'")).firstMatch.tap()
         XCTAssertTrue(app.navigationBars["Source S1"].waitForExistence(timeout: 5))
         app.buttons["Done"].tap()
+        XCTAssertTrue(app.navigationBars["Source S1"].waitForNonExistence(timeout: 5))
 
-        app.tabBars.buttons["Reports"].tap()
+        let reportsTab = app.tabBars.buttons["Reports"]
+        XCTAssertTrue(reportsTab.waitForExistence(timeout: 5))
+        let reportsTabReady = XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "isHittable == true"),
+            object: reportsTab
+        )
+        XCTAssertEqual(XCTWaiter.wait(for: [reportsTabReady], timeout: 5), .completed)
+        reportsTab.tap()
         XCTAssertTrue(app.navigationBars["Reports"].waitForExistence(timeout: 5))
         XCTAssertTrue(app.staticTexts["Age-friendly NYC"].waitForExistence(timeout: 5))
 
