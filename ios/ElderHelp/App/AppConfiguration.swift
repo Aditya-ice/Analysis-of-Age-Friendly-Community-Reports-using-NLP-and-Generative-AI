@@ -1,0 +1,15 @@
+import Foundation
+
+enum AppConfiguration {
+    static var apiBaseURL: URL {
+        if let value = ProcessInfo.processInfo.environment["ELDERHELP_API_BASE_URL"],
+           let url = URL(string: value) {
+            return url
+        }
+        if let value = Bundle.main.object(forInfoDictionaryKey: "API_BASE_URL") as? String,
+           let url = URL(string: value) {
+            return url
+        }
+        return URL(string: "http://127.0.0.1:8000")!
+    }
+}

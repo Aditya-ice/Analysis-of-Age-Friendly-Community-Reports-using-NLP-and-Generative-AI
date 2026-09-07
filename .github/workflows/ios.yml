@@ -1,0 +1,52 @@
+name: iOS
+
+on:
+  pull_request:
+    paths:
+      - "ios/**"
+      - "openapi.json"
+      - ".github/workflows/ios.yml"
+  push:
+    branches: [main]
+
+jobs:
+  verify:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install XcodeGen
+        run: brew install xcodegen
+      - name: Regenerate project
+        working-directory: ios
+        run: xcodegen generate
+      - name: Verify generated project is current
+        run: git diff --exit-code -- ios/ElderHelp.xcodeproj
+      - name: Test portable API core
+        run: swift test --package-path ios
+      - name: Test iOS application in simulator
+        run: |
+          python3 ios/MockServer/server.py > "${RUNNER_TEMP}/elderhelp-mock.log" 2>&1 &
+          MOCK_PID=$!
+          cleanup() {
+            STATUS=$?
+            cat "${RUNNER_TEMP}/elderhelp-mock.log"
+            kill "${MOCK_PID}" 2>/dev/null || true
+            exit "${STATUS}"
+          }
+          trap cleanup EXIT
+          for attempt in {1..20}; do
+            if curl --fail --silent http://127.0.0.1:8765/v1/reports > /dev/null; then
+              break
+            fi
+            if [[ "${attempt}" == "20" ]]; then
+              cat "${RUNNER_TEMP}/elderhelp-mock.log"
+              exit 1
+            fi
+            sleep 0.25
+          done
+          xcodebuild \
+            -project ios/ElderHelp.xcodeproj \
+            -scheme ElderHelp \
+            -destination 'platform=iOS Simulator,name=iPhone 16 Pro' \
+            CODE_SIGNING_ALLOWED=NO \
+            test

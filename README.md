@@ -4,19 +4,19 @@ ElderHelp is an evidence-grounded question-answering system for approved age-fri
 community reports. The new service preserves report and page provenance, combines semantic
 and keyword retrieval, reranks evidence, and streams answers with validated citations.
 
-The repository currently contains the Python backend. The original research prototype is
-preserved in [`legacy/`](legacy/README.md).
+The repository currently contains the Python backend and a native iOS simulator prototype. The
+original research prototype is preserved in [`legacy/`](legacy/README.md).
 
 ## Repository layout
 
 - `backend/elderhelp/` — FastAPI application, ingestion pipeline, and modern RAG services.
 - `backend/tests/` — offline unit and API-contract tests.
 - `data/reports.yaml` — curated report manifest; PDFs under `data/seed/` are private seed inputs.
+- `ios/ElderHelp/` — SwiftUI client with Ask, Reports, and local History features.
 - `evaluations/` — versioned retrieval and grounded-answer evaluation cases.
 - `legacy/` — preserved Flask, LangChain, OCR, NLP, and extracted-text prototype.
 
-Native mobile clients and Google Cloud deployment configuration are delivered in subsequent
-stacked changes.
+Google Cloud deployment configuration is delivered in a subsequent stacked change.
 
 ## Local backend
 
