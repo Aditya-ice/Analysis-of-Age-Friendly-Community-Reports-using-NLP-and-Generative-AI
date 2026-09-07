@@ -1,0 +1,49 @@
+name: Backend
+
+on:
+  pull_request:
+    paths:
+      - "backend/**"
+      - "data/reports.yaml"
+      - "evaluations/**"
+      - "pyproject.toml"
+      - "uv.lock"
+      - "Dockerfile"
+      - "openapi.json"
+      - ".github/workflows/backend.yml"
+  push:
+    branches: [main]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: pgvector/pgvector:pg16
+        env:
+          POSTGRES_DB: elderhelp
+          POSTGRES_USER: elderhelp
+          POSTGRES_PASSWORD: elderhelp
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U elderhelp"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      ELDERHELP_DATABASE_URL: postgresql+asyncpg://elderhelp:elderhelp@localhost:5432/elderhelp
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          version: "0.8.15"
+          python-version: "3.12"
+          enable-cache: true
+      - run: uv sync --frozen --group dev
+      - run: uv run ruff check backend
+      - run: uv run pytest --cov=elderhelp --cov-report=term-missing
+      - run: uv run alembic upgrade head
+      - run: uv run python -m elderhelp.openapi
+      - run: git diff --exit-code -- openapi.json
+      - run: docker build -t elderhelp-api:test .
