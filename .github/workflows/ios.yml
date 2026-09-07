@@ -23,13 +23,24 @@ jobs:
         run: git diff --exit-code -- ios/ElderHelp.xcodeproj
       - name: Test portable API core
         run: swift test --package-path ios
-      - name: Start mock API
-        run: python3 ios/MockServer/server.py &
       - name: Test iOS application in simulator
-        run: >-
-          xcodebuild
-          -project ios/ElderHelp.xcodeproj
-          -scheme ElderHelp
-          -destination 'platform=iOS Simulator,name=iPhone 16 Pro'
-          CODE_SIGNING_ALLOWED=NO
-          test
+        run: |
+          python3 ios/MockServer/server.py > "${RUNNER_TEMP}/elderhelp-mock.log" 2>&1 &
+          MOCK_PID=$!
+          trap 'kill "${MOCK_PID}"' EXIT
+          for attempt in {1..20}; do
+            if curl --fail --silent http://127.0.0.1:8765/v1/reports > /dev/null; then
+              break
+            fi
+            if [[ "${attempt}" == "20" ]]; then
+              cat "${RUNNER_TEMP}/elderhelp-mock.log"
+              exit 1
+            fi
+            sleep 0.25
+          done
+          xcodebuild \
+            -project ios/ElderHelp.xcodeproj \
+            -scheme ElderHelp \
+            -destination 'platform=iOS Simulator,name=iPhone 16 Pro' \
+            CODE_SIGNING_ALLOWED=NO \
+            test
