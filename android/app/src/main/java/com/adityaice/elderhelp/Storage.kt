@@ -16,7 +16,16 @@ import kotlinx.coroutines.flow.Flow
     @Query("DELETE FROM Conversation") suspend fun clear()
 }
 @Database(entities = [Conversation::class, CachedReport::class], version = 1, exportSchema = true)
-abstract class LocalDatabase : RoomDatabase() { abstract fun store(): Store }
+abstract class LocalDatabase : RoomDatabase() {
+    abstract fun store(): Store
+    companion object {
+        @Volatile private var instance: LocalDatabase? = null
+        fun get(context: android.content.Context): LocalDatabase = instance ?: synchronized(this) {
+            instance ?: Room.databaseBuilder(context.applicationContext, LocalDatabase::class.java, "elderhelp.db")
+                .build().also { instance = it }
+        }
+    }
+}
 class Repository(val api: Api, val store: Store) {
     suspend fun refresh() = store.replaceReports(api.reports().items.map {
         CachedReport(it.id, codec.encodeToString(ReportSummary.serializer(), it))

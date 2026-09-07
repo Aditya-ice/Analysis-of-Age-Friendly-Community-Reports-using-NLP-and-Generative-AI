@@ -2,6 +2,7 @@ package com.adityaice.elderhelp
 
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.flow.toList
+import kotlinx.coroutines.flow.take
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.Assert.*
@@ -31,6 +32,25 @@ class ApiTest {
         val server = MockWebServer(); server.start()
         try {
             server.enqueue(MockResponse().setBody("event: delta\ndata: {}\n\n"))
+            var failed = false
+            try { Api(server.url("/").toString()).answer(AnswerRequest("Question")).toList() }
+            catch (e: java.io.IOException) { failed = true }
+            assertTrue(failed)
+        } finally { server.shutdown() }
+    }
+    @Test fun cancellationStopsCollection() = runTest {
+        val server = MockWebServer(); server.start()
+        try {
+            server.enqueue(MockResponse().setBody("event: start\ndata: {}\n\n" + "event: delta\ndata: {}\n\n".repeat(200))
+                .throttleBody(25, 20, TimeUnit.MILLISECONDS))
+            val events = Api(server.url("/").toString()).answer(AnswerRequest("Question")).take(1).toList()
+            assertEquals("start", events.single().name)
+        } finally { server.shutdown() }
+    }
+    @Test fun rejectsUnavailableProvider() = runTest {
+        val server = MockWebServer(); server.start()
+        try {
+            server.enqueue(MockResponse().setResponseCode(503))
             var failed = false
             try { Api(server.url("/").toString()).answer(AnswerRequest("Question")).toList() }
             catch (e: java.io.IOException) { failed = true }

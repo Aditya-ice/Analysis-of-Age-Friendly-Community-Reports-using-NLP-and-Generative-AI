@@ -24,7 +24,7 @@ import androidx.room.Room
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val db = Room.databaseBuilder(applicationContext, LocalDatabase::class.java, "elderhelp.db").build()
+        val db = LocalDatabase.get(applicationContext)
         val factory = object : ViewModelProvider.Factory {
             @Suppress("UNCHECKED_CAST")
             override fun <T : ViewModel> create(modelClass: Class<T>): T =

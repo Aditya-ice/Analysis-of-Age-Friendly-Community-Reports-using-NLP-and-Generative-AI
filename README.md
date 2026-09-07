@@ -54,3 +54,7 @@ publisher attribution, page number, and publisher URL.
 
 This repository does not yet state redistribution rights for the seed reports. Confirm those
 rights before distributing their full contents or enabling public downloads.
+
+## Android prototype
+
+The native Kotlin/Compose app is in [`android/`](android/README.md), with Ask, Reports, local History, and source citation sheets. Build and emulator instructions are in its README. Both mobile clients use the same versioned backend API; Android DTOs are generated from `openapi.json`.

@@ -2,6 +2,7 @@ package com.adityaice.elderhelp
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.channels.trySendBlocking
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.*
@@ -55,11 +56,11 @@ class Api(private val base: String, private val client: OkHttpClient = OkHttpCli
                             val event = parser.line(source.readUtf8Line() ?: break) ?: continue
                             if (event.name == "error") throw IOException("The answer service could not finish. Please retry.")
                             if (event.name == "complete") complete = true
-                            if (trySend(event).isFailure) throw IOException("Answer stream interrupted.")
+                            if (trySendBlocking(event).isFailure) throw IOException("Answer stream interrupted.")
                         }
                         parser.finish()?.let { event ->
                             if (event.name == "complete") complete = true
-                            trySend(event)
+                            trySendBlocking(event)
                         }
                         if (!complete && !call.isCanceled()) throw IOException("The connection ended before the answer finished. Please retry.")
                         close()
