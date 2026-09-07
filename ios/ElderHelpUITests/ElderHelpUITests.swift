@@ -1,5 +1,6 @@
 import XCTest
 
+@MainActor
 final class ElderHelpUITests: XCTestCase {
     override func setUpWithError() throws {
         continueAfterFailure = false

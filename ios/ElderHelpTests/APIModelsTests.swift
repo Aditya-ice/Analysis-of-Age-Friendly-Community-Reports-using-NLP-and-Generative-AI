@@ -5,6 +5,7 @@ import XCTest
 @testable import ElderHelp
 #endif
 
+@MainActor
 final class APIModelsTests: XCTestCase {
     func testDecodesCompleteEventContract() throws {
         let json = #"""

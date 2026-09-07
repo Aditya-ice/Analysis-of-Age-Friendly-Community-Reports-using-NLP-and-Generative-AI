@@ -5,6 +5,7 @@ import XCTest
 @testable import ElderHelp
 #endif
 
+@MainActor
 final class SSEParserTests: XCTestCase {
     func testParsesNamedEventAfterBlankLine() {
         var parser = SSEParser()
