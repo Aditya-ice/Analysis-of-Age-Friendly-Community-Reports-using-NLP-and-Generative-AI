@@ -8,7 +8,7 @@ final class ElderHelpUITests: XCTestCase {
 
     func testAskReportsHistoryAndCitations() {
         let app = XCUIApplication()
-        app.launchEnvironment["ELDERHELP_API_BASE_URL"] = "http://127.0.0.1:8765"
+        app.launchEnvironment["ELDERHELP_API_BASE_URL"] = "http://localhost:8765"
         app.launch()
 
         XCTAssertTrue(app.navigationBars["ElderHelp"].waitForExistence(timeout: 5))

@@ -27,7 +27,13 @@ jobs:
         run: |
           python3 ios/MockServer/server.py > "${RUNNER_TEMP}/elderhelp-mock.log" 2>&1 &
           MOCK_PID=$!
-          trap 'kill "${MOCK_PID}"' EXIT
+          cleanup() {
+            STATUS=$?
+            cat "${RUNNER_TEMP}/elderhelp-mock.log"
+            kill "${MOCK_PID}" 2>/dev/null || true
+            exit "${STATUS}"
+          }
+          trap cleanup EXIT
           for attempt in {1..20}; do
             if curl --fail --silent http://127.0.0.1:8765/v1/reports > /dev/null; then
               break

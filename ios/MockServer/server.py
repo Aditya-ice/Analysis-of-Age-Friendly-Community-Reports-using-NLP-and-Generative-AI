@@ -68,7 +68,7 @@ class Handler(BaseHTTPRequestHandler):
         self.wfile.write(data)
 
     def log_message(self, format, *args):
-        return
+        print(f"{self.command} {self.path}", flush=True)
 
 
 if __name__ == "__main__":

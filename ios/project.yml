@@ -13,14 +13,22 @@ targets:
     platform: iOS
     sources:
       - ElderHelp
+    info:
+      path: ElderHelp/Info.plist
+      properties:
+        CFBundleDisplayName: ElderHelp
+        API_BASE_URL: http://127.0.0.1:8000
+        NSAppTransportSecurity:
+          NSAllowsLocalNetworking: true
+          NSExceptionDomains:
+            localhost:
+              NSExceptionAllowsInsecureHTTPLoads: true
+              NSIncludesSubdomains: true
+        UILaunchScreen: {}
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.adityaice.ElderHelp
         PRODUCT_NAME: ElderHelp
-        GENERATE_INFOPLIST_FILE: YES
-        INFOPLIST_KEY_CFBundleDisplayName: ElderHelp
-        INFOPLIST_KEY_API_BASE_URL: http://127.0.0.1:8000
-        INFOPLIST_KEY_NSAppTransportSecurity_NSAllowsLocalNetworking: YES
         TARGETED_DEVICE_FAMILY: "1,2"
     scheme:
       testTargets:
