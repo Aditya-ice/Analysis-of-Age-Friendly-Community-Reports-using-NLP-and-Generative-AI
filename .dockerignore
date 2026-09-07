@@ -1,0 +1,8 @@
+.git
+.venv
+legacy
+ios
+infra
+**/__pycache__
+**/.pytest_cache
+data/seed

@@ -1,0 +1,58 @@
+[build-system]
+requires = ["setuptools>=80"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "elderhelp-rag"
+version = "0.1.0"
+description = "Evidence-grounded RAG API for age-friendly community reports"
+readme = "README.md"
+requires-python = ">=3.12,<3.14"
+dependencies = [
+  "alembic>=1.14,<2",
+  "asyncpg>=0.30,<1",
+  "fastapi>=0.115,<1",
+  "google-cloud-discoveryengine>=0.13,<1",
+  "google-cloud-documentai>=3,<4",
+  "google-cloud-storage>=3,<4",
+  "google-genai>=1.36,<2",
+  "httpx>=0.28,<1",
+  "pgvector>=0.4,<1",
+  "pydantic-settings>=2.10,<3",
+  "pymupdf>=1.26,<2",
+  "pyyaml>=6,<7",
+  "sqlalchemy[asyncio]>=2.0.43,<3",
+  "typer>=0.16,<1",
+  "uvicorn[standard]>=0.35,<1",
+]
+
+[project.scripts]
+elderhelp = "elderhelp.cli:app"
+
+[dependency-groups]
+dev = [
+  "aiosqlite>=0.21,<1",
+  "pytest>=8.4,<9",
+  "pytest-asyncio>=1.1,<2",
+  "pytest-cov>=6.2,<7",
+  "respx>=0.22,<1",
+  "ruff>=0.12,<1",
+]
+
+[tool.setuptools]
+package-dir = {"" = "backend"}
+
+[tool.setuptools.packages.find]
+where = ["backend"]
+
+[tool.pytest.ini_options]
+testpaths = ["backend/tests"]
+asyncio_mode = "auto"
+pythonpath = ["backend"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "ASYNC"]

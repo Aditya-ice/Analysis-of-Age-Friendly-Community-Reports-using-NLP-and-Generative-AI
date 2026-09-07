@@ -1,0 +1,26 @@
+version: 1
+reports:
+  - slug: age-friendly-nyc-2017
+    title: "Age-friendly NYC: New Commitments for a City for All Ages"
+    publisher: City of New York
+    community: New York, New York
+    publication_date: 2017-01-01
+    source_url: https://www.aarp.org/content/dam/aarp/livable-communities/age-friendly-network/2017/AgeFriendlyNYC2017.pdf
+    local_path: data/seed/pdfs/AgeFriendlyNYC2017.pdf
+    description: Commitments and initiatives supporting New Yorkers of all ages.
+    suggested_questions:
+      - What does the report recommend for affordable housing?
+      - How does New York plan to reduce social isolation?
+      - What transportation changes are described for older adults?
+  - slug: engaging-community-2018
+    title: Engaging the Community to Create Community
+    publisher: AARP Network of Age-Friendly States and Communities
+    community: United States
+    publication_date: 2018-01-01
+    source_url: https://www.aarp.org/content/dam/aarp/livable-communities/livable-documents/documents-2018/engaging-community-single-pages-120318-lr.pdf
+    local_path: data/seed/pdfs/engaging-community-single-pages-120318-lr.pdf
+    description: A guide to sustained resident participation in age-friendly community work.
+    suggested_questions:
+      - What are the stages of the community improvement cycle?
+      - How can city leaders build trust with residents?
+      - What examples of citizen engagement does the guide provide?
