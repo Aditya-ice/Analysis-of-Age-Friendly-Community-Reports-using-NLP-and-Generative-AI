@@ -3,6 +3,7 @@ import SwiftUI
 
 struct AskView: View {
     @State private var viewModel: AskViewModel
+    @FocusState private var questionIsFocused: Bool
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \StoredConversation.createdAt, order: .reverse) private var history: [StoredConversation]
     init(apiClient: APIClient) {
@@ -26,6 +27,7 @@ struct AskView: View {
                     .foregroundStyle(.secondary)
 
                 TextEditor(text: $viewModel.question)
+                    .focused($questionIsFocused)
                     .frame(minHeight: 110)
                     .padding(8)
                     .background(.secondary.opacity(0.08), in: RoundedRectangle(cornerRadius: 12))
@@ -34,6 +36,7 @@ struct AskView: View {
 
                 HStack {
                     Button {
+                        questionIsFocused = false
                         viewModel.submit(history: recentTurns) { completion in
                             modelContext.insert(StoredConversation(question: viewModel.question, completion: completion))
                         }
