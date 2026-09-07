@@ -537,6 +537,102 @@
           "type"
         ],
         "title": "ValidationError"
+      },
+      "Citation": {
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "report_id": {
+            "format": "uuid",
+            "title": "Report Id",
+            "type": "string"
+          },
+          "report_title": {
+            "title": "Report Title",
+            "type": "string"
+          },
+          "publisher": {
+            "title": "Publisher",
+            "type": "string"
+          },
+          "source_url": {
+            "format": "uri",
+            "maxLength": 2083,
+            "minLength": 1,
+            "title": "Source Url",
+            "type": "string"
+          },
+          "publication_date": {
+            "anyOf": [
+              {
+                "format": "date",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Publication Date"
+          },
+          "page_number": {
+            "title": "Page Number",
+            "type": "integer"
+          },
+          "excerpt": {
+            "title": "Excerpt",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "report_id",
+          "report_title",
+          "publisher",
+          "source_url",
+          "page_number",
+          "excerpt"
+        ],
+        "title": "Citation",
+        "type": "object"
+      },
+      "AnswerComplete": {
+        "properties": {
+          "request_id": {
+            "format": "uuid",
+            "title": "Request Id",
+            "type": "string"
+          },
+          "answer_markdown": {
+            "title": "Answer Markdown",
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "grounded",
+              "insufficient_evidence"
+            ],
+            "title": "Status",
+            "type": "string"
+          },
+          "citations": {
+            "items": {
+              "$ref": "#/components/schemas/Citation"
+            },
+            "title": "Citations",
+            "type": "array"
+          }
+        },
+        "required": [
+          "request_id",
+          "answer_markdown",
+          "status",
+          "citations"
+        ],
+        "title": "AnswerComplete",
+        "type": "object"
       }
     }
   }
