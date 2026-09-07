@@ -26,10 +26,23 @@ public struct SSEParser: Sendable {
             return nil
         }
         if line.hasPrefix("event:") {
-            eventName = String(line.dropFirst(6)).trimmingCharacters(in: .whitespaces)
+            let nextEventName = String(line.dropFirst(6)).trimmingCharacters(in: .whitespaces)
+            if let pending = finish() {
+                eventName = nextEventName
+                return pending
+            }
+            eventName = nextEventName
         } else if line.hasPrefix("data:") {
             dataLines.append(String(line.dropFirst(5)).trimmingCharacters(in: .whitespaces))
         }
         return nil
+    }
+
+    public mutating func finish() -> RawSSEEvent? {
+        guard !dataLines.isEmpty else { return nil }
+        let result = RawSSEEvent(name: eventName, data: dataLines.joined(separator: "\n"))
+        eventName = "message"
+        dataLines.removeAll(keepingCapacity: true)
+        return result
     }
 }

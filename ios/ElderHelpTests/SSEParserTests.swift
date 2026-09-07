@@ -37,4 +37,19 @@ final class SSEParserTests: XCTestCase {
         _ = parser.ingest(line: "data: next")
         XCTAssertEqual(parser.ingest(line: ""), RawSSEEvent(name: "message", data: "next"))
     }
+
+    func testDispatchesWhenBlankSeparatorsAreOmitted() {
+        var parser = SSEParser()
+        XCTAssertNil(parser.ingest(line: "event: start"))
+        XCTAssertNil(parser.ingest(line: "data: {}"))
+        XCTAssertEqual(
+            parser.ingest(line: "event: delta"),
+            RawSSEEvent(name: "start", data: "{}")
+        )
+        XCTAssertNil(parser.ingest(line: "data: {\"text\":\"Hello\"}"))
+        XCTAssertEqual(
+            parser.finish(),
+            RawSSEEvent(name: "delta", data: "{\"text\":\"Hello\"}")
+        )
+    }
 }

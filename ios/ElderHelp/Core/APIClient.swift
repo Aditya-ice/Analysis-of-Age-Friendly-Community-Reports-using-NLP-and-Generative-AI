@@ -67,6 +67,9 @@ public actor APIClient {
                             continuation.yield(try decode(event))
                         }
                     }
+                    if let event = parser.finish() {
+                        continuation.yield(try decode(event))
+                    }
                     continuation.finish()
                 } catch is CancellationError {
                     continuation.finish()
