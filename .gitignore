@@ -13,3 +13,8 @@ htmlcov/
 *.tfstate.*
 DerivedData/
 xcuserdata/
+
+# Android
+android/.gradle/
+android/**/build/
+android/local.properties
