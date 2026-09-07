@@ -13,10 +13,11 @@ original research prototype is preserved in [`legacy/`](legacy/README.md).
 - `backend/tests/` — offline unit and API-contract tests.
 - `data/reports.yaml` — curated report manifest; PDFs under `data/seed/` are private seed inputs.
 - `ios/ElderHelp/` — SwiftUI client with Ask, Reports, and local History features.
+- `infra/terraform/` — Google Cloud Run, Cloud SQL, private Storage, IAM, and WIF resources.
 - `evaluations/` — versioned retrieval and grounded-answer evaluation cases.
 - `legacy/` — preserved Flask, LangChain, OCR, NLP, and extracted-text prototype.
 
-Google Cloud deployment configuration is delivered in a subsequent stacked change.
+The Android client follows after the API and iOS interaction contract stabilize.
 
 ## Local backend
 

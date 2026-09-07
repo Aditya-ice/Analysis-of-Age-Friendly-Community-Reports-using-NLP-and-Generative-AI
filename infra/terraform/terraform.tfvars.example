@@ -1,0 +1,4 @@
+project_id     = "your-google-cloud-project"
+region         = "us-central1"
+environment    = "staging"
+container_image = "us-central1-docker.pkg.dev/your-google-cloud-project/elderhelp/api@sha256:replace-me"

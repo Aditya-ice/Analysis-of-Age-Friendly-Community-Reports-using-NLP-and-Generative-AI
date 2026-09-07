@@ -1,0 +1,40 @@
+name: Deploy staging
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: staging
+    env:
+      REGION: us-central1
+      SERVICE: elderhelp-staging
+      CLOUDSDK_CORE_PROJECT: ${{ vars.GCP_PROJECT_ID }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: google-github-actions/auth@v3
+        with:
+          project_id: ${{ vars.GCP_PROJECT_ID }}
+          workload_identity_provider: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ vars.GCP_DEPLOYER_SERVICE_ACCOUNT }}
+      - uses: google-github-actions/setup-gcloud@v3
+      - name: Configure Artifact Registry
+        run: gcloud auth configure-docker "${REGION}-docker.pkg.dev" --quiet
+      - name: Build and push immutable image
+        run: |
+          IMAGE="${{ vars.GCP_PROJECT_ID }}-docker.pkg.dev/${REGION}/elderhelp/api:${GITHUB_SHA}"
+          docker build -t "${IMAGE}" .
+          docker push "${IMAGE}"
+          echo "IMAGE=${IMAGE}" >> "${GITHUB_ENV}"
+      - name: Update API and jobs
+        run: |
+          gcloud run services update "${SERVICE}" --region "${REGION}" --image "${IMAGE}"
+          gcloud run jobs update "${SERVICE}-migration" --region "${REGION}" --image "${IMAGE}"
+          gcloud run jobs update "${SERVICE}-ingestion" --region "${REGION}" --image "${IMAGE}"
+      - name: Apply database migrations
+        run: gcloud run jobs execute "${SERVICE}-migration" --region "${REGION}" --wait
