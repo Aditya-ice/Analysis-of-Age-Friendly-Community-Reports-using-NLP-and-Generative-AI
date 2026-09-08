@@ -2,8 +2,8 @@
   "openapi": "3.1.0",
   "info": {
     "title": "ElderHelp API",
-    "description": "Evidence-grounded answers from approved age-friendly reports.",
-    "version": "1.0.0"
+    "description": "Verified historical research answers from approved reports. Invite-code pilot; local-only conversation history.",
+    "version": "2.0.0"
   },
   "paths": {
     "/healthz": {
@@ -48,13 +48,229 @@
         }
       }
     },
-    "/v1/reports": {
+    "/v2/demo/session": {
+      "post": {
+        "tags": [
+          "pilot"
+        ],
+        "summary": "Session",
+        "operationId": "session_v2_demo_session_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SessionRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SessionResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/capabilities": {
+      "get": {
+        "tags": [
+          "pilot"
+        ],
+        "summary": "Capabilities",
+        "operationId": "capabilities_v2_capabilities_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Capabilities"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/v2/reports": {
       "get": {
         "tags": [
           "reports"
         ],
         "summary": "Reports",
-        "operationId": "reports_v1_reports_get",
+        "operationId": "reports_v2_reports_get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "community",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 200
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Community"
+            }
+          },
+          {
+            "name": "year",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "maximum": 2200,
+                  "minimum": 1900
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Year"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 0,
+              "title": "Offset"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "default": 20,
+              "title": "Limit"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReportListV2"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/reports/{report_id}": {
+      "get": {
+        "tags": [
+          "reports"
+        ],
+        "summary": "Report",
+        "operationId": "report_v2_reports__report_id__get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "report_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Report Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReportDetailV2"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/reports": {
+      "get": {
+        "tags": [
+          "v1 compatibility"
+        ],
+        "summary": "Reports V1",
+        "operationId": "reports_v1_v1_reports_get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
         "parameters": [
           {
             "name": "community",
@@ -119,10 +335,15 @@
     "/v1/reports/{report_id}": {
       "get": {
         "tags": [
-          "reports"
+          "v1 compatibility"
         ],
-        "summary": "Report",
-        "operationId": "report_v1_reports__report_id__get",
+        "summary": "Report V1",
+        "operationId": "report_v1_v1_reports__report_id__get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
         "parameters": [
           {
             "name": "report_id",
@@ -159,13 +380,59 @@
         }
       }
     },
-    "/v1/answers/stream": {
+    "/v2/search": {
+      "post": {
+        "tags": [
+          "search"
+        ],
+        "summary": "Search",
+        "operationId": "search_v2_search_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/v2/answers/stream": {
       "post": {
         "tags": [
           "answers"
         ],
         "summary": "Answer Stream",
-        "operationId": "answer_stream_v1_answers_stream_post",
+        "operationId": "answer_stream_v2_answers_stream_post",
         "requestBody": {
           "content": {
             "application/json": {
@@ -178,18 +445,92 @@
         },
         "responses": {
           "200": {
-            "description": "SSE answer stream",
+            "description": "SSE start, progress, verified delta, complete; typed error on failure",
             "content": {
               "text/event-stream": {}
+            },
+            "x-sse-events": {
+              "start": "StartEvent",
+              "progress": "ProgressEvent",
+              "delta": "DeltaEvent",
+              "complete": "CompleteV2",
+              "error": "ErrorEvent"
             }
           },
+          "401": {
+            "description": "Invite/session required"
+          },
+          "413": {
+            "description": "Request body too large"
+          },
           "422": {
-            "description": "Invalid request"
+            "description": "Invalid input"
+          },
+          "429": {
+            "description": "Quota/concurrency limit; Retry-After header"
           },
           "503": {
-            "description": "RAG provider is not configured"
+            "description": "Required dependency unavailable"
           }
-        }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/v1/answers/stream": {
+      "post": {
+        "tags": [
+          "v1 compatibility"
+        ],
+        "summary": "Answer Stream V1",
+        "operationId": "answer_stream_v1_v1_answers_stream_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AnswerRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "SSE start, verified delta, complete; typed error on failure",
+            "content": {
+              "text/event-stream": {}
+            },
+            "x-sse-events": {
+              "start": "StartEvent",
+              "delta": "DeltaEvent",
+              "complete": "AnswerComplete",
+              "error": "ErrorEvent"
+            }
+          },
+          "401": {
+            "description": "Invite/session required"
+          },
+          "413": {
+            "description": "Request body too large"
+          },
+          "422": {
+            "description": "Invalid input"
+          },
+          "429": {
+            "description": "Quota/concurrency limit; Retry-After header"
+          },
+          "503": {
+            "description": "Required dependency unavailable"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
       }
     }
   },
@@ -274,6 +615,60 @@
         ],
         "title": "AnswerRequest"
       },
+      "Capabilities": {
+        "properties": {
+          "generation_available": {
+            "type": "boolean",
+            "title": "Generation Available"
+          },
+          "search_available": {
+            "type": "boolean",
+            "title": "Search Available"
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason"
+          },
+          "corpus_generation": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Corpus Generation"
+          },
+          "supported_filters": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Supported Filters",
+            "default": [
+              "report_ids",
+              "community",
+              "year_from",
+              "year_to"
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "generation_available",
+          "search_available"
+        ],
+        "title": "Capabilities"
+      },
       "ChatTurn": {
         "properties": {
           "role": {
@@ -297,6 +692,90 @@
           "content"
         ],
         "title": "ChatTurn"
+      },
+      "CitationV2": {
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "report_id": {
+            "format": "uuid",
+            "title": "Report Id",
+            "type": "string"
+          },
+          "report_title": {
+            "title": "Report Title",
+            "type": "string"
+          },
+          "publisher": {
+            "title": "Publisher",
+            "type": "string"
+          },
+          "source_url": {
+            "format": "uri",
+            "maxLength": 2083,
+            "minLength": 1,
+            "title": "Source Url",
+            "type": "string"
+          },
+          "publication_date": {
+            "anyOf": [
+              {
+                "format": "date",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Publication Date"
+          },
+          "page_number": {
+            "title": "Page Number",
+            "type": "integer"
+          },
+          "excerpt": {
+            "title": "Excerpt",
+            "type": "string"
+          },
+          "revision_id": {
+            "format": "uuid",
+            "title": "Revision Id",
+            "type": "string"
+          },
+          "span_id": {
+            "format": "uuid",
+            "title": "Span Id",
+            "type": "string"
+          },
+          "page_label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Page Label"
+          }
+        },
+        "required": [
+          "id",
+          "report_id",
+          "report_title",
+          "publisher",
+          "source_url",
+          "page_number",
+          "excerpt",
+          "revision_id",
+          "span_id"
+        ],
+        "title": "CitationV2",
+        "type": "object"
       },
       "HTTPValidationError": {
         "properties": {
@@ -423,6 +902,95 @@
         ],
         "title": "ReportDetail"
       },
+      "ReportDetailV2": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "slug": {
+            "type": "string",
+            "title": "Slug"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "publisher": {
+            "type": "string",
+            "title": "Publisher"
+          },
+          "community": {
+            "type": "string",
+            "title": "Community"
+          },
+          "publication_date": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Publication Date"
+          },
+          "source_url": {
+            "type": "string",
+            "maxLength": 2083,
+            "minLength": 1,
+            "format": "uri",
+            "title": "Source Url"
+          },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description"
+          },
+          "suggested_questions": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Suggested Questions"
+          },
+          "page_count": {
+            "type": "integer",
+            "title": "Page Count"
+          },
+          "revision_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Revision Id"
+          },
+          "acquired_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Acquired At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "slug",
+          "title",
+          "publisher",
+          "community",
+          "source_url",
+          "page_count",
+          "revision_id",
+          "acquired_at"
+        ],
+        "title": "ReportDetailV2"
+      },
       "ReportList": {
         "properties": {
           "items": {
@@ -443,6 +1011,37 @@
           "total"
         ],
         "title": "ReportList"
+      },
+      "ReportListV2": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/ReportSummary"
+            },
+            "type": "array",
+            "title": "Items"
+          },
+          "total": {
+            "type": "integer",
+            "title": "Total"
+          },
+          "offset": {
+            "type": "integer",
+            "title": "Offset"
+          },
+          "limit": {
+            "type": "integer",
+            "title": "Limit"
+          }
+        },
+        "type": "object",
+        "required": [
+          "items",
+          "total",
+          "offset",
+          "limit"
+        ],
+        "title": "ReportListV2"
       },
       "ReportSummary": {
         "properties": {
@@ -497,6 +1096,129 @@
           "source_url"
         ],
         "title": "ReportSummary"
+      },
+      "SearchHit": {
+        "properties": {
+          "citation": {
+            "$ref": "#/components/schemas/CitationV2"
+          },
+          "score": {
+            "type": "number",
+            "title": "Score"
+          }
+        },
+        "type": "object",
+        "required": [
+          "citation",
+          "score"
+        ],
+        "title": "SearchHit"
+      },
+      "SearchRequest": {
+        "properties": {
+          "question": {
+            "type": "string",
+            "maxLength": 2000,
+            "minLength": 1,
+            "title": "Question"
+          },
+          "history": {
+            "items": {
+              "$ref": "#/components/schemas/ChatTurn"
+            },
+            "type": "array",
+            "maxItems": 6,
+            "title": "History"
+          },
+          "filters": {
+            "$ref": "#/components/schemas/AnswerFilters"
+          },
+          "mode": {
+            "type": "string",
+            "enum": [
+              "keyword",
+              "hybrid"
+            ],
+            "title": "Mode",
+            "default": "keyword"
+          },
+          "limit": {
+            "type": "integer",
+            "maximum": 20.0,
+            "minimum": 1.0,
+            "title": "Limit",
+            "default": 8
+          }
+        },
+        "type": "object",
+        "required": [
+          "question"
+        ],
+        "title": "SearchRequest"
+      },
+      "SearchResponse": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/SearchHit"
+            },
+            "type": "array",
+            "title": "Items"
+          },
+          "mode": {
+            "type": "string",
+            "enum": [
+              "keyword",
+              "hybrid"
+            ],
+            "title": "Mode"
+          },
+          "degraded": {
+            "type": "boolean",
+            "title": "Degraded",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "items",
+          "mode"
+        ],
+        "title": "SearchResponse"
+      },
+      "SessionRequest": {
+        "properties": {
+          "invite_code": {
+            "type": "string",
+            "maxLength": 256,
+            "minLength": 12,
+            "title": "Invite Code"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "invite_code"
+        ],
+        "title": "SessionRequest"
+      },
+      "SessionResponse": {
+        "properties": {
+          "token": {
+            "type": "string",
+            "title": "Token"
+          },
+          "expires_at": {
+            "type": "integer",
+            "title": "Expires At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "token",
+          "expires_at"
+        ],
+        "title": "SessionResponse"
       },
       "ValidationError": {
         "properties": {
@@ -719,90 +1441,6 @@
         "title": "ErrorEvent",
         "type": "object"
       },
-      "CitationV2": {
-        "properties": {
-          "id": {
-            "title": "Id",
-            "type": "string"
-          },
-          "report_id": {
-            "format": "uuid",
-            "title": "Report Id",
-            "type": "string"
-          },
-          "report_title": {
-            "title": "Report Title",
-            "type": "string"
-          },
-          "publisher": {
-            "title": "Publisher",
-            "type": "string"
-          },
-          "source_url": {
-            "format": "uri",
-            "maxLength": 2083,
-            "minLength": 1,
-            "title": "Source Url",
-            "type": "string"
-          },
-          "publication_date": {
-            "anyOf": [
-              {
-                "format": "date",
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "default": null,
-            "title": "Publication Date"
-          },
-          "page_number": {
-            "title": "Page Number",
-            "type": "integer"
-          },
-          "excerpt": {
-            "title": "Excerpt",
-            "type": "string"
-          },
-          "revision_id": {
-            "format": "uuid",
-            "title": "Revision Id",
-            "type": "string"
-          },
-          "span_id": {
-            "format": "uuid",
-            "title": "Span Id",
-            "type": "string"
-          },
-          "page_label": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "default": null,
-            "title": "Page Label"
-          }
-        },
-        "required": [
-          "id",
-          "report_id",
-          "report_title",
-          "publisher",
-          "source_url",
-          "page_number",
-          "excerpt",
-          "revision_id",
-          "span_id"
-        ],
-        "title": "CitationV2",
-        "type": "object"
-      },
       "CompleteV2": {
         "properties": {
           "request_id": {
@@ -859,6 +1497,12 @@
         ],
         "title": "CompleteV2",
         "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "HTTPBearer": {
+        "type": "http",
+        "scheme": "bearer"
       }
     }
   }

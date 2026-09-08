@@ -11,10 +11,10 @@ from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.exc import ProgrammingError
 
 from elderhelp.manifest import ReportManifest
-from elderhelp.services.chunking import report_uuid
 from elderhelp.v2.corpus import fingerprint, index_configuration, stage
 from elderhelp.v2.downloads import acquire
 from elderhelp.v2.extraction import extract, prepare
+from elderhelp.v2.identities import report_uuid
 from elderhelp.v2.models import (
     Embedding,
     Generation,

@@ -23,3 +23,7 @@ android/local.properties
 .local/
 *.dump
 models/
+
+# Local wheel-build and ONNX telemetry artifacts
+build/
+:memory:.ses

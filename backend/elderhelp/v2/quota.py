@@ -52,3 +52,22 @@ def daily(name: str, amount: int, limit: int):
     now = datetime.now(UTC)
     end = (now + timedelta(days=1)).replace(hour=0, minute=0, second=0, microsecond=0)
     return f"{name}:{now:%Y-%m-%d}", amount, limit, end
+
+
+async def pause_google(database, seconds=60):
+    expires = datetime.now(UTC) + timedelta(seconds=seconds)
+    async with database.sessions() as db, db.begin():
+        statement = insert(QuotaCounter).values(key="google:cooldown", used=1, expires_at=expires)
+        await db.execute(
+            statement.on_conflict_do_update(
+                index_elements=[QuotaCounter.key], set_={"expires_at": expires, "used": 1}
+            )
+        )
+
+
+async def google_retry_after(database):
+    async with database.sessions() as db:
+        row = await db.get(QuotaCounter, "google:cooldown")
+        if row:
+            return max(0, int((row.expires_at - datetime.now(UTC)).total_seconds()))
+    return 0

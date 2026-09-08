@@ -2,13 +2,14 @@ from __future__ import annotations
 
 import hashlib
 import json
+import math
 from datetime import UTC, datetime
 from uuid import UUID, uuid4
 
 from sqlalchemy import func, select, text
 
 from elderhelp.models import Report
-from elderhelp.services.chunking import report_uuid
+from elderhelp.v2.identities import report_uuid
 from elderhelp.v2.models import (
     ActiveCorpus,
     Embedding,
@@ -123,22 +124,45 @@ async def validate_generation(database, generation_id: UUID) -> dict:
         errors = []
         if not expected or not rows or expected != represented:
             errors.append("manifest_coverage")
+        hashes = {
+            item["slug"]: item.get("expected_sha256")
+            for item in generation.manifest_snapshot["reports"]
+        }
         for chunk, revision, _report, embedding in rows:
+            if hashes.get(_report.slug) != revision.sha256:
+                errors.append("revision_checksum")
+            if (
+                not all(math.isfinite(float(x)) for x in embedding.vector)
+                or abs(sum(float(x) ** 2 for x in embedding.vector) - 1) > 0.001
+            ):
+                errors.append("embedding_normalization")
+            contents = []
             if embedding.fingerprint != generation.fingerprint:
                 errors.append("embedding_configuration")
             if not chunk.span_ids:
                 errors.append("missing_spans")
             for span_id in chunk.span_ids:
-                span = await db.get(SourceSpan, UUID(span_id))
+                try:
+                    span = await db.get(SourceSpan, UUID(span_id))
+                except ValueError:
+                    errors.append("invalid_span")
+                    continue
+                if span:
+                    contents.append(span.text)
                 page = await db.get(ResearchPage, span.page_id) if span else None
                 if (
                     not span
                     or not page
                     or page.revision_id != revision.id
                     or page.text[span.start : span.end] != span.text
+                    or span.start < 0
+                    or span.end > len(page.text)
+                    or page.page_number < 1
                     or not span.searchable
                 ):
                     errors.append("invalid_span")
+            if "\n".join(contents) != chunk.content:
+                errors.append("chunk_span_mismatch")
         pending = await db.scalar(
             select(func.count())
             .select_from(IngestionJob)

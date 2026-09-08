@@ -9,7 +9,8 @@ import time
 from google import genai
 from google.genai import types
 
-from elderhelp.v2.quota import QuotaExceeded, daily, reserve
+from elderhelp.observability import request_context
+from elderhelp.v2.quota import QuotaExceeded, daily, google_retry_after, pause_google, reserve
 
 
 class ProviderUnavailable(RuntimeError):
@@ -30,7 +31,11 @@ def normalize_vector(vectors) -> list[float]:
 
 class Gemini:
     def __init__(self, settings, database):
-        if not settings.google_api_key or not settings.free_tier_confirmed:
+        if (
+            not settings.google_api_key
+            or not settings.google_api_key.get_secret_value()
+            or not settings.free_tier_confirmed
+        ):
             raise ProviderUnavailable(
                 "Configure a billing-disabled Google project and confirm free tier"
             )
@@ -47,6 +52,9 @@ class Gemini:
 
     async def embed(self, text: str, *, reserved: bool = False) -> list[float]:
         async with self.embedding_slots:
+            retry_after = await google_retry_after(self.database)
+            if retry_after:
+                raise QuotaExceeded(retry_after)
             if not reserved:
                 await reserve(
                     self.database, [daily("embedding", 1, self.settings.embedding_daily_limit)]
@@ -58,15 +66,31 @@ class Gemini:
                         contents=text,
                         config=types.EmbedContentConfig(output_dimensionality=768),
                     )
+                logging.getLogger("elderhelp.metrics").info(
+                    json.dumps(
+                        {
+                            "event": "embedding_call",
+                            "request_id": request_context.get(),
+                            "model": self.settings.embedding_model,
+                            "inputs": 1,
+                            "dimensions": 768,
+                            "input_characters": len(text),
+                        }
+                    )
+                )
                 return normalize_vector([item.values for item in response.embeddings or []])
             except Exception as exc:
                 if getattr(exc, "code", None) == 429:
+                    await pause_google(self.database)
                     raise QuotaExceeded() from None
                 if isinstance(exc, (ValueError, TimeoutError)):
                     raise
                 raise ProviderUnavailable("Google embedding unavailable") from None
 
     async def structured(self, schema, system: str, payload: dict, *, reserved=False):
+        retry_after = await google_retry_after(self.database)
+        if retry_after:
+            raise QuotaExceeded(retry_after)
         if not reserved:
             await reserve(
                 self.database, [daily("generation", 1, self.settings.generation_daily_limit)]
@@ -91,6 +115,7 @@ class Gemini:
                 json.dumps(
                     {
                         "event": "model_call",
+                        "request_id": request_context.get(),
                         "schema": schema.__name__,
                         "model": self.settings.generation_model,
                         "seconds": round(time.monotonic() - started, 3),
@@ -102,6 +127,7 @@ class Gemini:
             return result
         except Exception as exc:
             if getattr(exc, "code", None) == 429:
+                await pause_google(self.database)
                 raise QuotaExceeded() from None
             if isinstance(exc, (ValueError, TimeoutError)):
                 raise

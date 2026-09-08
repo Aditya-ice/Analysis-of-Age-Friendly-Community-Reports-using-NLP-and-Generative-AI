@@ -2,7 +2,7 @@ from pathlib import Path
 
 import pytest
 from elderhelp.manifest import ManifestReport, ReportManifest, load_manifest
-from elderhelp.services.ingestion import sha256_file
+from elderhelp.v2.downloads import checksum as sha256_file
 from pydantic import ValidationError
 
 ROOT = Path(__file__).parents[2]

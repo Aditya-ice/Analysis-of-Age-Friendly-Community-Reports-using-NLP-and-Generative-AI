@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "elderhelp-rag"
-version = "0.1.0"
+version = "0.2.0"
 description = "Evidence-grounded RAG API for age-friendly community reports"
 readme = "README.md"
 requires-python = ">=3.12,<3.14"
@@ -12,9 +12,6 @@ dependencies = [
   "alembic>=1.14,<2",
   "asyncpg>=0.30,<1",
   "fastapi>=0.115,<1",
-  "google-cloud-discoveryengine>=0.13,<1",
-  "google-cloud-documentai>=3,<4",
-  "google-cloud-storage>=3,<4",
   "google-genai>=1.36,<2",
   "httpcore>=1,<2",
   "httpx>=0.28,<1",
@@ -22,7 +19,6 @@ dependencies = [
   "onnxruntime>=1.22,<2",
   "pgvector>=0.4,<1",
   "pydantic-settings>=2.10,<3",
-  "pymupdf>=1.26,<2",
   "pyyaml>=6,<7",
   "sqlalchemy[asyncio]>=2.0.43,<3",
   "tiktoken>=0.11,<1",
@@ -30,6 +26,10 @@ dependencies = [
   "typer>=0.16,<1",
   "uvicorn[standard]>=0.35,<1",
 ]
+
+[project.optional-dependencies]
+ingestion = ["pymupdf>=1.26,<2"]
+legacy-cloud = ["google-cloud-discoveryengine>=0.13,<1", "google-cloud-documentai>=3,<4", "google-cloud-storage>=3,<4"]
 
 [project.scripts]
 elderhelp = "elderhelp.cli:app"
@@ -45,10 +45,17 @@ dev = [
 ]
 
 [tool.setuptools]
+include-package-data = false
 package-dir = {"" = "backend"}
+
+[tool.setuptools.package-data]
+elderhelp = ["assets/*.json", "web/*"]
 
 [tool.setuptools.packages.find]
 where = ["backend"]
+include = ["elderhelp*"]
+namespaces = false
+exclude = ["elderhelp.services*", "elderhelp.providers*", "elderhelp.api*"]
 
 [tool.pytest.ini_options]
 testpaths = ["backend/tests"]

@@ -172,6 +172,6 @@ async def test_invalid_spans_and_incompatible_configuration_cannot_activate(rese
         (await db.scalar(select(SourceSpan))).text = "Fabricated evidence"
         await db.commit()
     result = await validate_generation(research_db, generation)
-    assert result["errors"] == ["invalid_span"]
+    assert "invalid_span" in result["errors"]
     with pytest.raises(ValueError, match="validation failed"):
         await activate(research_db, generation, index_configuration(Settings()))

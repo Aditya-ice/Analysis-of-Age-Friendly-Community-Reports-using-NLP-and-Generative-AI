@@ -1,60 +1,62 @@
 # ElderHelp
 
-ElderHelp is an evidence-grounded question-answering system for approved age-friendly
-community reports. The new service preserves report and page provenance, combines semantic
-and keyword retrieval, reranks evidence, and streams answers with validated citations.
+ElderHelp is being rebuilt as a research assistant for approved age-friendly community reports. The v2 backend retrieves exact passages, creates structured claims, and verifies them before displaying any answer text. It distinguishes historical report commitments from current services and falls back to keyword search when generation is unavailable.
 
-The repository currently contains the Python backend and a native iOS simulator prototype. The
-original research prototype is preserved in [`legacy/`](legacy/README.md).
+**Implementation is ongoing.** Backend engineering checks are recorded in [the checkpoint ledger](docs/IMPLEMENTATION_STATUS.md). Live Google evaluation, human-reviewed quality gates, the browser/mobile migration and free hosted deployment are separate remaining stages. The project does not claim production uptime or measured corpus accuracy yet.
 
-## Repository layout
+## Local setup
 
-- `backend/elderhelp/` — FastAPI application, ingestion pipeline, and modern RAG services.
-- `backend/tests/` — offline unit and API-contract tests.
-- `data/reports.yaml` — curated report manifest; PDFs under `data/seed/` are private seed inputs.
-- `ios/ElderHelp/` — SwiftUI client with Ask, Reports, and local History features.
-- `infra/terraform/` — Google Cloud Run, Cloud SQL, private Storage, IAM, and WIF resources.
-- `evaluations/` — versioned retrieval and grounded-answer evaluation cases.
-- `legacy/` — preserved Flask, LangChain, OCR, NLP, and extracted-text prototype.
-
-The Android client follows after the API and iOS interaction contract stabilize.
-
-## Local backend
-
-Requirements: Python 3.12 and `uv`. PostgreSQL 16 with the `vector` extension is required for
-the catalog and retrieval endpoints.
+Use Python 3.12, `uv`, PostgreSQL 16 with pgvector, and local Tesseract for ingestion only.
 
 ```sh
 cp .env.example .env
-uv sync --frozen --group dev
+uv sync --frozen --group dev --extra ingestion
 docker compose up -d postgres
 uv run alembic upgrade head
-uv run uvicorn elderhelp.main:app --reload
+uv run python tools/download_reranker.py
+uv run elderhelp manifest validate
+uv run elderhelp corpus reconcile --dry-run
+uv run elderhelp corpus reconcile --apply
 ```
 
-The process health endpoint works without provider credentials. Retrieval and readiness require
-Application Default Credentials and `ELDERHELP_GOOGLE_CLOUD_PROJECT`.
+Set `ELDERHELP_TOKEN_SECRET` privately to a random string of at least 32 characters. For live model work, configure a **billing-disabled Google Gemini Developer API project**, verify its actual free quota, set `ELDERHELP_GOOGLE_API_KEY`, and explicitly set `ELDERHELP_FREE_TIER_CONFIRMED=true`. Lower the example admission limits if the account allows less. No model/provider changes or paid fallback happen automatically.
 
 ```sh
-uv run pytest
-uv run ruff check backend
-uv run python -m elderhelp.openapi
-uv run elderhelp ingest-reports .
+uv run elderhelp ingest
+# Save the returned generation UUID. Resume after interruptions/quota exhaustion:
+uv run elderhelp ingest resume GENERATION_UUID
+uv run elderhelp corpus validate GENERATION_UUID
+uv run elderhelp corpus activate GENERATION_UUID
+uv run elderhelp corpus invite-create
+uv run uvicorn elderhelp.main:app --reload --no-access-log
 ```
 
-Ingestion sends report text to the configured Vertex AI embedding model. It invokes Document AI
-only when a processor is configured and direct page extraction has poor quality. It uploads PDFs
-only when a private storage bucket is configured.
+The invite-creation command returns a revocable code once; it is not embedded in client builds. Exchange it at `POST /v2/demo/session`. Send the returned short-lived token as `Authorization: Bearer TOKEN` for report, search and answer endpoints. `/healthz` requires no database or model call; `/readyz` checks the database, compatible active corpus and local components without spending Google quota.
 
-## Privacy and report access
+API reference: `/docs`; committed contract: [openapi.json](openapi.json). `/v1` uses the same corrected engine and maps richer results to a safe insufficient-evidence response. Existing mobile builds need the upcoming invite-access migration to use this pilot API.
 
-The API does not persist questions, answers, or conversation history. Mobile history remains on
-the device. Full PDFs are not returned by the public API; citations contain a short excerpt,
-publisher attribution, page number, and publisher URL.
+## Verification
 
-This repository does not yet state redistribution rights for the seed reports. Confirm those
-rights before distributing their full contents or enabling public downloads.
+Use an isolated, migrated PostgreSQL database ending in `_test`. The integration fixture clears that test database.
 
-## Android prototype
+```sh
+ELDERHELP_DATABASE_URL=postgresql+asyncpg://USER:PASS@localhost:5432/elderhelp_test uv run alembic upgrade head
+ELDERHELP_TEST_DATABASE_URL=postgresql+asyncpg://USER:PASS@localhost:5432/elderhelp_test uv run pytest
+uv run ruff check backend tools
+uv run python -m elderhelp.openapi
+```
 
-The native Kotlin/Compose app is in [`android/`](android/README.md), with Ask, Reports, local History, and source citation sheets. Build and emulator instructions are in its README. Both mobile clients use the same versioned backend API; Android DTOs are generated from `openapi.json`.
+Tests use provider doubles; the optional real ONNX smoke test runs after downloading local artifacts. CI also exercises PostgreSQL/pgvector, Tesseract and the serving image. A second Gemini call is a fallible safeguard: human-reviewed evaluations must pass before deployment.
+
+## Documentation and preserved work
+
+- [Corpus reconciliation, activation and rollback](docs/CORPUS_OPERATIONS.md)
+- [Safe ingestion, extraction and private backup/restore](docs/INGESTION_V2.md)
+- [Hybrid retrieval and CPU ONNX reranking](docs/RETRIEVAL_V2.md)
+- [Verified answers, API access and failure behavior](docs/VERIFIED_API_V2.md)
+- [Swift prototype](ios/README.md) and [Kotlin prototype](android/README.md)
+- [Original research prototype](legacy/README.md); historical v1 serving code under `legacy/backend_v1/`
+
+Questions, answers and chat history are not stored by the server. Citations contain exact excerpts, dates, attribution and publisher URLs; the API does not publish PDFs or filesystem paths. Full-report redistribution and repository licensing remain unresolved. Google receives research questions and evidence when live models are enabled; submit only non-sensitive research questions under its unpaid-service terms.
+
+The selected pilot target is Render Free plus Supabase Free. Google Cloud configuration in `infra/` is preserved as a future option and is excluded from this setup. No environment is deployed automatically, and existing history, reports and native app work are preserved.
