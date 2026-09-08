@@ -5,7 +5,7 @@ Baseline: `8ae26b8`. Original code/history, seed reports and mobile apps are pre
 | Step | State | Verification |
 |---|---|---|
 | 1. Audit and v2 contract | Implemented | Contract/schema tests; source audit and reproduced grounding failures |
-| 2. Corpus lifecycle | Pending | |
+| 2. Corpus lifecycle | Implemented | PostgreSQL 16/pgvector migrations; 27 tests, including metadata-only changes, duplicate hashes, exact-span validation, atomic activation, incompatible configuration rejection and withdrawal-safe rollback |
 | 3. Extraction and ingestion | Pending | |
 | 4. Retrieval | Pending | |
 | 5. Verified answers/API | Pending | |

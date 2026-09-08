@@ -4,6 +4,7 @@ from logging.config import fileConfig
 from alembic import context
 from elderhelp.config import get_settings
 from elderhelp.models import Base
+from elderhelp.v2 import models as research_models  # noqa: F401
 from sqlalchemy.ext.asyncio import async_engine_from_config
 
 config = context.config
