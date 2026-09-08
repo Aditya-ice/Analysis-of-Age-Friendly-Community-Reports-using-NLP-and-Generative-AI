@@ -633,6 +633,232 @@
         ],
         "title": "AnswerComplete",
         "type": "object"
+      },
+      "StartEvent": {
+        "properties": {
+          "request_id": {
+            "format": "uuid",
+            "title": "Request Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "request_id"
+        ],
+        "title": "StartEvent",
+        "type": "object"
+      },
+      "ProgressEvent": {
+        "properties": {
+          "stage": {
+            "enum": [
+              "planning",
+              "retrieving",
+              "verifying"
+            ],
+            "title": "Stage",
+            "type": "string"
+          },
+          "message": {
+            "title": "Message",
+            "type": "string"
+          }
+        },
+        "required": [
+          "stage",
+          "message"
+        ],
+        "title": "ProgressEvent",
+        "type": "object"
+      },
+      "DeltaEvent": {
+        "properties": {
+          "text": {
+            "title": "Text",
+            "type": "string"
+          }
+        },
+        "required": [
+          "text"
+        ],
+        "title": "DeltaEvent",
+        "type": "object"
+      },
+      "ErrorEvent": {
+        "properties": {
+          "request_id": {
+            "format": "uuid",
+            "title": "Request Id",
+            "type": "string"
+          },
+          "code": {
+            "enum": [
+              "quota_exhausted",
+              "timeout",
+              "unavailable",
+              "corpus_changed"
+            ],
+            "title": "Code",
+            "type": "string"
+          },
+          "message": {
+            "title": "Message",
+            "type": "string"
+          },
+          "search_available": {
+            "default": true,
+            "title": "Search Available",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "request_id",
+          "code",
+          "message"
+        ],
+        "title": "ErrorEvent",
+        "type": "object"
+      },
+      "CitationV2": {
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "report_id": {
+            "format": "uuid",
+            "title": "Report Id",
+            "type": "string"
+          },
+          "report_title": {
+            "title": "Report Title",
+            "type": "string"
+          },
+          "publisher": {
+            "title": "Publisher",
+            "type": "string"
+          },
+          "source_url": {
+            "format": "uri",
+            "maxLength": 2083,
+            "minLength": 1,
+            "title": "Source Url",
+            "type": "string"
+          },
+          "publication_date": {
+            "anyOf": [
+              {
+                "format": "date",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Publication Date"
+          },
+          "page_number": {
+            "title": "Page Number",
+            "type": "integer"
+          },
+          "excerpt": {
+            "title": "Excerpt",
+            "type": "string"
+          },
+          "revision_id": {
+            "format": "uuid",
+            "title": "Revision Id",
+            "type": "string"
+          },
+          "span_id": {
+            "format": "uuid",
+            "title": "Span Id",
+            "type": "string"
+          },
+          "page_label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Page Label"
+          }
+        },
+        "required": [
+          "id",
+          "report_id",
+          "report_title",
+          "publisher",
+          "source_url",
+          "page_number",
+          "excerpt",
+          "revision_id",
+          "span_id"
+        ],
+        "title": "CitationV2",
+        "type": "object"
+      },
+      "CompleteV2": {
+        "properties": {
+          "request_id": {
+            "format": "uuid",
+            "title": "Request Id",
+            "type": "string"
+          },
+          "answer_markdown": {
+            "title": "Answer Markdown",
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "grounded",
+              "partial",
+              "insufficient_evidence",
+              "clarification_required"
+            ],
+            "title": "Status",
+            "type": "string"
+          },
+          "citations": {
+            "items": {
+              "$ref": "#/components/schemas/CitationV2"
+            },
+            "title": "Citations",
+            "type": "array"
+          },
+          "missing_parts": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Missing Parts",
+            "type": "array"
+          },
+          "corpus_generation": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Corpus Generation"
+          }
+        },
+        "required": [
+          "request_id",
+          "answer_markdown",
+          "status"
+        ],
+        "title": "CompleteV2",
+        "type": "object"
       }
     }
   }
