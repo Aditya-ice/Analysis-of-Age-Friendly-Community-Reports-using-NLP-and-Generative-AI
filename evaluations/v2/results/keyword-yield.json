@@ -1,0 +1,288 @@
+{
+  "scope": "Development-only searchable-block yield; not recall or answer correctness",
+  "cases": 56,
+  "zero_strict": 54,
+  "zero_broad": 0,
+  "results": [
+    {
+      "case_id": "direct-01",
+      "strict": 0,
+      "broad": 210
+    },
+    {
+      "case_id": "direct-02",
+      "strict": 0,
+      "broad": 241
+    },
+    {
+      "case_id": "direct-03",
+      "strict": 0,
+      "broad": 308
+    },
+    {
+      "case_id": "direct-05",
+      "strict": 0,
+      "broad": 269
+    },
+    {
+      "case_id": "direct-06",
+      "strict": 0,
+      "broad": 202
+    },
+    {
+      "case_id": "direct-08",
+      "strict": 0,
+      "broad": 144
+    },
+    {
+      "case_id": "direct-09",
+      "strict": 0,
+      "broad": 227
+    },
+    {
+      "case_id": "direct-10",
+      "strict": 0,
+      "broad": 155
+    },
+    {
+      "case_id": "direct-11",
+      "strict": 0,
+      "broad": 291
+    },
+    {
+      "case_id": "direct-14",
+      "strict": 0,
+      "broad": 182
+    },
+    {
+      "case_id": "direct-15",
+      "strict": 0,
+      "broad": 144
+    },
+    {
+      "case_id": "direct-16",
+      "strict": 0,
+      "broad": 148
+    },
+    {
+      "case_id": "direct-17",
+      "strict": 0,
+      "broad": 155
+    },
+    {
+      "case_id": "direct-18",
+      "strict": 0,
+      "broad": 167
+    },
+    {
+      "case_id": "direct-19",
+      "strict": 0,
+      "broad": 92
+    },
+    {
+      "case_id": "direct-20",
+      "strict": 0,
+      "broad": 231
+    },
+    {
+      "case_id": "direct-22",
+      "strict": 0,
+      "broad": 127
+    },
+    {
+      "case_id": "direct-28",
+      "strict": 0,
+      "broad": 65
+    },
+    {
+      "case_id": "direct-29",
+      "strict": 0,
+      "broad": 137
+    },
+    {
+      "case_id": "direct-32",
+      "strict": 0,
+      "broad": 36
+    },
+    {
+      "case_id": "direct-33",
+      "strict": 0,
+      "broad": 309
+    },
+    {
+      "case_id": "direct-34",
+      "strict": 0,
+      "broad": 103
+    },
+    {
+      "case_id": "direct-35",
+      "strict": 0,
+      "broad": 253
+    },
+    {
+      "case_id": "exact-03",
+      "strict": 0,
+      "broad": 155
+    },
+    {
+      "case_id": "exact-04",
+      "strict": 0,
+      "broad": 138
+    },
+    {
+      "case_id": "exact-05",
+      "strict": 0,
+      "broad": 215
+    },
+    {
+      "case_id": "exact-06",
+      "strict": 0,
+      "broad": 251
+    },
+    {
+      "case_id": "exact-07",
+      "strict": 0,
+      "broad": 201
+    },
+    {
+      "case_id": "exact-09",
+      "strict": 0,
+      "broad": 115
+    },
+    {
+      "case_id": "exact-10",
+      "strict": 1,
+      "broad": 122
+    },
+    {
+      "case_id": "exact-12",
+      "strict": 1,
+      "broad": 23
+    },
+    {
+      "case_id": "exact-13",
+      "strict": 0,
+      "broad": 80
+    },
+    {
+      "case_id": "exact-14",
+      "strict": 0,
+      "broad": 201
+    },
+    {
+      "case_id": "comparison-01",
+      "strict": 0,
+      "broad": 165
+    },
+    {
+      "case_id": "comparison-02",
+      "strict": 0,
+      "broad": 245
+    },
+    {
+      "case_id": "comparison-04",
+      "strict": 0,
+      "broad": 283
+    },
+    {
+      "case_id": "comparison-05",
+      "strict": 0,
+      "broad": 170
+    },
+    {
+      "case_id": "comparison-07",
+      "strict": 0,
+      "broad": 117
+    },
+    {
+      "case_id": "comparison-08",
+      "strict": 0,
+      "broad": 289
+    },
+    {
+      "case_id": "comparison-10",
+      "strict": 0,
+      "broad": 324
+    },
+    {
+      "case_id": "comparison-11",
+      "strict": 0,
+      "broad": 197
+    },
+    {
+      "case_id": "comparison-13",
+      "strict": 0,
+      "broad": 282
+    },
+    {
+      "case_id": "comparison-14",
+      "strict": 0,
+      "broad": 300
+    },
+    {
+      "case_id": "layout-01",
+      "strict": 0,
+      "broad": 138
+    },
+    {
+      "case_id": "layout-02",
+      "strict": 0,
+      "broad": 30
+    },
+    {
+      "case_id": "layout-03",
+      "strict": 0,
+      "broad": 125
+    },
+    {
+      "case_id": "layout-04",
+      "strict": 0,
+      "broad": 283
+    },
+    {
+      "case_id": "layout-05",
+      "strict": 0,
+      "broad": 58
+    },
+    {
+      "case_id": "partial-01",
+      "strict": 0,
+      "broad": 208
+    },
+    {
+      "case_id": "partial-02",
+      "strict": 0,
+      "broad": 62
+    },
+    {
+      "case_id": "partial-03",
+      "strict": 0,
+      "broad": 83
+    },
+    {
+      "case_id": "partial-04",
+      "strict": 0,
+      "broad": 75
+    },
+    {
+      "case_id": "partial-05",
+      "strict": 0,
+      "broad": 54
+    },
+    {
+      "case_id": "partial-07",
+      "strict": 0,
+      "broad": 44
+    },
+    {
+      "case_id": "partial-08",
+      "strict": 0,
+      "broad": 67
+    },
+    {
+      "case_id": "partial-09",
+      "strict": 0,
+      "broad": 63
+    }
+  ]
+}

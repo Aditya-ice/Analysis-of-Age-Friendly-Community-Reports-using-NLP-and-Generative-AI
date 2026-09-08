@@ -74,6 +74,7 @@ class Verification(StrictModel):
 
 
 class CitationV2(Citation):
+    publication_date: str | None = None
     revision_id: UUID
     span_id: UUID
     page_label: str | None = None
@@ -125,14 +126,21 @@ class Capabilities(BaseModel):
     supported_filters: list[str] = ["report_ids", "community", "year_from", "year_to"]
 
 
+class ReportSummaryV2(ReportSummary):
+    publication_date: str | None = None
+    publication_precision: Literal["year", "month", "day", "unknown"] = "unknown"
+
+
 class ReportListV2(BaseModel):
-    items: list[ReportSummary]
+    items: list[ReportSummaryV2]
     total: int
     offset: int
     limit: int
 
 
 class ReportDetailV2(ReportDetail):
+    publication_date: str | None = None
+    publication_precision: Literal["year", "month", "day", "unknown"] = "unknown"
     revision_id: UUID
     acquired_at: datetime
 

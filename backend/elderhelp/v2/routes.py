@@ -16,9 +16,11 @@ from elderhelp.schemas import (
     AnswerComplete,
     AnswerFilters,
     AnswerRequest,
+    Citation,
     HealthResponse,
     ReportDetail,
     ReportList,
+    ReportSummary,
 )
 from elderhelp.v2 import catalog
 from elderhelp.v2.admission import Admission
@@ -183,12 +185,22 @@ async def reports_v1(
         0,
         100,
     )
-    return ReportList(items=result.items, total=result.total)
+    items = []
+    for item in result.items:
+        data = item.model_dump()
+        if item.publication_precision != "day":
+            data["publication_date"] = None
+        items.append(ReportSummary.model_validate(data))
+    return ReportList(items=items, total=result.total)
 
 
 @router.get("/v1/reports/{report_id}", response_model=ReportDetail, tags=["v1 compatibility"])
 async def report_v1(report_id: UUID, request: Request, access: Access):
-    return await report(report_id, request, access)
+    result = await report(report_id, request, access)
+    data = result.model_dump()
+    if result.publication_precision != "day":
+        data["publication_date"] = None
+    return ReportDetail.model_validate(data)
 
 
 @router.post("/v2/search", response_model=SearchResponse, tags=["search"])
@@ -338,7 +350,19 @@ async def stream(payload, request, pilot, v1=False):
                     request_id=request_id,
                     answer_markdown=complete.answer_markdown if representable else INSUFFICIENT,
                     status="grounded" if representable else "insufficient_evidence",
-                    citations=complete.citations if representable else [],
+                    citations=[
+                        Citation.model_validate(
+                            {
+                                **c.model_dump(),
+                                "publication_date": c.publication_date
+                                if c.publication_date and len(c.publication_date) == 10
+                                else None,
+                            }
+                        )
+                        for c in complete.citations
+                    ]
+                    if representable
+                    else [],
                 )
             outcome = complete.status
             yield sse("delta", {"text": complete.answer_markdown})

@@ -147,7 +147,16 @@ def digital_blocks(page) -> tuple[list[Block], bool]:
         blocks = ordered
     else:
         blocks.sort(key=lambda b: (round(b.bbox[1] / 5), b.bbox[0]))
-    suspicious = any(b.text.count("�") > 2 for b in blocks)
+    figure = (
+        len(blocks) >= 25
+        and len(page.get_drawings()) >= 60
+        and sum(len(b.text) < 100 for b in blocks) / len(blocks) > 0.8
+        and sum(any(c.isdigit() for c in b.text) for b in blocks) / len(blocks) > 0.4
+    )
+    if figure:
+        for block in blocks:
+            block.kind, block.searchable = "figure", False
+    suspicious = figure or any(b.text.count("�") > 2 for b in blocks)
     return blocks, suspicious
 
 
@@ -158,8 +167,16 @@ def extract(path: Path, max_pages: int = 500, ocr=ocr_blocks) -> list[ExtractedP
             raise ValueError("Invalid page count or encrypted document")
         for page in document:
             blocks, suspicious = digital_blocks(page)
-            text = " ".join(b.text for b in blocks)
+            body_blocks = [
+                b
+                for b in blocks
+                if b.bbox[3] > page.rect.height * 0.08 and b.bbox[1] < page.rect.height * 0.92
+            ]
+            text = " ".join(b.text for b in body_blocks)
             result = ExtractedPage(page.number + 1, page.get_label() or None, blocks)
+            figure_review = any(b.kind == "figure" for b in blocks)
+            if figure_review:
+                result.issues.append("figure_review_required")
             if not text:
                 pixels = page.get_pixmap(colorspace=pymupdf.csGRAY, alpha=False).samples
                 if max(pixels) - min(pixels) <= 2:
@@ -173,10 +190,13 @@ def extract(path: Path, max_pages: int = 500, ocr=ocr_blocks) -> list[ExtractedP
                 except (OSError, subprocess.SubprocessError):
                     result.blocks = []
                     result.issues.append("ocr_failed")
+            if figure_review:
+                for block in result.blocks:
+                    block.kind, block.searchable = "figure", False
             result.quality = (
                 statistics.mean(b.confidence for b in result.blocks) if result.blocks else 0
             )
-            if not any(b.searchable for b in result.blocks):
+            if not any(b.searchable for b in result.blocks) and not figure_review:
                 result.issues.append("unreadable")
             if any(b.kind == "table" and not b.searchable for b in result.blocks):
                 result.issues.append("table_review_required")

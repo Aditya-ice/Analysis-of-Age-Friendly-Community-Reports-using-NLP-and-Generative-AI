@@ -175,11 +175,13 @@ def render(draft, review, spans, query_plan, request_id, generation):
     )
 
 
-async def answer(state, provider, payload, request_id: UUID, progress):
+async def answer(state, provider, payload, request_id: UUID, progress, *, trace=None):
     started, timings = time.monotonic(), {}
     await progress("planning", "Resolving your research question…")
     query_plan = await plan(payload, provider, reserved=True)
     timings["planning"] = time.monotonic() - started
+    if trace is not None:
+        trace["query_plan"] = query_plan.model_dump(mode="json")
     if query_plan.clarification:
         return CompleteV2(
             request_id=request_id, answer_markdown=CLARIFY, status="clarification_required"
@@ -200,6 +202,9 @@ async def answer(state, provider, payload, request_id: UUID, progress):
         reserved=True,
     )
     timings["retrieval_reranking"] = time.monotonic() - before
+    if trace is not None:
+        trace["evidence"] = [block.payload() for block in evidence.blocks]
+        trace["index_generation"] = str(evidence.generation)
     if not evidence.blocks:
         return CompleteV2(
             request_id=request_id,
@@ -226,6 +231,11 @@ async def answer(state, provider, payload, request_id: UUID, progress):
     )
     timings["verification"] = time.monotonic() - before
     complete = render(draft, review, spans, query_plan, request_id, evidence.generation)
+    if trace is not None:
+        trace["draft"] = draft.model_dump(mode="json")
+        trace["verification"] = review.model_dump(mode="json")
+        trace["timings"] = timings
+        trace["completion_seconds"] = time.monotonic() - started
     if not await still_approved(state.database, evidence.generation, evidence.blocks):
         raise CorpusChanged()
     logging.getLogger("elderhelp.metrics").info(
