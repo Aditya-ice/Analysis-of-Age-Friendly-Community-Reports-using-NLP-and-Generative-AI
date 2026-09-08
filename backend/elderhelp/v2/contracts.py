@@ -5,7 +5,7 @@ from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
-from elderhelp.schemas import AnswerRequest, Citation, ReportSummary
+from elderhelp.schemas import AnswerFilters, AnswerRequest, Citation, ReportSummary
 
 
 class StrictModel(BaseModel):
@@ -19,6 +19,7 @@ class QueryPlan(StrictModel):
     subqueries: list[str] = Field(min_length=1, max_length=3)
     required_parts: list[str] = Field(default_factory=list, max_length=3)
     clarification: str | None = None
+    filters: AnswerFilters = Field(default_factory=AnswerFilters)
 
 
 class EvidenceSpan(StrictModel):

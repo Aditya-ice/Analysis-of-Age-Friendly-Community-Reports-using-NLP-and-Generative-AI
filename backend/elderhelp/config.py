@@ -14,6 +14,8 @@ class Settings(BaseSettings):
     free_tier_confirmed: bool = False
     provider_timeout_seconds: float = Field(default=25, ge=1, le=60)
     embedding_daily_limit: int = Field(default=200, ge=0, le=10000)
+    generation_daily_limit: int = Field(default=60, ge=0, le=1000)
+    reranker_directory: Path = Path("models/reranker")
     database_budget_bytes: int = 500 * 1024 * 1024
 
     database_url: str = "postgresql+asyncpg://elderhelp:elderhelp@localhost:5432/elderhelp"
