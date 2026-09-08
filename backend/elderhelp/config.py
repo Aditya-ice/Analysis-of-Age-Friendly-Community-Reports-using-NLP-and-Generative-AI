@@ -2,7 +2,7 @@ from functools import lru_cache
 from pathlib import Path
 from typing import Literal
 
-from pydantic import Field
+from pydantic import Field, SecretStr
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -10,6 +10,12 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_prefix="ELDERHELP_", env_file=".env", extra="ignore")
 
     environment: str = "development"
+    google_api_key: SecretStr | None = None
+    free_tier_confirmed: bool = False
+    provider_timeout_seconds: float = Field(default=25, ge=1, le=60)
+    embedding_daily_limit: int = Field(default=200, ge=0, le=10000)
+    database_budget_bytes: int = 500 * 1024 * 1024
+
     database_url: str = "postgresql+asyncpg://elderhelp:elderhelp@localhost:5432/elderhelp"
     google_cloud_project: str | None = Field(default=None)
     google_cloud_location: str = "us-central1"

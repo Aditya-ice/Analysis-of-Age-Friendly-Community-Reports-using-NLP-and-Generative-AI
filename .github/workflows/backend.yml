@@ -41,6 +41,7 @@ jobs:
           version: "0.8.15"
           python-version: "3.12"
           enable-cache: true
+      - run: sudo apt-get update && sudo apt-get install -y tesseract-ocr
       - run: uv sync --frozen --group dev
       - run: uv run ruff check backend
       - run: uv run alembic upgrade head

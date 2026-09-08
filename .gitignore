@@ -18,3 +18,8 @@ xcuserdata/
 android/.gradle/
 android/**/build/
 android/local.properties
+
+# Local ingestion, evaluation traces, and private backups
+.local/
+*.dump
+models/
