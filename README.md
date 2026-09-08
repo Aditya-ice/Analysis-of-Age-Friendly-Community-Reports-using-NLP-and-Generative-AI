@@ -54,6 +54,7 @@ Tests use provider doubles; the optional real ONNX smoke test runs after downloa
 - [Safe ingestion, extraction and private backup/restore](docs/INGESTION_V2.md)
 - [Hybrid retrieval and CPU ONNX reranking](docs/RETRIEVAL_V2.md)
 - [Verified answers, API access and failure behavior](docs/VERIFIED_API_V2.md)
+- [Evaluation protocol, human review and measured limitations](docs/EVALUATION_V2.md)
 - [Swift prototype](ios/README.md) and [Kotlin prototype](android/README.md)
 - [Original research prototype](legacy/README.md); historical v1 serving code under `legacy/backend_v1/`
 

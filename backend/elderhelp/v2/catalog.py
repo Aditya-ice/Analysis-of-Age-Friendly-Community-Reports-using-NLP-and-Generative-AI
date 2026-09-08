@@ -4,7 +4,8 @@ from sqlalchemy import func, select
 
 from elderhelp.models import Report
 from elderhelp.schemas import AnswerFilters, ReportSummary
-from elderhelp.v2.contracts import ReportDetailV2, ReportListV2
+from elderhelp.v2.contracts import ReportDetailV2, ReportListV2, ReportSummaryV2
+from elderhelp.v2.dates import publication_text
 from elderhelp.v2.models import GenerationChunk, ResearchChunk, ResearchPage, Revision
 from elderhelp.v2.retrieval import active_generation, filters_for
 
@@ -20,9 +21,11 @@ def visible(generation, filters):
 
 
 def metadata(report):
-    return ReportSummary.model_validate(
-        {name: getattr(report, name) for name in ReportSummary.model_fields}
+    values = {name: getattr(report, name) for name in ReportSummary.model_fields}
+    values["publication_date"] = publication_text(
+        report.publication_date, report.publication_precision
     )
+    return ReportSummaryV2(**values, publication_precision=report.publication_precision)
 
 
 async def list_reports(database, settings, filters, offset=0, limit=20):

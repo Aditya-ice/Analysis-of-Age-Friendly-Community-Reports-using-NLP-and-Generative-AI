@@ -722,7 +722,6 @@
           "publication_date": {
             "anyOf": [
               {
-                "format": "date",
                 "type": "string"
               },
               {
@@ -928,8 +927,7 @@
           "publication_date": {
             "anyOf": [
               {
-                "type": "string",
-                "format": "date"
+                "type": "string"
               },
               {
                 "type": "null"
@@ -965,6 +963,17 @@
           "page_count": {
             "type": "integer",
             "title": "Page Count"
+          },
+          "publication_precision": {
+            "type": "string",
+            "enum": [
+              "year",
+              "month",
+              "day",
+              "unknown"
+            ],
+            "title": "Publication Precision",
+            "default": "unknown"
           },
           "revision_id": {
             "type": "string",
@@ -1016,7 +1025,7 @@
         "properties": {
           "items": {
             "items": {
-              "$ref": "#/components/schemas/ReportSummary"
+              "$ref": "#/components/schemas/ReportSummaryV2"
             },
             "type": "array",
             "title": "Items"
@@ -1096,6 +1105,70 @@
           "source_url"
         ],
         "title": "ReportSummary"
+      },
+      "ReportSummaryV2": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "slug": {
+            "type": "string",
+            "title": "Slug"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "publisher": {
+            "type": "string",
+            "title": "Publisher"
+          },
+          "community": {
+            "type": "string",
+            "title": "Community"
+          },
+          "publication_date": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Publication Date"
+          },
+          "source_url": {
+            "type": "string",
+            "maxLength": 2083,
+            "minLength": 1,
+            "format": "uri",
+            "title": "Source Url"
+          },
+          "publication_precision": {
+            "type": "string",
+            "enum": [
+              "year",
+              "month",
+              "day",
+              "unknown"
+            ],
+            "title": "Publication Precision",
+            "default": "unknown"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "slug",
+          "title",
+          "publisher",
+          "community",
+          "source_url"
+        ],
+        "title": "ReportSummaryV2"
       },
       "SearchHit": {
         "properties": {

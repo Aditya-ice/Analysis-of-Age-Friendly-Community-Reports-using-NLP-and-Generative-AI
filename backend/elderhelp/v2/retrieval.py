@@ -1,17 +1,20 @@
 """Exact filtered hybrid retrieval; database sessions end before any provider work."""
 
 import json
+import re
 from collections import defaultdict
 from dataclasses import dataclass, field
 from datetime import date
 from uuid import UUID, uuid5
 
-from sqlalchemy import func, literal_column, or_, select
+from sqlalchemy import Text, cast, func, literal_column, select
+from sqlalchemy.dialects.postgresql import TSQUERY
 
 from elderhelp.models import Report
 from elderhelp.schemas import AnswerFilters
 from elderhelp.v2.contracts import EvidenceSpan, QueryPlan
 from elderhelp.v2.corpus import fingerprint, index_configuration
+from elderhelp.v2.dates import publication_text
 from elderhelp.v2.models import (
     ActiveCorpus,
     Embedding,
@@ -110,21 +113,30 @@ def base_candidates(generation, filters):
 
 async def candidates(database, generation, query, filters, *, vector=None, limit=30):
     statement = base_candidates(generation, filters)
-    if vector is None:
-        terms = func.websearch_to_tsquery("english", query)
+
+    def lexical(terms):
         title = func.setweight(func.to_tsvector("english", Report.title), literal_column("'A'"))
-        statement = statement.where(
-            or_(ResearchChunk.search_vector.op("@@")(terms), title.op("@@")(terms))
-        ).order_by(
-            func.ts_rank_cd(ResearchChunk.search_vector.op("||")(title), terms).desc(),
-            ResearchChunk.id,
+        document = ResearchChunk.search_vector.op("||")(title)
+        return statement.where(document.op("@@")(terms)).order_by(
+            func.ts_rank_cd(document, terms).desc(), ResearchChunk.id
         )
+
+    if vector is None:
+        selected = lexical(func.websearch_to_tsquery("english", query))
     else:
-        statement = statement.join(
-            Embedding, ResearchChunk.embedding_key == Embedding.key
-        ).order_by(Embedding.vector.cosine_distance(vector), ResearchChunk.id)
+        selected = statement.join(Embedding, ResearchChunk.embedding_key == Embedding.key).order_by(
+            Embedding.vector.cosine_distance(vector), ResearchChunk.id
+        )
     async with database.sessions() as db:
-        rows = (await db.execute(statement.limit(limit))).all()
+        rows = (await db.execute(selected.limit(limit))).all()
+        # Natural-language questions often have no all-terms match. Broaden only then;
+        # explicit phrase, exclusion and OR syntax keep their user-requested semantics.
+        if not rows and vector is None and not re.search(r'"|(?:^|\s)-\w|\bOR\b', query):
+            terms = cast(
+                func.replace(cast(func.plainto_tsquery("english", query), Text), " & ", " | "),
+                TSQUERY,
+            )
+            rows = (await db.execute(lexical(terms).limit(limit))).all()
     return [
         Candidate(c.id, r.id, revision.id, c.section_id, r.title, c.content, c.span_ids)
         for c, revision, r in rows
@@ -211,22 +223,43 @@ async def expand(database, generation, candidate: Candidate, *, budget=750) -> E
     enc = tiktoken.get_encoding("cl100k_base")
     async with database.sessions() as db:
         config = (await db.get(Generation, generation)).fingerprint
-        rows = (
+        statement = (
+            select(SourceSpan, ResearchPage, Revision, Report, Section)
+            .join(ResearchPage, SourceSpan.page_id == ResearchPage.id)
+            .join(Revision, ResearchPage.revision_id == Revision.id)
+            .join(Report, Revision.report_id == Report.id)
+            .join(Section, SourceSpan.section_id == Section.id)
+            .where(
+                Revision.id == candidate.revision_id,
+                SourceSpan.section_id == candidate.section_id,
+                SourceSpan.searchable,
+                Report.status == "approved",
+            )
+        )
+        children = (
             await db.execute(
-                select(SourceSpan, ResearchPage, Revision, Report, Section)
-                .join(ResearchPage, SourceSpan.page_id == ResearchPage.id)
-                .join(Revision, ResearchPage.revision_id == Revision.id)
-                .join(Report, Revision.report_id == Report.id)
-                .join(Section, SourceSpan.section_id == Section.id)
-                .where(
-                    Revision.id == candidate.revision_id,
-                    SourceSpan.section_id == candidate.section_id,
-                    SourceSpan.searchable,
-                    Report.status == "approved",
-                )
-                .order_by(ResearchPage.page_number, SourceSpan.start)
+                statement.where(SourceSpan.id.in_([UUID(s) for s in candidate.span_ids]))
             )
         ).all()
+        if not children:
+            raise CorpusUnavailable("Selected child evidence is no longer approved")
+        first_page = min(row[1].page_number for row in children)
+        first_offset = min(row[0].start for row in children)
+        neighbors = (
+            await db.execute(
+                statement.where(
+                    ~SourceSpan.id.in_([UUID(s) for s in candidate.span_ids]),
+                    ResearchPage.page_number.between(first_page - 1, first_page + 1),
+                )
+                .order_by(
+                    func.abs(ResearchPage.page_number - first_page),
+                    func.abs(SourceSpan.start - first_offset),
+                    SourceSpan.id,
+                )
+                .limit(40)
+            )
+        ).all()
+        rows = sorted([*children, *neighbors], key=lambda row: (row[1].page_number, row[0].start))
     mapped = {}
     order = []
     for span, page, revision, report, section in rows:
@@ -241,7 +274,10 @@ async def expand(database, generation, candidate: Candidate, *, budget=750) -> E
             report_title=report.title,
             publisher=report.publisher,
             source_url=revision.metadata_snapshot["source_url"],
-            publication_date=revision.metadata_snapshot.get("publication_date"),
+            publication_date=publication_text(
+                revision.metadata_snapshot.get("publication_date"),
+                revision.metadata_snapshot.get("publication_precision", "unknown"),
+            ),
             page_number=page.page_number,
             page_label=page.page_label,
             start=span.start,
@@ -287,8 +323,9 @@ async def retrieve(
     generation = await active_generation(database, settings, require_compatible=mode != "keyword")
     rankings, degraded = [], False
     for part, query in enumerate(plan.subqueries):
-        keywords = await candidates(database, generation, query, filters)
-        rankings.append((part, keywords))
+        if mode != "dense":
+            keywords = await candidates(database, generation, query, filters)
+            rankings.append((part, keywords))
         if mode != "keyword":
             vector = await provider.embed(
                 f"task: question answering | query: {query}", reserved=reserved

@@ -20,6 +20,7 @@ class Report(Base):
     publisher: Mapped[str] = mapped_column(String(300))
     community: Mapped[str] = mapped_column(String(300), index=True)
     publication_date: Mapped[date | None] = mapped_column(Date)
+    publication_precision: Mapped[str] = mapped_column(String(12), default="unknown")
     source_url: Mapped[str] = mapped_column(Text)
     description: Mapped[str | None] = mapped_column(Text)
     storage_uri: Mapped[str | None] = mapped_column(Text)

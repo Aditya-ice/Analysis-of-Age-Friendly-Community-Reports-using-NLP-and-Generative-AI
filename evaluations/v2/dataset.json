@@ -1,0 +1,45 @@
+{
+  "version": "research-v2.1",
+  "index_configuration": {
+    "version": 2,
+    "embedding_model": "gemini-embedding-2",
+    "dimensions": 768,
+    "query_prefix": "task: question answering | query: ",
+    "document_prefix": "title: {title} | text: {content}",
+    "normalization": "l2",
+    "extraction": "layout-tesseract-v3",
+    "chunker": "paragraph-350-50-v2",
+    "tokenizer": "cl100k_base",
+    "search": "exact"
+  },
+  "index_fingerprint": "27ba26ebd5cd394d748032ecd42da1e488e50286fe6376120d52c1d22ccb6ede",
+  "dataset_sha256": "f0683e9080bcebed8ad48079e00a47da458384f9c42a3ba12f94898bf621d4ff",
+  "cases": 120,
+  "human_reviewed": 0,
+  "group_count": 60,
+  "largest_group": 9,
+  "splits": {
+    "development": 80,
+    "heldout": 40
+  },
+  "categories": {
+    "direct": 35,
+    "exact": 15,
+    "comparison": 15,
+    "followup": 10,
+    "layout": 10,
+    "unanswerable": 20,
+    "partial": 10,
+    "injection": 5
+  },
+  "heldout_categories": {
+    "direct": 12,
+    "exact": 5,
+    "comparison": 5,
+    "followup": 3,
+    "layout": 2,
+    "unanswerable": 10,
+    "partial": 2,
+    "injection": 1
+  }
+}

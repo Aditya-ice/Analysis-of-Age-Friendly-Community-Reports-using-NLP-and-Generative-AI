@@ -12,6 +12,7 @@ class ManifestReport(BaseModel):
     publisher: str
     community: str
     publication_date: date | None = None
+    publication_precision: Literal["year", "month", "day", "unknown"] = "day"
     source_url: HttpUrl
     local_path: Path
     description: str | None = None

@@ -43,7 +43,7 @@ jobs:
           enable-cache: true
       - run: sudo apt-get update && sudo apt-get install -y tesseract-ocr
       - run: uv sync --frozen --group dev --extra ingestion
-      - run: uv run --no-sync ruff check backend
+      - run: uv run --no-sync ruff check backend evaluations/v2
       - run: uv run --no-sync python tools/download_reranker.py
       - run: uv run --no-sync alembic upgrade head
       - run: uv run --no-sync pytest --cov=elderhelp --cov-report=term-missing

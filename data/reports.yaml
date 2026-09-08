@@ -5,6 +5,7 @@ reports:
     publisher: City of New York
     community: New York, New York
     publication_date: 2017-01-01
+    publication_precision: year
     source_url: https://www.aarp.org/content/dam/aarp/livable-communities/age-friendly-network/2017/AgeFriendlyNYC2017.pdf
     expected_sha256: 19b42338e37d9899d18f71658968c33a0af486e7f5db5ec107edba4fd4bf5946
     status: approved
@@ -21,6 +22,7 @@ reports:
     publisher: AARP Network of Age-Friendly States and Communities
     community: United States
     publication_date: 2018-01-01
+    publication_precision: year
     source_url: https://www.aarp.org/content/dam/aarp/livable-communities/livable-documents/documents-2018/engaging-community-single-pages-120318-lr.pdf
     expected_sha256: 2c436df93efdcd9a5b93c88720641e068a1a5fe77b44f8e263addeb69b5679ef
     status: approved

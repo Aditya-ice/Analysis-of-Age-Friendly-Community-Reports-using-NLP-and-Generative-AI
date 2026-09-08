@@ -151,3 +151,33 @@ def test_real_onnx_model_and_long_candidate_windows():
     assert relevant > unrelated
     long = "Garden flowers grow in parks. " * 150 + " Accessible bus transport was proposed."
     assert ranker.score("What transport was proposed?", long) > unrelated
+
+
+async def test_natural_question_keyword_fallback_preserves_explicit_syntax(research_db, tmp_path):
+    _, generation, _ = await indexed(research_db, tmp_path)
+    assert await candidates(
+        research_db,
+        generation,
+        "What initiatives concerning accessible buses were proposed?",
+        AnswerFilters(),
+    )
+    assert not await candidates(
+        research_db, generation, '"accessible helicopters"', AnswerFilters()
+    )
+    assert not await candidates(research_db, generation, "buses -accessible", AnswerFilters())
+
+
+async def test_dense_ablation_does_not_run_keyword_search(research_db, tmp_path, monkeypatch):
+    settings, _, _ = await indexed(research_db, tmp_path)
+    original = candidates
+
+    async def dense_only(*args, **kwargs):
+        assert kwargs.get("vector") is not None
+        return await original(*args, **kwargs)
+
+    monkeypatch.setattr("elderhelp.v2.retrieval.candidates", dense_only)
+    query = QueryPlan(original_question="buses", standalone_question="buses", subqueries=["buses"])
+    result = await retrieve(
+        research_db, QueryProvider(), None, settings, query, AnswerFilters(), mode="dense"
+    )
+    assert result.blocks
