@@ -44,6 +44,7 @@ jobs:
       - run: sudo apt-get update && sudo apt-get install -y tesseract-ocr
       - run: uv sync --frozen --group dev
       - run: uv run ruff check backend
+      - run: uv run python tools/download_reranker.py
       - run: uv run alembic upgrade head
       - run: uv run pytest --cov=elderhelp --cov-report=term-missing
       - run: uv run python -m elderhelp.openapi

@@ -1,7 +1,10 @@
 """Gemini Developer API only. Enabling live calls requires explicit free-tier confirmation."""
 
 import asyncio
+import json
+import logging
 import math
+import time
 
 from google import genai
 from google.genai import types
@@ -62,6 +65,47 @@ class Gemini:
                 if isinstance(exc, (ValueError, TimeoutError)):
                     raise
                 raise ProviderUnavailable("Google embedding unavailable") from None
+
+    async def structured(self, schema, system: str, payload: dict, *, reserved=False):
+        if not reserved:
+            await reserve(
+                self.database, [daily("generation", 1, self.settings.generation_daily_limit)]
+            )
+        started = time.monotonic()
+        try:
+            async with asyncio.timeout(self.settings.provider_timeout_seconds):
+                response = await self.client.aio.models.generate_content(
+                    model=self.settings.generation_model,
+                    contents=json.dumps(payload),
+                    config=types.GenerateContentConfig(
+                        system_instruction=system,
+                        temperature=0,
+                        max_output_tokens=3000,
+                        response_mime_type="application/json",
+                        response_schema=schema,
+                    ),
+                )
+            result = schema.model_validate_json(response.text or "")
+            usage = response.usage_metadata
+            logging.getLogger("elderhelp.metrics").info(
+                json.dumps(
+                    {
+                        "event": "model_call",
+                        "schema": schema.__name__,
+                        "model": self.settings.generation_model,
+                        "seconds": round(time.monotonic() - started, 3),
+                        "input_tokens": usage.prompt_token_count if usage else None,
+                        "output_tokens": usage.candidates_token_count if usage else None,
+                    }
+                )
+            )
+            return result
+        except Exception as exc:
+            if getattr(exc, "code", None) == 429:
+                raise QuotaExceeded() from None
+            if isinstance(exc, (ValueError, TimeoutError)):
+                raise
+            raise ProviderUnavailable("Google structured response unavailable") from None
 
     async def close(self):
         await self.client.aio.aclose()
