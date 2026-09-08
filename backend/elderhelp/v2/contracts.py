@@ -1,11 +1,12 @@
 from __future__ import annotations
 
+from datetime import datetime
 from typing import Literal
 from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
-from elderhelp.schemas import AnswerFilters, AnswerRequest, Citation, ReportSummary
+from elderhelp.schemas import AnswerFilters, AnswerRequest, Citation, ReportDetail, ReportSummary
 
 
 class StrictModel(BaseModel):
@@ -129,6 +130,11 @@ class ReportListV2(BaseModel):
     total: int
     offset: int
     limit: int
+
+
+class ReportDetailV2(ReportDetail):
+    revision_id: UUID
+    acquired_at: datetime
 
 
 class SearchRequest(AnswerRequest):

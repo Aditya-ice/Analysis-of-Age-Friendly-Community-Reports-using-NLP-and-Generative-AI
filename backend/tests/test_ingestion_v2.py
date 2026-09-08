@@ -180,3 +180,41 @@ def test_real_tesseract_on_mixed_pdf(tmp_path):
     assert [p.method for p in results] == ["digital", "tesseract"]
     assert "Community transport" in results[1].text
     assert results[1].quality > 0.75 and not results[1].issues
+
+
+async def test_google_embedding_dispatch_is_single_input_and_quota_cools_down(
+    research_db, monkeypatch
+):
+    from types import SimpleNamespace
+
+    from elderhelp.v2.google import Gemini
+    from elderhelp.v2.quota import google_retry_after
+
+    calls = []
+
+    async def embed_content(**kwargs):
+        calls.append(kwargs["contents"])
+        return SimpleNamespace(embeddings=[SimpleNamespace(values=[1.0] * 768)] * 2)
+
+    model = SimpleNamespace(embed_content=embed_content)
+    monkeypatch.setattr(
+        "elderhelp.v2.google.genai.Client",
+        lambda **kw: SimpleNamespace(aio=SimpleNamespace(models=model)),
+    )
+    provider = Gemini(
+        Settings(_env_file=None, google_api_key="fake", free_tier_confirmed=True), research_db
+    )
+    with pytest.raises(ValueError, match="exactly one"):
+        await provider.embed("title: Report | text: One chunk.")
+    assert calls == ["title: Report | text: One chunk."]
+
+    class RateLimited(Exception):
+        code = 429
+
+    async def limited(**kwargs):
+        raise RateLimited()
+
+    model.embed_content = limited
+    with pytest.raises(QuotaExceeded):
+        await provider.embed("title: Report | text: Another chunk.")
+    assert await google_retry_after(research_db) > 0

@@ -297,15 +297,12 @@ wheels = [
 
 [[package]]
 name = "elderhelp-rag"
-version = "0.1.0"
+version = "0.2.0"
 source = { editable = "." }
 dependencies = [
     { name = "alembic" },
     { name = "asyncpg" },
     { name = "fastapi" },
-    { name = "google-cloud-discoveryengine" },
-    { name = "google-cloud-documentai" },
-    { name = "google-cloud-storage" },
     { name = "google-genai" },
     { name = "httpcore" },
     { name = "httpx" },
@@ -313,13 +310,22 @@ dependencies = [
     { name = "onnxruntime" },
     { name = "pgvector" },
     { name = "pydantic-settings" },
-    { name = "pymupdf" },
     { name = "pyyaml" },
     { name = "sqlalchemy", extra = ["asyncio"] },
     { name = "tiktoken" },
     { name = "tokenizers" },
     { name = "typer" },
     { name = "uvicorn", extra = ["standard"] },
+]
+
+[package.optional-dependencies]
+ingestion = [
+    { name = "pymupdf" },
+]
+legacy-cloud = [
+    { name = "google-cloud-discoveryengine" },
+    { name = "google-cloud-documentai" },
+    { name = "google-cloud-storage" },
 ]
 
 [package.dev-dependencies]
@@ -337,9 +343,9 @@ requires-dist = [
     { name = "alembic", specifier = ">=1.14,<2" },
     { name = "asyncpg", specifier = ">=0.30,<1" },
     { name = "fastapi", specifier = ">=0.115,<1" },
-    { name = "google-cloud-discoveryengine", specifier = ">=0.13,<1" },
-    { name = "google-cloud-documentai", specifier = ">=3,<4" },
-    { name = "google-cloud-storage", specifier = ">=3,<4" },
+    { name = "google-cloud-discoveryengine", marker = "extra == 'legacy-cloud'", specifier = ">=0.13,<1" },
+    { name = "google-cloud-documentai", marker = "extra == 'legacy-cloud'", specifier = ">=3,<4" },
+    { name = "google-cloud-storage", marker = "extra == 'legacy-cloud'", specifier = ">=3,<4" },
     { name = "google-genai", specifier = ">=1.36,<2" },
     { name = "httpcore", specifier = ">=1,<2" },
     { name = "httpx", specifier = ">=0.28,<1" },
@@ -347,7 +353,7 @@ requires-dist = [
     { name = "onnxruntime", specifier = ">=1.22,<2" },
     { name = "pgvector", specifier = ">=0.4,<1" },
     { name = "pydantic-settings", specifier = ">=2.10,<3" },
-    { name = "pymupdf", specifier = ">=1.26,<2" },
+    { name = "pymupdf", marker = "extra == 'ingestion'", specifier = ">=1.26,<2" },
     { name = "pyyaml", specifier = ">=6,<7" },
     { name = "sqlalchemy", extras = ["asyncio"], specifier = ">=2.0.43,<3" },
     { name = "tiktoken", specifier = ">=0.11,<1" },
@@ -355,6 +361,7 @@ requires-dist = [
     { name = "typer", specifier = ">=0.16,<1" },
     { name = "uvicorn", extras = ["standard"], specifier = ">=0.35,<1" },
 ]
+provides-extras = ["ingestion", "legacy-cloud"]
 
 [package.metadata.requires-dev]
 dev = [

@@ -55,3 +55,26 @@ def rollback():
 @app.command()
 def status():
     run(corpus.status)
+
+
+@app.command("invite-create")
+def invite_create():
+    """Create a revocable invite and return its cleartext code once."""
+    from elderhelp.v2.auth import create_invite
+
+    run(lambda db: create_invite(db, get_settings()))
+
+
+@app.command("invite-revoke")
+def invite_revoke(invite_id: UUID):
+    from elderhelp.v2.models import Invite
+
+    async def revoke(database):
+        async with database.sessions() as db, db.begin():
+            invite = await db.get(Invite, invite_id)
+            if not invite:
+                raise ValueError("Unknown invite")
+            invite.revoked = True
+        return {"revoked": str(invite_id)}
+
+    run(revoke)

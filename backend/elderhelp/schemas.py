@@ -2,7 +2,7 @@ from datetime import date, datetime
 from typing import Literal
 from uuid import UUID
 
-from pydantic import BaseModel, Field, HttpUrl, field_validator
+from pydantic import BaseModel, Field, HttpUrl, field_validator, model_validator
 
 
 class ReportSummary(BaseModel):
@@ -36,6 +36,12 @@ class AnswerFilters(BaseModel):
     community: str | None = Field(default=None, max_length=200)
     year_from: int | None = Field(default=None, ge=1900, le=2200)
     year_to: int | None = Field(default=None, ge=1900, le=2200)
+
+    @model_validator(mode="after")
+    def ordered_years(self):
+        if self.year_from and self.year_to and self.year_from > self.year_to:
+            raise ValueError("Starting year must not exceed ending year")
+        return self
 
 
 class AnswerRequest(BaseModel):

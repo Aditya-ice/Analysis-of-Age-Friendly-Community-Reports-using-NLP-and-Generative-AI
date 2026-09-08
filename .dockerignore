@@ -6,3 +6,13 @@ infra
 **/__pycache__
 **/.pytest_cache
 data/seed
+
+android
+.local
+models
+.coverage
+htmlcov
+**/*.egg-info
+
+build
+:memory:.ses

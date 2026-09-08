@@ -12,6 +12,15 @@ class Settings(BaseSettings):
     environment: str = "development"
     google_api_key: SecretStr | None = None
     free_tier_confirmed: bool = False
+    token_secret: SecretStr | None = Field(default=None, min_length=32)
+    token_ttl_seconds: int = Field(default=7200, ge=300, le=28800)
+    answers_daily_limit: int = Field(default=20, ge=0, le=20)
+    answers_minute_limit: int = Field(default=6, ge=0, le=6)
+    session_daily_limit: int = Field(default=5, ge=0, le=20)
+    invite_daily_limit: int = Field(default=20, ge=0, le=20)
+    answer_timeout_seconds: float = Field(default=60, ge=1, le=90)
+    cors_origins: list[str] = []
+    max_request_bytes: int = Field(default=65536, ge=4096, le=65536)
     provider_timeout_seconds: float = Field(default=25, ge=1, le=60)
     embedding_daily_limit: int = Field(default=200, ge=0, le=10000)
     generation_daily_limit: int = Field(default=60, ge=0, le=1000)

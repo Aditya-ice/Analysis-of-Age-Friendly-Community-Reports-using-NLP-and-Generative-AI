@@ -30,6 +30,7 @@ class OnnxRanker:
         self.tokenizer = Tokenizer.from_file(str(directory / "tokenizer.json"))
         self.tokenizer.no_truncation()
         self.tokenizer.no_padding()
+        ort.disable_telemetry_events()
         options = ort.SessionOptions()
         options.intra_op_num_threads = 1
         options.inter_op_num_threads = 1
