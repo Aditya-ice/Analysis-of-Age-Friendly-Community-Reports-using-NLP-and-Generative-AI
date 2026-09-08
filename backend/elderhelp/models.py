@@ -23,7 +23,7 @@ class Report(Base):
     source_url: Mapped[str] = mapped_column(Text)
     description: Mapped[str | None] = mapped_column(Text)
     storage_uri: Mapped[str | None] = mapped_column(Text)
-    sha256: Mapped[str] = mapped_column(String(64), unique=True)
+    sha256: Mapped[str] = mapped_column(String(64))
     status: Mapped[str] = mapped_column(String(30), default="approved", index=True)
     suggested_questions: Mapped[list[str]] = mapped_column(JSONB, default=list)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=datetime.utcnow)

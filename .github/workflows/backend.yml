@@ -21,7 +21,7 @@ jobs:
       postgres:
         image: pgvector/pgvector:pg16
         env:
-          POSTGRES_DB: elderhelp
+          POSTGRES_DB: elderhelp_test
           POSTGRES_USER: elderhelp
           POSTGRES_PASSWORD: elderhelp
         ports:
@@ -32,7 +32,8 @@ jobs:
           --health-timeout 5s
           --health-retries 10
     env:
-      ELDERHELP_DATABASE_URL: postgresql+asyncpg://elderhelp:elderhelp@localhost:5432/elderhelp
+      ELDERHELP_DATABASE_URL: postgresql+asyncpg://elderhelp:elderhelp@localhost:5432/elderhelp_test
+      ELDERHELP_TEST_DATABASE_URL: postgresql+asyncpg://elderhelp:elderhelp@localhost:5432/elderhelp_test
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v6
@@ -42,8 +43,8 @@ jobs:
           enable-cache: true
       - run: uv sync --frozen --group dev
       - run: uv run ruff check backend
-      - run: uv run pytest --cov=elderhelp --cov-report=term-missing
       - run: uv run alembic upgrade head
+      - run: uv run pytest --cov=elderhelp --cov-report=term-missing
       - run: uv run python -m elderhelp.openapi
       - run: git diff --exit-code -- openapi.json
       - run: docker build -t elderhelp-api:test .
