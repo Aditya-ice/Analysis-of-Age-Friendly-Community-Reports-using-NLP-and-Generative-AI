@@ -12,12 +12,20 @@ final class ElderHelpUITests: XCTestCase {
         app.launch()
 
         XCTAssertTrue(app.navigationBars["ElderHelp"].waitForExistence(timeout: 5))
+        app.buttons.matching(NSPredicate(format: "label BEGINSWITH 'Pilot access'")).firstMatch.tap()
+        let invite = app.secureTextFields["Invite code"]
+        XCTAssertTrue(invite.waitForExistence(timeout: 10))
+        invite.tap(); invite.typeText("mock-invite-code-only")
+        app.buttons["Connect to pilot"].tap()
+        XCTAssertTrue(app.staticTexts["Connected. Answers appear after verification."].waitForExistence(timeout: 15))
+        app.swipeUp()
         let editor = app.textViews["Your question"]
         editor.tap()
         editor.typeText("How can communities support older adults?")
         app.buttons["Ask ElderHelp"].tap()
         XCTAssertTrue(app.keyboards.firstMatch.waitForNonExistence(timeout: 15))
 
+        app.swipeUp()
         XCTAssertTrue(app.staticTexts["Sources"].waitForExistence(timeout: 15))
         let sourceButton = app.buttons.matching(
             NSPredicate(format: "label CONTAINS 'Age-friendly NYC'")

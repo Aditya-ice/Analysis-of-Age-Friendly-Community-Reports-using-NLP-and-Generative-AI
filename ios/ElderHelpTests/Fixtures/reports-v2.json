@@ -1,0 +1,17 @@
+{
+  "items": [
+    {
+      "id": "1aa2870c-bf64-4f29-94c2-e4d670a36d2d",
+      "slug": "age-friendly-nyc",
+      "title": "Age-friendly NYC",
+      "publisher": "City of New York",
+      "community": "New York City",
+      "publication_date": "2017",
+      "publication_precision": "year",
+      "source_url": "https://example.org/report"
+    }
+  ],
+  "total": 1,
+  "offset": 0,
+  "limit": 100
+}

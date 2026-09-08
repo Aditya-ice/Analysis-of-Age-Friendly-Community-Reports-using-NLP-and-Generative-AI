@@ -58,6 +58,7 @@ private struct ConversationView: View {
             VStack(alignment: .leading, spacing: 18) {
                 Text("Question").font(.headline).accessibilityAddTraits(.isHeader)
                 Text(conversation.question)
+                Text(statusLabel(conversation.status)).font(.headline)
                 Text("Answer").font(.headline).accessibilityAddTraits(.isHeader)
                 Text((try? AttributedString(markdown: conversation.answerMarkdown)) ?? AttributedString(conversation.answerMarkdown))
                     .textSelection(.enabled)

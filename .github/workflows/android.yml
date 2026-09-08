@@ -1,7 +1,7 @@
 name: Android
 on:
   pull_request:
-    paths: ['android/**', 'openapi.json', '.github/workflows/android.yml']
+    paths: ['android/**', 'contracts/**', 'tools/pilot_mock.py', 'openapi.json', '.github/workflows/android.yml']
   workflow_dispatch:
 jobs:
   verify:
@@ -16,6 +16,8 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
       - name: Verify generated contract
         run: |
+          python3 tools/sync_contract_fixtures.py
+          git diff --exit-code -- android/app/src/test/resources/contracts
           python3 android/tools/generate_models.py
           git diff --exit-code -- android/app/src/main/java/com/adityaice/elderhelp/Models.kt
       - name: Build and test

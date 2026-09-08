@@ -4,6 +4,8 @@ on:
   pull_request:
     paths:
       - "ios/**"
+      - "contracts/**"
+      - "tools/pilot_mock.py"
       - "openapi.json"
       - ".github/workflows/ios.yml"
   push:
@@ -16,6 +18,10 @@ jobs:
       - uses: actions/checkout@v4
       - name: Install XcodeGen
         run: brew install xcodegen
+      - name: Verify shared fixtures
+        run: |
+          python3 tools/sync_contract_fixtures.py
+          git diff --exit-code -- ios/ElderHelpTests/Fixtures
       - name: Regenerate project
         working-directory: ios
         run: xcodegen generate
@@ -35,7 +41,7 @@ jobs:
           }
           trap cleanup EXIT
           for attempt in {1..20}; do
-            if curl --fail --silent http://127.0.0.1:8765/v1/reports > /dev/null; then
+            if curl --fail --silent http://127.0.0.1:8765/healthz > /dev/null; then
               break
             fi
             if [[ "${attempt}" == "20" ]]; then
@@ -44,9 +50,19 @@ jobs:
             fi
             sleep 0.25
           done
+          xcode-select -p
+          xcodebuild -version
           xcodebuild \
             -project ios/ElderHelp.xcodeproj \
             -scheme ElderHelp \
             -destination 'platform=iOS Simulator,name=iPhone 16 Pro' \
+            -parallel-testing-enabled NO \
+            -maximum-concurrent-test-simulator-destinations 1 \
+            -resultBundlePath "${RUNNER_TEMP}/ElderHelp.xcresult" \
             CODE_SIGNING_ALLOWED=NO \
             test
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ios-simulator-results
+          path: ${{ runner.temp }}/ElderHelp.xcresult

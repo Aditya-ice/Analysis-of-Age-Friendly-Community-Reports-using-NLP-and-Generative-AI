@@ -13,13 +13,13 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.semantics.heading
+import androidx.compose.ui.semantics.liveRegion
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.room.Room
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,7 +28,7 @@ class MainActivity : ComponentActivity() {
         val factory = object : ViewModelProvider.Factory {
             @Suppress("UNCHECKED_CAST")
             override fun <T : ViewModel> create(modelClass: Class<T>): T =
-                ElderViewModel(Repository(Api(BuildConfig.API_BASE_URL), db.store())) as T
+                ElderViewModel(Repository(Api(BuildConfig.API_BASE_URL, tokens = EncryptedPilotTokens(applicationContext, BuildConfig.API_BASE_URL)), db.store())) as T
         }
         setContent { MaterialTheme { ElderApp(viewModel(factory = factory)) } }
     }
@@ -40,6 +40,11 @@ class MainActivity : ComponentActivity() {
     val reports by vm.reports.collectAsStateWithLifecycle()
     val history by vm.history.collectAsStateWithLifecycle()
     val libraryError by vm.libraryError.collectAsStateWithLifecycle()
+    val connected by vm.connected.collectAsStateWithLifecycle()
+    val accessMessage by vm.accessMessage.collectAsStateWithLifecycle()
+    val detail by vm.detail.collectAsStateWithLifecycle()
+    var invite by remember { mutableStateOf("") }
+    var selectedReport by remember { mutableStateOf<ReportSummary?>(null) }
     var citation by remember { mutableStateOf<Citation?>(null) }
     var saved by remember { mutableStateOf<Conversation?>(null) }
     var clearConfirmation by remember { mutableStateOf(false) }
@@ -54,7 +59,15 @@ class MainActivity : ComponentActivity() {
             when (tab) {
                 0 -> {
                     Text("Ask about age-friendly communities", style = MaterialTheme.typography.headlineSmall, modifier = Modifier.semantics { heading() })
-                    Text("Answers use approved reports and include supporting pages. Your history stays on this device.")
+                    Text("Answers concern historical report findings and appear after verification. Your history stays on this device.")
+                    Text("Use non-sensitive research questions. Questions and evidence are sent to Google under its unpaid-service terms.")
+                    TextButton(onClick = { uri.openUri("https://ai.google.dev/gemini-api/terms") }) { Text("Google service terms") }
+                    Text(if(connected) "Pilot access: session saved" else "Pilot access: invite required")
+                    OutlinedTextField(value = invite, onValueChange = { invite = it.take(256) }, label = { Text("Invite code") },
+                        visualTransformation = androidx.compose.ui.text.input.PasswordVisualTransformation(), modifier = Modifier.fillMaxWidth())
+                    Button(onClick = { vm.connect(invite); invite = "" }, enabled = invite.length >= 12) { Text("Connect to pilot") }
+                    if(connected) TextButton(onClick = vm::forget) { Text("Forget access token") }
+                    accessMessage?.let { Text(it) }
                     ask.reportId?.let { id ->
                         Text("Report: ${reports.firstOrNull { it.id == id }?.title ?: id}")
                         TextButton(onClick = { vm.filter(null) }) { Text("Search all reports") }
@@ -63,13 +76,25 @@ class MainActivity : ComponentActivity() {
                         enabled = !ask.loading, label = { Text("Your question") },
                         supportingText = { Text("${ask.question.length} / 2,000 characters") },
                         modifier = Modifier.fillMaxWidth(), minLines = 3)
+                    Row(verticalAlignment = androidx.compose.ui.Alignment.CenterVertically) {
+                        Checkbox(checked = ask.followup, onCheckedChange = vm::followup, enabled = !ask.loading)
+                        Text("Follow up on this conversation")
+                    }
+                    Text("New questions do not use saved history. Follow-ups use only this active conversation.")
                     Button(onClick = vm::submit, enabled = ask.question.isNotBlank() && !ask.loading,
                         modifier = Modifier.fillMaxWidth().heightIn(min = 52.dp)) { Text(if (ask.error != null) "Retry answer" else "Ask ElderHelp") }
+                    Button(onClick = vm::search, enabled = !ask.loading && ask.question.isNotBlank()) { Text("Search passages") }
+                    TextButton(onClick = vm::newQuestion, enabled = !ask.loading) { Text("New question") }
+                    if(ask.progress.isNotEmpty()) Text(ask.progress, modifier = Modifier.semantics { liveRegion = androidx.compose.ui.semantics.LiveRegionMode.Polite })
                     if (ask.loading) {
-                        Text("Finding evidence and preparing your answer…")
                         Button(onClick = vm::cancel) { Text("Stop answer") }
                     }
                     ask.error?.let { Text(it) }
+                    ask.hits.forEach { hit ->
+                        Card { Column(Modifier.padding(16.dp)) { Text(hit.citation.excerpt)
+                            TextButton(onClick = { citation = hit.citation }) { Text("Inspect ${hit.citation.report_title}, page ${hit.citation.page_number}") }
+                        } }
+                    }
                     if (ask.text.isNotEmpty()) AnswerContent(ask.text, ask.result, { citation = it })
                 }
                 1 -> {
@@ -81,6 +106,7 @@ class MainActivity : ComponentActivity() {
                             Text(report.title, style = MaterialTheme.typography.titleLarge)
                             Text("${report.publisher} · ${report.community}")
                             Text(report.publication_date ?: "Publication date unavailable")
+                            TextButton(onClick = { selectedReport = report; vm.loadDetail(report.id) }) { Text("Report details") }
                             Button(onClick = { vm.filter(report.id); tab = 0 }) { Text("Ask about this report") }
                             TextButton(onClick = { uri.openUri(report.source_url) }) { Text("Open publisher source") }
                         } }
@@ -97,6 +123,19 @@ class MainActivity : ComponentActivity() {
                         } }
                     }
                 }
+            }
+        }
+    }
+    selectedReport?.let { report ->
+        ModalBottomSheet(onDismissRequest = { selectedReport = null }) {
+            Column(Modifier.verticalScroll(rememberScrollState()).padding(24.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                Text(report.title, style = MaterialTheme.typography.titleLarge)
+                Text("${report.publisher} · ${report.publication_date ?: "Date unknown"}")
+                detail?.takeIf { it.id == report.id }?.let { d ->
+                    Text(d.description ?: "")
+                    d.suggested_questions.forEach { q -> TextButton(onClick = { vm.question(q); vm.filter(report.id); selectedReport = null; tab = 0 }) { Text(q) } }
+                }
+                Button(onClick = { selectedReport = null }) { Text("Close report") }
             }
         }
     }
@@ -117,6 +156,7 @@ class MainActivity : ComponentActivity() {
                 Text(source.report_title, style = MaterialTheme.typography.titleLarge)
                 Text("${source.publisher} · Page ${source.page_number}")
                 Text(source.publication_date ?: "Publication date unavailable")
+                source.page_label?.let { Text("Printed page label: $it") }
                 Text(source.excerpt)
                 TextButton(onClick = { uri.openUri(source.source_url) }) { Text("Open publisher source") }
                 Button(onClick = { citation = null }) { Text("Close source") }
@@ -148,7 +188,8 @@ class MainActivity : ComponentActivity() {
     }
     Text(links)
     result?.let {
-        Text(if (it.status == "grounded") "Supported by report evidence" else "Insufficient evidence in these reports")
+        Text(when(it.status) { "grounded" -> "Supported by report evidence"; "partial" -> "Partial answer — some evidence is missing"; "clarification_required" -> "Clarification needed"; else -> "Insufficient evidence in these reports" })
+        if(it.missing_parts.isNotEmpty()) Text("Missing evidence: " + it.missing_parts.joinToString("; "))
         it.citations.forEach { source ->
             TextButton(onClick = { onCitation(source) }, modifier = Modifier.heightIn(min = 48.dp)) {
                 Text("[${source.id}] ${source.report_title}, page ${source.page_number}")

@@ -1,3 +1,7 @@
+# Swift v2 pilot update
+
+The app now uses invite access, verified completion, keyword fallback and explicit follow-up context. See [shared client setup](../docs/CLIENTS_V2.md). Pilot tokens are stored in device-only Keychain; all Google credentials remain on the server. The simulator uses the shared v2 mock server and test-only invite.
+
 # ElderHelp iOS
 
 The iOS prototype is a native Swift 6 and SwiftUI application targeting iOS 17. It contains Ask,

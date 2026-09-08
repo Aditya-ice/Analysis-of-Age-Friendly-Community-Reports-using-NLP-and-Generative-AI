@@ -6,6 +6,9 @@ on:
       - "backend/**"
       - "data/reports.yaml"
       - "evaluations/**"
+      - "contracts/**"
+      - "web-tests/**"
+      - "tools/**"
       - "pyproject.toml"
       - "uv.lock"
       - "Dockerfile"
@@ -44,6 +47,8 @@ jobs:
       - run: sudo apt-get update && sudo apt-get install -y tesseract-ocr
       - run: uv sync --frozen --group dev --extra ingestion
       - run: uv run --no-sync ruff check backend evaluations/v2
+      - run: node --test web-tests/core.test.mjs
+      - run: python3 tools/sync_contract_fixtures.py && git diff --exit-code -- ios/ElderHelpTests/Fixtures android/app/src/test/resources/contracts
       - run: uv run --no-sync python tools/download_reranker.py
       - run: uv run --no-sync alembic upgrade head
       - run: uv run --no-sync pytest --cov=elderhelp --cov-report=term-missing

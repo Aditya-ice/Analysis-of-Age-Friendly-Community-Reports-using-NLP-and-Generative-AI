@@ -31,6 +31,20 @@ final class APIModelsTests: XCTestCase {
         XCTAssertEqual(result.citations.first?.id, "S1")
     }
 
+    func testSharedPartialCitationFixture() throws {
+        #if SWIFT_PACKAGE
+        let bundle = Bundle.module
+        #else
+        let bundle = Bundle(for: Self.self)
+        #endif
+        let path = try XCTUnwrap(bundle.url(forResource: "complete-v2", withExtension: "json", subdirectory: "Fixtures") ?? bundle.url(forResource: "complete-v2", withExtension: "json"))
+        let result = try JSONDecoder().decode(AnswerComplete.self, from: Data(contentsOf: path))
+        XCTAssertEqual(result.status, "partial")
+        XCTAssertEqual(result.citations.first?.publicationDate, "2017")
+        XCTAssertNotNil(result.citations.first?.spanID)
+        XCTAssertEqual(result.missingParts?.count, 1)
+    }
+
     func testRequestKeepsOnlySixMostRecentTurns() throws {
         let history = (0..<8).map { ChatTurn(role: "user", content: "Question \($0)") }
         let request = AnswerRequest(question: "Latest", history: history)
