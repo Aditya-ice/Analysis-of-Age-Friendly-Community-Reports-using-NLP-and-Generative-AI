@@ -10,18 +10,22 @@ export function requestFor(question, turns, followup, report) {
   return {question:question.trim(),history:followup?turns.slice(-6):[],filters:{report_ids:report?[report]:[]}};
 }
 export class SSEParser {
-  buffer=''; name='message'; data=[];
+  buffer=''; name='message'; data=[]; dataLength=0;
   feed(text) {
     this.buffer+=text;
     if(this.buffer.length>131072) throw new Error('Answer stream exceeded the message limit.');
     const output=[]; let end;
     while((end=this.buffer.indexOf('\n'))>=0) {
       const line=this.buffer.slice(0,end).replace(/\r$/,''); this.buffer=this.buffer.slice(end+1);
-      if(!line) { if(this.data.length) output.push({name:this.name,data:JSON.parse(this.data.join('\n'))});this.name='message';this.data=[];continue; }
+      if(!line) { if(this.data.length) output.push({name:this.name,data:JSON.parse(this.data.join('\n'))});this.name='message';this.data=[];this.dataLength=0;continue; }
       if(line[0]===':') continue;
       const split=line.indexOf(':'); const field=split<0?line:line.slice(0,split); const value=split<0?'':line.slice(split+1).replace(/^ /,'');
       if(field==='event') this.name=value;
-      if(field==='data') this.data.push(value);
+      if(field==='data') {
+        this.dataLength+=value.length+1;
+        if(this.dataLength>131072) throw new Error('Answer stream exceeded the message limit.');
+        this.data.push(value);
+      }
     }
     return output;
   }

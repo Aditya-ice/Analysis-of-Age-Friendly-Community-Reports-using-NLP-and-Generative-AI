@@ -35,6 +35,8 @@ final class ElderHelpUITests: XCTestCase {
         XCTAssertTrue(sourceButton.waitForExistence(timeout: 15))
         sourceButton.tap()
         XCTAssertTrue(app.navigationBars["Source S1"].waitForExistence(timeout: 15))
+        XCTAssertTrue(app.staticTexts["Report date: 2017"].exists)
+        XCTAssertTrue(app.staticTexts["Printed page 10"].exists)
         app.buttons["Done"].tap()
         XCTAssertTrue(app.navigationBars["Source S1"].waitForNonExistence(timeout: 15))
 

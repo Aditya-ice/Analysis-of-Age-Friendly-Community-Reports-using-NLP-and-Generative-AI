@@ -9,8 +9,14 @@ struct CitationSheet: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 16) {
                     Text(citation.reportTitle).font(.title2.bold()).accessibilityAddTraits(.isHeader)
-                    Text("Page \(citation.pageNumber) · \(citation.publisher)")
+                    Text("PDF page \(citation.pageNumber) · \(citation.publisher)")
                         .foregroundStyle(.secondary)
+                    if let pageLabel = citation.pageLabel {
+                        Text("Printed page \(pageLabel)").foregroundStyle(.secondary)
+                    }
+                    if let publicationDate = citation.publicationDate {
+                        Text("Report date: \(publicationDate)").foregroundStyle(.secondary)
+                    }
                     Text(citation.excerpt).font(.body).textSelection(.enabled)
                     Link(destination: citation.sourceURL) {
                         Label("Open publisher's page", systemImage: "arrow.up.right.square")
