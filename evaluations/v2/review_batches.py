@@ -63,6 +63,7 @@ def packet(cases, metadata, reports, batch_id):
             {
                 "id": c["id"],
                 "sha256": digest(c),
+                "source_revision_ids": sorted({s["revision_id"] for s in c["candidate_support"]}),
                 "searchable_span_ids": [
                     s["span_id"] for s in c["candidate_support"] if s["searchable"]
                 ],
@@ -77,13 +78,19 @@ def packet(cases, metadata, reports, batch_id):
         f"<h1>Evidence review — {esc(batch_id)}</h1>",
         '<p class="notice">Development cases only. These are candidate labels, not gold evidence. '
         "Check the original PDF and its reading order, not only the extracted passage. "
-        "This local page makes no API calls and saves nothing automatically. "
+        "This local page makes no API calls. Drafts are saved in this browser when available. "
         "Export before closing.</p>",
         "<p>Select the passages that support each answer component. Explain missing evidence, "
         "uncertain tables, or needed corrections in the notes. Different statements may need "
         "different passages; the final evidence-unit grouping will be checked "
         "before labels change.</p>",
         '<label>Your name <input id="reviewer" type="text" autocomplete="name"></label>',
+        '<label>Reviewer type <select id="review-mode"><option value="human">Human</option>'
+        '<option value="ai">AI agent (not human verification)</option></select></label>'
+        '<label>AI model identity <input id="model" type="text"></label>'
+        '<label>AI review method <select id="method"><option value="direct_source_inspection">'
+        'Direct source inspection</option><option value="browser">Browser</option>'
+        "</select></label>",
     ]
     for c in cases:
         pieces += [
@@ -149,8 +156,9 @@ def packet(cases, metadata, reports, batch_id):
             "<textarea></textarea></label></article>",
         ]
     pieces += [
-        '<label><input id="attest" type="checkbox"> I am the named human reviewer and personally '
-        "checked the original sources for the cases I am submitting.</label>",
+        '<label><input id="attest" type="checkbox"><span id="attestation-text"> '
+        "I am the named human reviewer and personally "
+        "checked the original sources for the cases I am submitting.</span></label>",
         '<button id="export" type="button">Export reviewed cases as feedback</button>'
         '<p id="status" role="status" aria-live="polite"></p>',
         "<p>Exporting does not update the dataset, approve deployment, or run Google calls. "
