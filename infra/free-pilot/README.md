@@ -223,3 +223,9 @@ The repeat at `a9d9363` also passed: [final code memory evidence](results/linux-
 records 310,333,440 bytes (296.0 MiB) and 142.3 s for the same synthetic stress
 workload (CI run 34375598071). These repeated measurements do not establish live
 answer latency or corpus accuracy.
+
+Connections explicitly set `search_path` to `public, extensions`; this supports
+Supabase's documented pgvector schema as well as the local public-schema install.
+The bootstrap grants schema usage without CREATE, and a real PostgreSQL test
+moves the extension transactionally and verifies cosine distance as the serving
+role. [Supabase pgvector setup](https://supabase.com/docs/guides/database/extensions/pgvector).

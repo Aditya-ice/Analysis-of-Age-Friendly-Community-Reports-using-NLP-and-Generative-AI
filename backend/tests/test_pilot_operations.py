@@ -155,8 +155,10 @@ async def test_cancelled_reranker_stops_remaining_candidates_before_releasing_lo
         return 1.0
 
     ranker.score = score
+
     def candidate(i):
         return SimpleNamespace(id=i, title="Report", content="Evidence", score=0)
+
     first = asyncio.create_task(ranker.rerank("cancel", [candidate(i) for i in range(20)]))
     assert await asyncio.to_thread(entered.wait, 1)
     first.cancel()
@@ -167,3 +169,18 @@ async def test_cancelled_reranker_stops_remaining_candidates_before_releasing_lo
         await first
     await asyncio.wait_for(second, 2)
     assert calls == ["cancel", "next"]
+
+
+async def test_supabase_extension_schema_is_visible_to_serving_role(research_db):
+    async with research_db.engine.connect() as connection:
+        transaction = await connection.begin()
+        try:
+            await connection.execute(text("CREATE SCHEMA IF NOT EXISTS extensions"))
+            await connection.execute(text("ALTER EXTENSION vector SET SCHEMA extensions"))
+            raw = await connection.get_raw_connection()
+            await raw.driver_connection.execute(ROLE_SQL)
+            await connection.execute(text("SET LOCAL ROLE elderhelp_serving"))
+            distance = await connection.scalar(text("SELECT '[1,0]'::vector <=> '[1,0]'::vector"))
+            assert distance == 0
+        finally:
+            await transaction.rollback()

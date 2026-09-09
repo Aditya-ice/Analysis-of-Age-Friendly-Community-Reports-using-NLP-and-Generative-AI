@@ -1,6 +1,7 @@
 import ssl
 from collections.abc import AsyncIterator
 
+from sqlalchemy import event
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
 
 from elderhelp.config import Settings
@@ -26,6 +27,16 @@ class Database:
             **options,
             connect_args=connection_options(settings),
         )
+        if not settings.database_url.startswith("sqlite"):
+
+            @event.listens_for(self.engine.sync_engine, "connect")
+            def set_search_path(connection, record):
+                # Supabase installs pgvector in extensions; local PostgreSQL often uses public.
+                # Execute SQL rather than relying on pooler support for startup parameters.
+                connection.run_async(
+                    lambda raw: raw.execute("SET search_path TO public, extensions")
+                )
+
         self.sessions = async_sessionmaker(self.engine, expire_on_commit=False)
 
     async def session(self) -> AsyncIterator[AsyncSession]:

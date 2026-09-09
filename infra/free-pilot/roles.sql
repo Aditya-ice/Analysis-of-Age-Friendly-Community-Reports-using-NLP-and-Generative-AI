@@ -11,6 +11,13 @@ BEGIN
 END
 $roles$;
 GRANT USAGE ON SCHEMA public TO elderhelp_serving, elderhelp_ingestion;
+DO $extensions$
+BEGIN
+  IF EXISTS (SELECT FROM pg_namespace WHERE nspname='extensions') THEN
+    GRANT USAGE ON SCHEMA extensions TO elderhelp_serving, elderhelp_ingestion;
+  END IF;
+END
+$extensions$;
 DO $permissions$
 DECLARE
   table_name text;
