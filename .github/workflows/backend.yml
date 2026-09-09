@@ -55,3 +55,13 @@ jobs:
       - run: uv run --no-sync python -m elderhelp.openapi
       - run: git diff --exit-code -- openapi.json
       - run: docker build -t elderhelp-api:test .
+      - name: Measure isolated Linux serving image memory
+        run: |
+          docker run --rm --network none --memory 512m --memory-swap 512m --cpus 0.1 \
+            -v "$PWD/tools/serving_memory_smoke.py:/tmp/serving_memory_smoke.py:ro" \
+            --entrypoint python elderhelp-api:test /tmp/serving_memory_smoke.py \
+            | tee serving-memory.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: linux-serving-memory
+          path: serving-memory.json

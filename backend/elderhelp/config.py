@@ -2,7 +2,7 @@ from functools import lru_cache
 from pathlib import Path
 from typing import Literal
 
-from pydantic import Field, SecretStr
+from pydantic import Field, SecretStr, model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -28,6 +28,15 @@ class Settings(BaseSettings):
     database_budget_bytes: int = 500 * 1024 * 1024
 
     database_url: str = "postgresql+asyncpg://elderhelp:elderhelp@localhost:5432/elderhelp"
+    database_tls: Literal["disable", "verify-full"] = "disable"
+    database_ca_file: Path | None = None
+
+    @model_validator(mode="after")
+    def hosted_database_tls(self):
+        if self.environment == "pilot" and self.database_tls != "verify-full":
+            raise ValueError("The hosted pilot requires verified database TLS")
+        return self
+
     google_cloud_project: str | None = Field(default=None)
     google_cloud_location: str = "us-central1"
     generation_model: str = "gemini-3.6-flash"

@@ -74,7 +74,17 @@ def resume(generation: UUID, repository_root: Path = Path(".")):
 def backup(destination: Path):
     from elderhelp.v2.backup import backup as create_backup
 
-    typer.echo(json.dumps(create_backup(get_settings().database_url, destination)))
+    settings = get_settings()
+    typer.echo(
+        json.dumps(
+            create_backup(
+                settings.database_url,
+                destination,
+                tls=settings.database_tls,
+                ca_file=settings.database_ca_file,
+            )
+        )
+    )
 
 
 @app.command()
@@ -82,7 +92,17 @@ def restore_check(archive: Path):
     """Restore into the empty *_restore_test database configured in ELDERHELP_DATABASE_URL."""
     from elderhelp.v2.backup import restore_check as restore
 
-    typer.echo(json.dumps(restore(get_settings().database_url, archive)))
+    settings = get_settings()
+    typer.echo(
+        json.dumps(
+            restore(
+                settings.database_url,
+                archive,
+                tls=settings.database_tls,
+                ca_file=settings.database_ca_file,
+            )
+        )
+    )
 
 
 if __name__ == "__main__":
