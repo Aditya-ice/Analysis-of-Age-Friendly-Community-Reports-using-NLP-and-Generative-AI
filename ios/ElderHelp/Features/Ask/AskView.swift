@@ -4,6 +4,8 @@ import SwiftUI
 struct AskView: View {
     @State private var viewModel: AskViewModel
     @FocusState private var questionIsFocused: Bool
+    @FocusState private var inviteIsFocused: Bool
+    @State private var accessExpanded = false
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \CachedReport.title) private var cachedReports: [CachedReport]
     @State private var pilot: PilotAccess
@@ -27,14 +29,18 @@ struct AskView: View {
                 Text("Use non-sensitive research questions. Questions and evidence are sent to Google under its unpaid-service terms.")
                     .font(.footnote)
                 Link("Google service terms", destination: URL(string: "https://ai.google.dev/gemini-api/terms")!)
-                DisclosureGroup(pilot.connected ? "Pilot access — session saved" : "Pilot access — invite required") {
+                DisclosureGroup(pilot.connected ? "Pilot access — session saved" : "Pilot access — invite required", isExpanded: $accessExpanded) {
                     SecureField("Invite code", text: $pilot.invite).textInputAutocapitalization(.never).autocorrectionDisabled()
                         .accessibilityIdentifier("Invite code")
-                    Button("Connect to pilot") { questionIsFocused = false; Task { await pilot.connect() } }
+                        .focused($inviteIsFocused)
+                    Button("Connect to pilot") {
+                        questionIsFocused = false; inviteIsFocused = false
+                        Task { await pilot.connect(); if pilot.connected { accessExpanded = false } }
+                    }
                         .buttonStyle(.borderedProminent).disabled(pilot.busy)
-                    if pilot.connected { Button("Forget access token") { Task { await pilot.disconnect() } } }
+                    if pilot.connected { Button("Forget access token") { viewModel.cancel(); Task { await pilot.disconnect() } } }
                 }
-                if let message = pilot.message { Text(message).font(.footnote).accessibilityLabel(message) }
+                if let message = pilot.message { Text(message).font(.footnote).accessibilityLabel(message).accessibilityIdentifier("Pilot status") }
                 TextEditor(text: $viewModel.question)
                     .focused($questionIsFocused)
                     .disabled(viewModel.isLoading)

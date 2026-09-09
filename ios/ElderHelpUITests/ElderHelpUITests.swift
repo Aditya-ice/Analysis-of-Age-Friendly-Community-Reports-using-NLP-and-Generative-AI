@@ -17,7 +17,9 @@ final class ElderHelpUITests: XCTestCase {
         XCTAssertTrue(invite.waitForExistence(timeout: 10))
         invite.tap(); invite.typeText("mock-invite-code-only")
         app.buttons["Connect to pilot"].tap()
-        XCTAssertTrue(app.staticTexts["Connected. Answers appear after verification."].waitForExistence(timeout: 15))
+        let status = app.staticTexts["Pilot status"]
+        XCTAssertTrue(status.waitForExistence(timeout: 15), app.debugDescription)
+        XCTAssertEqual(status.label, "Connected. Answers appear after verification.", app.debugDescription)
         app.swipeUp()
         let editor = app.textViews["Your question"]
         editor.tap()
