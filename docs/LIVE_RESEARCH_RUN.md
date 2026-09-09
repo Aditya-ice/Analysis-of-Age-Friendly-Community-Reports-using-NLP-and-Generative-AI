@@ -5,6 +5,12 @@ evaluation. The application stops at **$1.80 in conservative reservations**.
 This exception applies to the local research experiment; the hosted pilot remains
 free by default. No paid generation is enabled yet.
 
+The owner confirmed a paid embedding limit of 3,000 requests/minute. Local
+ingestion is deliberately paced at 60/minute with concurrency two and a
+300-request daily ceiling. Generation remains disabled. The earlier five/minute
+run was gracefully paused and its existing generation resumed, preserving the
+embedding cache and the cumulative spending ledger.
+
 ## Spending controls
 
 Set `ELDERHELP_PAID_INGESTION_CONFIRMED=true` only with explicit authorization.
@@ -43,6 +49,29 @@ Packets keep shared facts/spans together, exclude the 40 held-out cases, and
 export human feedback separately from dataset labels. No candidate becomes gold
 automatically. There are still zero human-reviewed cases and no live quality
 metrics. A staged index must not be activated merely because ingestion completed.
+
+## Completed live ingestion
+
+Generation `210d8f96-281a-4b3a-959b-675e2262ff1a` completed for both seed
+reports on September 9, 2026. Structural corpus validation passed at
+20:40:13 UTC: 221 chunks, two reports, no errors. The database contains 108
+pages, 1,723 source spans, and 221 cached embeddings. The generation is validated
+but not active. No answer-generation or semantic-verification calls were made.
+
+The cumulative spend ledger holds **$0.442 in conservative reservations**, leaving
+**$1.358** below the $1.80 cutoff. This is not a billed-cost measurement. Graceful
+pause/resume reused saved embeddings; the final ledger contains exactly 221
+embedding reservations.
+
+A private 1,373,596-byte PostgreSQL backup was restored into a separate disposable
+database. Report, page, span, chunk, embedding, and generation-link counts all
+matched, as did the $0.442 ledger. Neither the backup nor database files are in
+Git. A restore-test copy must never be used for paid requests: it duplicates the
+ledger snapshot, not the authorized allowance.
+
+Next gates are human evidence review, live retrieval evaluation, and tested
+complete-workflow monetary controls before paid answer generation. These remain
+outstanding; structural ingestion success is not an accuracy score.
 
 ## Validation
 
