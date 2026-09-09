@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - "backend/**"
+      - "infra/free-pilot/roles.sql"
       - "data/reports.yaml"
       - "evaluations/**"
       - "contracts/**"
@@ -20,6 +21,7 @@ on:
 jobs:
   verify:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     services:
       postgres:
         image: pgvector/pgvector:pg16

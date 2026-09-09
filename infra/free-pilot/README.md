@@ -218,3 +218,8 @@ The [local restore drill](results/restore-20260909.json) preserved active/previo
 pointers, counts and exact spans for a synthetic fixture. A drill against the
 actual hosted seed corpus is still required. No secrets or database dumps are
 in these committed result files.
+
+The repeat at `a9d9363` also passed: [final code memory evidence](results/linux-memory-a9d9363.json)
+records 310,333,440 bytes (296.0 MiB) and 142.3 s for the same synthetic stress
+workload (CI run 34375598071). These repeated measurements do not establish live
+answer latency or corpus accuracy.
