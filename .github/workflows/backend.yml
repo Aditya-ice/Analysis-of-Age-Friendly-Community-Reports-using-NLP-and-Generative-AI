@@ -49,7 +49,7 @@ jobs:
       - run: sudo apt-get update && sudo apt-get install -y tesseract-ocr
       - run: uv sync --frozen --group dev --extra ingestion
       - run: uv run --no-sync ruff check backend evaluations/v2
-      - run: node --test web-tests/core.test.mjs
+      - run: node --test web-tests/*.test.mjs
       - run: python3 tools/sync_contract_fixtures.py && git diff --exit-code -- ios/ElderHelpTests/Fixtures android/app/src/test/resources/contracts
       - run: uv run --no-sync python tools/download_reranker.py
       - run: uv run --no-sync alembic upgrade head
