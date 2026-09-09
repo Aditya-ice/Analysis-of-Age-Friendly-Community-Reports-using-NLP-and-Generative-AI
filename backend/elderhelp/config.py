@@ -30,6 +30,7 @@ class Settings(BaseSettings):
     database_url: str = "postgresql+asyncpg://elderhelp:elderhelp@localhost:5432/elderhelp"
     database_tls: Literal["disable", "verify-full"] = "disable"
     database_ca_file: Path | None = None
+    postgres_bin_directory: Path | None = None
 
     @model_validator(mode="after")
     def hosted_database_tls(self):

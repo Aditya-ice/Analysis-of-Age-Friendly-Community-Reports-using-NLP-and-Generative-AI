@@ -13,6 +13,9 @@ Gemini Developer API project with billing disabled. Confirm actual model access
 and the project's quota before enabling `ELDERHELP_FREE_TIER_CONFIRMED=true`.
 Keep that flag false during setup; there is no paid fallback. A provider's public
 price table does not establish an individual account's allowance.
+The selected `gemini-3.6-flash` and `gemini-embedding-2` text inputs are currently
+listed with standard free-tier access; no batch/paid mode is used.
+[Google pricing](https://ai.google.dev/gemini-api/docs/pricing) (checked 2026-09-09).
 
 Render currently supplies 512 MB / 0.1 CPU, sleeps after inactivity and has an
 ephemeral filesystem. Leave payment methods absent and do not enable paid plans,
@@ -95,6 +98,11 @@ approved index data to PostgreSQL. Never put PDFs in the serving image or Render
 filesystem. Warn at 70% database allowance; ingestion stops at 80%.
 
 ## Backup, restore and pruning
+
+Install PostgreSQL client tools matching the server major version. If several
+versions are installed, set `ELDERHELP_POSTGRES_BIN_DIRECTORY` explicitly (for
+example `/opt/homebrew/opt/postgresql@16/bin` on macOS). A version-14 dump client
+cannot back up a version-16 server.
 
 Keep encrypted/offline copies of administrator-only backups. Backups contain
 report text, invite hashes and quota counters; do not commit them. Before schema
@@ -196,3 +204,17 @@ do not enable SQL echo, raw ASGI access logs, or provider prompt logging. The
 explicit curated evaluation mode is the only place to retain research traces.
 Existing `infra/terraform` is a future paid-cloud reference and is excluded from
 these instructions. This pilot has no always-on availability guarantee.
+
+## Recorded local/CI results
+
+At `f301ec1`, [Linux memory evidence](results/linux-memory-f301ec1.json) records
+307,359,744-byte peak RSS (293.1 MiB) under 512 MiB / 0.1 CPU limits; CI run
+34315758422 passed. Two synthetic long-passage reranking workloads took 145.4 s.
+This is a stress-path result, not real-answer p95; the live 30-second target is
+unmeasured. Cancellation now stops remaining candidates/windows after the current
+native batch, while retaining the inference lock until the worker exits.
+
+The [local restore drill](results/restore-20260909.json) preserved active/previous
+pointers, counts and exact spans for a synthetic fixture. A drill against the
+actual hosted seed corpus is still required. No secrets or database dumps are
+in these committed result files.

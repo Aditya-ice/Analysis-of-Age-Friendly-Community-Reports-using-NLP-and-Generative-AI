@@ -82,6 +82,7 @@ def backup(destination: Path):
                 destination,
                 tls=settings.database_tls,
                 ca_file=settings.database_ca_file,
+                bin_directory=settings.postgres_bin_directory,
             )
         )
     )
@@ -100,6 +101,7 @@ def restore_check(archive: Path):
                 archive,
                 tls=settings.database_tls,
                 ca_file=settings.database_ca_file,
+                bin_directory=settings.postgres_bin_directory,
             )
         )
     )

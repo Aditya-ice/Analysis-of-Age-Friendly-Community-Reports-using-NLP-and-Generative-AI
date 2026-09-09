@@ -23,6 +23,7 @@ BEGIN
     'ingestion_jobs', 'demo_invites', 'quota_counters', 'alembic_version'
   ] LOOP
     EXECUTE format('REVOKE ALL ON TABLE public.%I FROM PUBLIC', table_name);
+    EXECUTE format('REVOKE ALL ON TABLE public.%I FROM elderhelp_serving, elderhelp_ingestion', table_name);
     FOREACH public_role IN ARRAY ARRAY['anon', 'authenticated'] LOOP
       IF EXISTS (SELECT FROM pg_roles WHERE rolname = public_role) THEN
         EXECUTE format('REVOKE ALL ON TABLE public.%I FROM %I', table_name, public_role);

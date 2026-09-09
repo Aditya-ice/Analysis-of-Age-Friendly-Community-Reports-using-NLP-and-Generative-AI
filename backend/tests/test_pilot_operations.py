@@ -33,9 +33,20 @@ async def test_database_roles_block_corpus_mutation_and_public_access(research_d
         transaction = await connection.begin()
         try:
             raw = await connection.get_raw_connection()
+            await raw.driver_connection.execute("""
+                DO $test$ BEGIN
+                    IF NOT EXISTS (SELECT FROM pg_roles WHERE rolname='anon') THEN
+                        CREATE ROLE anon NOLOGIN;
+                    END IF;
+                END $test$;
+                GRANT SELECT ON reports TO anon;
+            """)
             # asyncpg execute supports the administrator script's multiple statements.
             await raw.driver_connection.execute(ROLE_SQL)
             await raw.driver_connection.execute(ROLE_SQL)  # Reapplying policy is safe.
+            assert not await connection.scalar(
+                text("SELECT has_table_privilege('anon','reports','SELECT')")
+            )
             assert await connection.scalar(
                 text("SELECT has_table_privilege('elderhelp_serving','reports','SELECT')")
             )
@@ -117,3 +128,42 @@ async def test_activation_cannot_publish_generation_pruned_after_validation(
     with pytest.raises(ValueError, match="changed after validation"):
         await corpus.activate(research_db, ids[0], config)
     assert (await corpus.status(research_db))["active"] == str(ids[2])
+
+
+async def test_cancelled_reranker_stops_remaining_candidates_before_releasing_lock():
+    import asyncio
+    import threading
+    import time
+    from types import SimpleNamespace
+
+    from elderhelp.v2.reranker import OnnxRanker
+
+    ranker = object.__new__(OnnxRanker)
+    ranker.lock = asyncio.Lock()
+    entered = threading.Event()
+    calls = []
+    running = 0
+
+    def score(question, content, *, stop=None):
+        nonlocal running
+        running += 1
+        assert running == 1
+        calls.append(question)
+        entered.set()
+        time.sleep(0.03)  # One uninterruptible native batch.
+        running -= 1
+        return 1.0
+
+    ranker.score = score
+    def candidate(i):
+        return SimpleNamespace(id=i, title="Report", content="Evidence", score=0)
+    first = asyncio.create_task(ranker.rerank("cancel", [candidate(i) for i in range(20)]))
+    assert await asyncio.to_thread(entered.wait, 1)
+    first.cancel()
+    await asyncio.sleep(0)
+    first.cancel()  # A disconnect can arrive after the workflow deadline cancels it.
+    second = asyncio.create_task(ranker.rerank("next", [candidate(21)]))
+    with pytest.raises(asyncio.CancelledError):
+        await first
+    await asyncio.wait_for(second, 2)
+    assert calls == ["cancel", "next"]

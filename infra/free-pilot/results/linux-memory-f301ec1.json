@@ -1,0 +1,1 @@
+{"experiment": "linux-serving-two-synthetic-reranking-workloads", "peak_rss_bytes": 307359744, "allowance_bytes": 536870912, "limit_fraction": 0.8, "passed": true, "elapsed_seconds": 145.40112170400005, "google_calls": 0, "quality_or_hosted_latency_result": false}

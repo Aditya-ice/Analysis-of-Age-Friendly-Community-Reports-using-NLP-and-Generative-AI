@@ -24,21 +24,42 @@ def connection_environment(url: str, *, tls: str = "disable", ca_file: Path | No
     }
 
 
-def backup(url: str, destination: Path, *, tls: str = "disable", ca_file: Path | None = None):
+def backup(
+    url: str,
+    destination: Path,
+    *,
+    tls: str = "disable",
+    ca_file: Path | None = None,
+    bin_directory: Path | None = None,
+):
     if destination.exists():
         raise ValueError("Backup destination already exists")
     destination.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.NamedTemporaryFile(dir=destination.parent, suffix=".dump") as file:
         os.chmod(file.name, 0o600)
         subprocess.run(
-            ["pg_dump", "--format=custom", "--no-owner", "--no-privileges", "--file", file.name],
+            [
+                str(bin_directory / "pg_dump") if bin_directory else "pg_dump",
+                "--format=custom",
+                "--no-owner",
+                "--no-privileges",
+                "--file",
+                file.name,
+            ],
             env=connection_environment(url, tls=tls, ca_file=ca_file),
             check=True,
             capture_output=True,
             timeout=300,
         )
         subprocess.run(
-            ["pg_restore", "--list", file.name], check=True, capture_output=True, timeout=30
+            [
+                str(bin_directory / "pg_restore") if bin_directory else "pg_restore",
+                "--list",
+                file.name,
+            ],
+            check=True,
+            capture_output=True,
+            timeout=30,
         )
         # Exclusive destination creation avoids replacing any prior backup.
         with destination.open("xb") as output:
@@ -50,13 +71,20 @@ def backup(url: str, destination: Path, *, tls: str = "disable", ca_file: Path |
     return {"backup": str(destination), "bytes": destination.stat().st_size}
 
 
-def restore_check(url: str, archive: Path, *, tls: str = "disable", ca_file: Path | None = None):
+def restore_check(
+    url: str,
+    archive: Path,
+    *,
+    tls: str = "disable",
+    ca_file: Path | None = None,
+    bin_directory: Path | None = None,
+):
     name = make_url(url).database or ""
     if not name.endswith("_restore_test"):
         raise ValueError("Restore drill requires an empty database ending in _restore_test")
     subprocess.run(
         [
-            "pg_restore",
+            str(bin_directory / "pg_restore") if bin_directory else "pg_restore",
             "--no-owner",
             "--no-privileges",
             "--exit-on-error",

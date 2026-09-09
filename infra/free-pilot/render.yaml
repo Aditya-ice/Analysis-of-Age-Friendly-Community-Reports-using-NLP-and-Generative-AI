@@ -1,7 +1,7 @@
 # Import only after the release checklist passes. Creating a Blueprint deploys once
 # even when automatic deployments are disabled. No databases or paid jobs here.
 previews:
-  generation: off
+  generation: "off"
 services:
   - type: web
     name: elderhelp-pilot
@@ -11,7 +11,7 @@ services:
     branch: main
     dockerfilePath: ./Dockerfile
     dockerContext: .
-    autoDeployTrigger: off
+    autoDeployTrigger: "off"
     healthCheckPath: /readyz
     maxShutdownDelaySeconds: 90
     envVars:

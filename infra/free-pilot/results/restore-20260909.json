@@ -1,0 +1,11 @@
+{
+  "environment": "local disposable PostgreSQL 16.15 / pgvector",
+  "corpus": "synthetic regression fixture, not live seed corpus",
+  "backup_bytes": 50614,
+  "matching_client_major_version": 16,
+  "restored_active_and_previous_match": true,
+  "exact_span_validation_passed": true,
+  "counts": {"reports": 1, "research_chunks": 2, "source_spans": 3},
+  "hosted_disaster_recovery_result": false,
+  "archive_committed": false
+}
