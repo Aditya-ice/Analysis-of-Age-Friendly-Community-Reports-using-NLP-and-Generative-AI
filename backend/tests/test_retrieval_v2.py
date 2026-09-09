@@ -53,6 +53,41 @@ async def indexed(database, tmp_path):
     return settings, generation, manifest
 
 
+async def test_staged_diagnostic_does_not_activate_corpus(research_db, tmp_path):
+    from elderhelp.v2.models import ActiveCorpus, Generation
+    from elderhelp.v2.retrieval import CorpusUnavailable
+    from sqlalchemy import delete
+
+    settings, generation, _ = await indexed(research_db, tmp_path)
+    async with research_db.sessions() as db, db.begin():
+        await db.execute(delete(ActiveCorpus))
+    query = QueryPlan(original_question="buses", standalone_question="buses", subqueries=["buses"])
+    found = await retrieve(
+        research_db,
+        QueryProvider(),
+        None,
+        settings,
+        query,
+        AnswerFilters(),
+        evaluation_generation=generation,
+    )
+    assert found.blocks
+    with pytest.raises(CorpusUnavailable):
+        await active_generation(research_db, settings)
+    async with research_db.sessions() as db, db.begin():
+        (await db.get(Generation, generation)).status = "staging"
+    with pytest.raises(CorpusUnavailable):
+        await retrieve(
+            research_db,
+            QueryProvider(),
+            None,
+            settings,
+            query,
+            AnswerFilters(),
+            evaluation_generation=generation,
+        )
+
+
 async def test_real_postgres_dense_keyword_filters_and_withdrawal(research_db, tmp_path):
     settings, generation, manifest = await indexed(research_db, tmp_path)
     assert await active_generation(research_db, settings) == generation
