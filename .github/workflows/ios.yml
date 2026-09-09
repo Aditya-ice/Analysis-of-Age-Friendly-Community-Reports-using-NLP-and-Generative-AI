@@ -59,7 +59,8 @@ jobs:
             -parallel-testing-enabled NO \
             -maximum-concurrent-test-simulator-destinations 1 \
             -resultBundlePath "${RUNNER_TEMP}/ElderHelp.xcresult" \
-            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_ALLOWED=YES \
+            CODE_SIGN_IDENTITY=- \
             test
       - uses: actions/upload-artifact@v4
         if: always()

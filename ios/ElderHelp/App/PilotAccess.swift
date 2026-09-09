@@ -4,6 +4,10 @@ import Observation
 
 // Device-only Keychain item, scoped to this API origin. Invite codes are never persisted.
 enum PilotKeychain {
+    struct StorageError: LocalizedError {
+        let status: OSStatus
+        var errorDescription: String? { "Secure token storage is unavailable. Please retry. (\(status))" }
+    }
     static var account: String { AppConfiguration.apiBaseURL.absoluteString }
     static func read() -> String? {
         var result: CFTypeRef?
@@ -22,7 +26,8 @@ enum PilotKeychain {
         var item = query
         item[kSecValueData as String] = Data(value.utf8)
         item[kSecAttrAccessible as String] = kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly
-        guard SecItemAdd(item as CFDictionary, nil) == errSecSuccess else { throw APIError.invalidResponse }
+        let status = SecItemAdd(item as CFDictionary, nil)
+        guard status == errSecSuccess else { throw StorageError(status: status) }
     }
 }
 
@@ -38,7 +43,8 @@ enum PilotKeychain {
         busy = true; defer { busy = false }
         do {
             let session = try await client.connect(invite: invite)
-            try PilotKeychain.save(session.token)
+            do { try PilotKeychain.save(session.token) }
+            catch { await client.setToken(nil); connected = false; throw error }
             invite = ""; connected = true
             let caps = try await client.capabilities()
             message = caps.generationAvailable ? "Connected. Answers appear after verification." : "Answers are temporarily unavailable. Use Search passages."

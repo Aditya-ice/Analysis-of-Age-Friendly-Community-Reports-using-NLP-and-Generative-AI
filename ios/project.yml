@@ -30,6 +30,7 @@ targets:
         PRODUCT_BUNDLE_IDENTIFIER: com.adityaice.ElderHelp
         PRODUCT_NAME: ElderHelp
         TARGETED_DEVICE_FAMILY: "1,2"
+        "CODE_SIGN_ENTITLEMENTS[sdk=iphonesimulator*]": Simulator.entitlements
     scheme:
       testTargets:
         - ElderHelpTests
