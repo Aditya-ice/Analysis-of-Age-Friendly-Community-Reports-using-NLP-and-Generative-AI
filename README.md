@@ -2,7 +2,7 @@
 
 ElderHelp is being rebuilt as a research assistant for approved age-friendly community reports. The v2 backend retrieves exact passages, creates structured claims, and verifies them before displaying any answer text. It distinguishes historical report commitments from current services and falls back to keyword search when generation is unavailable.
 
-**Implementation is ongoing.** Backend engineering checks are recorded in [the checkpoint ledger](docs/IMPLEMENTATION_STATUS.md). Live Google evaluation, human-reviewed quality gates, the browser/mobile migration and free hosted deployment are separate remaining stages. The project does not claim production uptime or measured corpus accuracy yet.
+**Implementation is ongoing.** Backend engineering checks are recorded in [the checkpoint ledger](docs/IMPLEMENTATION_STATUS.md). Live Google evaluation, human-reviewed quality gates, platform client verification and free hosted deployment are separate remaining stages. The project does not claim production uptime or measured corpus accuracy yet.
 
 ## Local setup
 
@@ -33,7 +33,7 @@ uv run uvicorn elderhelp.main:app --reload --no-access-log
 
 The invite-creation command returns a revocable code once; it is not embedded in client builds. Exchange it at `POST /v2/demo/session`. Send the returned short-lived token as `Authorization: Bearer TOKEN` for report, search and answer endpoints. `/healthz` requires no database or model call; `/readyz` checks the database, compatible active corpus and local components without spending Google quota.
 
-API reference: `/docs`; committed contract: [openapi.json](openapi.json). `/v1` uses the same corrected engine and maps richer results to a safe insufficient-evidence response. Existing mobile builds need the upcoming invite-access migration to use this pilot API.
+API reference: `/docs`; committed contract: [openapi.json](openapi.json). `/v1` uses the same corrected engine and maps richer results to a safe insufficient-evidence response. The browser at `/` and updated native clients accept invite codes at runtime. See [client setup and verification](docs/CLIENTS_V2.md).
 
 ## Verification
 

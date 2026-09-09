@@ -10,7 +10,7 @@ Baseline: `8ae26b8`. Original code/history, seed reports and mobile apps are pre
 | 4. Retrieval | Implemented | 40 backend tests; real PostgreSQL dense/keyword filters, child preservation, resolved follow-ups, withdrawal and RRF fallback; pinned quantized ONNX short/long-candidate smoke tests pass. Corpus quality metrics remain unmeasured. |
 | 5. Verified answers/API | Implemented | 51 backend tests; no draft before verification, fabricated claims, withdrawal, cancellation, timeout, v1 mapping, access/quota controls and ten-request burst. Serving-only Python 3.12 smoke passed without OCR/paid-cloud libraries (159,547,392-byte peak RSS on macOS; not a Linux capacity result). Live quality and latency gates remain pending. |
 | 6. Evaluation | Harness implemented; quality gate blocked | 64 backend tests; 120 candidate cases in an 80/40 grouped split; resumable four-way ablations and human-review scoring. Local synthetic 1k/10k/50k PostgreSQL experiments recorded. Zero human-gold cases or live Google outputs yet; quality and hosted latency remain unmeasured. |
-| 7. Browser/mobile clients | Pending | |
+| 7. Browser/mobile clients | Implemented; platform checks in progress | Shared v2 fixtures, browser protocol/static tests and manual browser flow pass. Swift core compiles locally; full Xcode/XCTest and Android verification are running in CI. Live staging and assistive-technology checks remain pending. |
 | 8. Free deployment/handover | Pending | |
 
 Each completed step is committed and pushed separately. No quality scores, live-model results or deployment are claimed until actually measured. Human gold-label review, free-tier account configuration and live quota are external gates; paid services are prohibited.

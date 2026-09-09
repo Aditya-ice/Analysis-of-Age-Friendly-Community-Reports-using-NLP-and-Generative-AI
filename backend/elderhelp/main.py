@@ -102,6 +102,9 @@ def create_app(settings: Settings | None = None, *, database=None, provider=None
             422,
         )
 
+    from elderhelp.web import install
+
+    install(app)
     app.include_router(router)
     return app
 
