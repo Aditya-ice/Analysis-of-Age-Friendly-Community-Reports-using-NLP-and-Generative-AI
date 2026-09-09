@@ -40,6 +40,8 @@ class Settings(BaseSettings):
 
     @model_validator(mode="after")
     def hosted_database_tls(self):
+        if self.free_tier_confirmed and self.paid_ingestion_confirmed:
+            raise ValueError("Select free tier or paid ingestion, not both")
         if self.environment == "pilot" and self.database_tls != "verify-full":
             raise ValueError("The hosted pilot requires verified database TLS")
         return self

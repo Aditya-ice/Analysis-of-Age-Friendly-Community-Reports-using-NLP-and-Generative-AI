@@ -71,13 +71,16 @@ def local_checks(settings, root=ROOT):
     checks["token_secret_present"] = bool(settings.token_secret)
     for field in (
         "google_key_present",
-        "free_tier_confirmed",
         "token_secret_present",
         "dataset_integrity_valid",
         "index_configuration_matches_dataset",
     ):
         if not checks[field]:
             blockers.append(field + "_required")
+    if settings.paid_ingestion_confirmed:
+        blockers.append("paid_generation_workflow_budget_required")
+    elif not settings.free_tier_confirmed:
+        blockers.append("free_tier_confirmed_required")
     if not checks["human_reviewed_development_cases"]:
         blockers.append("development_evidence_review_required")
     return checks, blockers

@@ -32,6 +32,8 @@ async def test_paid_envelope_fails_closed_before_database_access():
         )
     with pytest.raises(ValueError):
         Settings(_env_file=None, paid_budget_microusd=2_000_000)
+    with pytest.raises(ValueError):
+        Settings(_env_file=None, free_tier_confirmed=True, paid_ingestion_confirmed=True)
 
 
 async def test_paid_generation_is_blocked_before_dispatch():
