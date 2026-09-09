@@ -1,4 +1,5 @@
 import asyncio
+from types import SimpleNamespace
 
 import pytest
 from elderhelp.config import Settings
@@ -41,3 +42,29 @@ async def test_paid_generation_is_blocked_before_dispatch():
     provider.settings = Settings(_env_file=None, paid_ingestion_confirmed=True)
     with pytest.raises(ProviderUnavailable):
         await provider.structured(None, "", {})
+
+
+async def test_failed_dispatch_keeps_spend_and_exhaustion_prevents_sdk(research_db):
+    calls = 0
+
+    async def fail(**kwargs):
+        nonlocal calls
+        calls += 1
+        raise RuntimeError("uncertain provider outcome")
+
+    provider = object.__new__(Gemini)
+    provider.settings = Settings(
+        _env_file=None, paid_ingestion_confirmed=True, paid_budget_microusd=2000
+    )
+    provider.database = research_db
+    provider.embedding_slots = asyncio.Semaphore(2)
+    provider.client = SimpleNamespace(
+        aio=SimpleNamespace(models=SimpleNamespace(embed_content=fail))
+    )
+    with pytest.raises(ProviderUnavailable):
+        await provider.embed("text", reserved=True, paced=True)
+    with pytest.raises(QuotaExceeded):
+        await provider.embed("text", reserved=True, paced=True)
+    assert calls == 1
+    async with research_db.sessions() as db:
+        assert (await db.get(QuotaCounter, BUDGET_KEY)).used == 2000
