@@ -1,6 +1,6 @@
 # Agent-assisted evidence review
 
-**AI-reviewed; manual spot-check pending.** Completed September 9, 2026.
+**AI-reviewed; agent spot-check complete; human spot-check pending.** Completed September 9, 2026.
 
 All 80 development cases were reviewed in their ten existing batches. The 40 held-out cases were excluded. Findings concern proposed evidence and answerability, not generated RAG answers or measured RAG accuracy.
 
@@ -38,7 +38,9 @@ Open `.local/evaluation-v2/agent-manual-spot-check.html`. It contains one case f
 - `direct-01`, `exact-03`, `comparison-04`, `followup-07`, `layout-01`, `unanswerable-04`, `partial-01`, `injection-01`.
 - `direct-19` (numerical transport interpretation), `layout-08` (excluded chart), `partial-05` (missing comparison component), `unanswerable-20` (ambiguous cost refusal).
 
-Read each question, AI finding, limitations, and available exact excerpts. Follow the local source-page references where supplied. A refusal or missing-evidence case may have no supporting passage; that absence is stated rather than filled with invented evidence. Use the original reports for a broader check when needed. Leave review mode set to **Human**, record agreement or corrections, attest only to checks actually performed, and export the feedback. Human feedback remains separate from AI records. Currently **0/12 manual checks are completed** and no disagreements have yet been recorded.
+Read each question, AI finding, limitations, and available exact excerpts. Follow the local source-page references where supplied. A refusal or missing-evidence case may have no supporting passage; that absence is stated rather than filled with invented evidence. Use the original reports for a broader check when needed. Leave review mode set to **Human**, record agreement or corrections, attest only to checks actually performed, and export the feedback. Human feedback remains separate from AI records.
+
+An independent session-agent pass has now checked all 12 packet cases and recorded separate AI feedback. It confirmed 11 packet selections and kept the excluded employment chart as needing extraction work. This remains **0/12 human checks completed** and no human disagreements have been recorded.
 
 ## Reproduction and progress
 

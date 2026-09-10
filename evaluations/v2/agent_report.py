@@ -23,6 +23,41 @@ SPOT_CHECK = [
 ]
 
 
+def load_agent_spot_check(cases_by_id, agent_reviews_by_id, metadata):
+    path = DEFAULT_OUTPUT / "agent-manual-spot-check.json"
+    if not path.exists():
+        return 0
+    record = json.loads(path.read_text())
+    if any(key in record for key in ("human_verified", "gold_evidence_units", "reviewer")):
+        raise ValueError("Agent spot check cannot carry human certification")
+    if (
+        record.get("format") != "elderhelp-agent-spot-check-v1"
+        or record.get("review_type") != "ai_reviewed"
+        or record.get("method") not in ("direct_source_inspection", "browser")
+        or record.get("dataset_sha256") != metadata["dataset_sha256"]
+        or not record.get("agent")
+        or not record.get("model")
+    ):
+        raise ValueError("Invalid or stale agent spot check")
+    reviews = record.get("reviews", [])
+    if [review.get("case_id") for review in reviews] != SPOT_CHECK:
+        raise ValueError("Agent spot check must cover the exact twelve selected cases")
+    for review in reviews:
+        case = cases_by_id[review["case_id"]]
+        if review.get("case_sha256") != digest(case):
+            raise ValueError("Agent spot check case is stale")
+        evidence = (
+            agent_reviews_by_id[review["case_id"]]["supporting_spans"] or case["candidate_support"]
+        )
+        expected_revisions = sorted({span["revision_id"] for span in evidence})
+        if review.get("source_revision_ids") != expected_revisions:
+            raise ValueError("Agent spot check source revision is stale")
+        known_searchable = {span["span_id"] for span in evidence if span["searchable"]}
+        if not set(review.get("selected_span_ids", [])) <= known_searchable:
+            raise ValueError("Agent spot check selected an unknown or unsearchable span")
+    return len(reviews)
+
+
 def report():
     cases, metadata, catalog = load()
     records = []
@@ -33,12 +68,18 @@ def report():
     if len(records) != 80 or len({r["case_id"] for r in records}) != 80:
         raise ValueError("Expected 80 unique development reviews")
     by_id = {r["case_id"]: r for r in records}
+    agent_spot_checks = load_agent_spot_check({case["id"]: case for case in cases}, by_id, metadata)
     categories = {c["id"]: c["category"] for c in cases}
     summary = {
-        "status": "AI-reviewed; manual spot-check pending",
+        "status": (
+            "AI-reviewed; agent spot-check complete; human spot-check pending"
+            if agent_spot_checks == len(SPOT_CHECK)
+            else "AI-reviewed; manual spot-check pending"
+        ),
         "reviewed_cases": 80,
         "heldout_reviewed": 0,
         "manual_spot_checks_completed": 0,
+        "agent_spot_checks_completed": agent_spot_checks,
         "provider_calls": 0,
         "quality_gate_passed": False,
         "dataset_sha256": metadata["dataset_sha256"],
@@ -120,6 +161,8 @@ def report():
                 "status": summary["status"],
                 "case_ids": SPOT_CHECK,
                 "dataset_sha256": metadata["dataset_sha256"],
+                "agent_spot_checks_completed": agent_spot_checks,
+                "human_spot_checks_completed": 0,
                 "human_feedback": "pending",
                 "selection": (
                     "One per category, then numerical claim, excluded chart, "

@@ -1,6 +1,6 @@
 # Twelve-case manual spot-check
 
-AI-reviewed; manual spot-check pending
+AI-reviewed; agent spot-check complete; human spot-check pending
 
 Record human decisions separately; these findings do not certify gold labels.
 

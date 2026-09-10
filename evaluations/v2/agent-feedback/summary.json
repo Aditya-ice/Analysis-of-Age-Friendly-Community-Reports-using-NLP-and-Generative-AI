@@ -1,8 +1,9 @@
 {
-  "status": "AI-reviewed; manual spot-check pending",
+  "status": "AI-reviewed; agent spot-check complete; human spot-check pending",
   "reviewed_cases": 80,
   "heldout_reviewed": 0,
   "manual_spot_checks_completed": 0,
+  "agent_spot_checks_completed": 12,
   "provider_calls": 0,
   "quality_gate_passed": false,
   "dataset_sha256": "f0683e9080bcebed8ad48079e00a47da458384f9c42a3ba12f94898bf621d4ff",

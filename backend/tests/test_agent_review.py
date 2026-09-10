@@ -67,3 +67,31 @@ def test_offline_batch_versioning_and_ai_separation(tmp_path, monkeypatch):
     for field, value in (("status", "approved"), ("method", "unknown")):
         with pytest.raises(ValueError):
             validate({**record, field: value}, group, metadata, catalog)
+
+
+def test_agent_spot_check_is_version_bound_and_not_human_certification(tmp_path, monkeypatch):
+    import json
+
+    import agent_report
+
+    root = Path(__file__).resolve().parents[2] / "evaluations/v2"
+    cases = {
+        case["id"]: case
+        for line in (root / "cases.jsonl").read_text().splitlines()
+        if (case := json.loads(line))["split"] == "development"
+    }
+    metadata = json.loads((root / "dataset.json").read_text())
+    source = root / "agent-feedback/agent-manual-spot-check.json"
+    destination = tmp_path / source.name
+    destination.write_text(source.read_text())
+    monkeypatch.setattr(agent_report, "DEFAULT_OUTPUT", tmp_path)
+    agent_reviews = {}
+    for path in sorted((root / "agent-feedback").glob("development-*.json")):
+        for review in json.loads(path.read_text())["reviews"]:
+            agent_reviews[review["case_id"]] = review
+    assert agent_report.load_agent_spot_check(cases, agent_reviews, metadata) == 12
+    record = json.loads(destination.read_text())
+    record["reviews"][0]["source_revision_ids"] = ["stale"]
+    destination.write_text(json.dumps(record))
+    with pytest.raises(ValueError, match="source revision"):
+        agent_report.load_agent_spot_check(cases, agent_reviews, metadata)
