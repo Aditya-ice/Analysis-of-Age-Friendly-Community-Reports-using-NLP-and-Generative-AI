@@ -1,0 +1,506 @@
+{
+  "format": "elderhelp-agent-feedback-v1",
+  "review_type": "ai_reviewed",
+  "agent": "Codex session agent",
+  "model": "session model (exact ID unavailable)",
+  "method": "direct_source_inspection",
+  "reviewed_at": "2026-09-09T21:33:11.409058-04:00",
+  "dataset_sha256": "f0683e9080bcebed8ad48079e00a47da458384f9c42a3ba12f94898bf621d4ff",
+  "index_fingerprint": "27ba26ebd5cd394d748032ecd42da1e488e50286fe6376120d52c1d22ccb6ede",
+  "batch": 6,
+  "status": "AI-reviewed; manual spot-check pending",
+  "reviews": [
+    {
+      "case_id": "direct-32",
+      "case_sha256": "29dc78564d4a6e6d5f7428be8c68866be319dd82d4024bc0fc452fb63d998bc1",
+      "answerability": "full",
+      "decision": "supported",
+      "finding": "The city invited citizen solutions through Unleash Your Geek, partnered for patent assistance and focused its first challenge on hard-to-reach graffiti. No detailed recruitment channels beyond invitation are stated.",
+      "limitations": [
+        "Historical report evidence only; not independently verified current outcomes."
+      ],
+      "supporting_spans": [
+        {
+          "span_id": "33f50038-795c-5b6d-9eb6-52082940a893",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 10,
+          "start": 147,
+          "end": 325,
+          "excerpt": "In 2016, San Jos\u00e9, California , launched Unleash Your Geek, a competition in which citizens were invited to propose innovative solutions to some of the city\u2019s biggest challenges.",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "527069fa-5e8b-5ed2-9357-88861a599302",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 10,
+          "start": 326,
+          "end": 524,
+          "excerpt": "Under the leadership of Mayor Sam Liccardo , San Jos\u00e9 partnered with several organizations, including the Silicon Valley U.S. Patent and Trademark Office, which provided participants with technical ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "85617248-d6ce-5246-a0fc-512481bc81c5",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 10,
+          "start": 524,
+          "end": 576,
+          "excerpt": "assistance in obtaining patents for their solutions.",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "2f06e462-a364-5de0-a4d4-2536e9fd5185",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 10,
+          "start": 844,
+          "end": 1041,
+          "excerpt": "In the first year, the competition focused on graffiti removal from areas that are difficult and expensive to reach, including freeway signs, overpasses and tall buildings. The inaugural challenge ",
+          "searchable": true,
+          "confidence": 1.0
+        }
+      ],
+      "visual_pages": [
+        "guide:10"
+      ]
+    },
+    {
+      "case_id": "comparison-05",
+      "case_sha256": "d5f02a510b45b61a2306e542e8864c1e182af3092c62c3c051b2493d8fdb9741",
+      "answerability": "full",
+      "decision": "correction_needed",
+      "finding": "Both are civic competitions; BigApps targets youth/older adults/immigrants and offers awards, accelerator participation and pilot eligibility, while San Jose solicits practical challenge solutions with patent support. Pilot eligibility is not operation.",
+      "limitations": [
+        "Historical report evidence only; not independently verified current outcomes."
+      ],
+      "supporting_spans": [
+        {
+          "span_id": "bcc6db34-c070-510a-be9b-f94fd90b1f30",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 69,
+          "start": 0,
+          "end": 199,
+          "excerpt": "and urban challenges. This year, NYCEDC partnered with Civic Hall Labs to produce the BigApps 2017 competition with a special focus on addressing pressing challenges faced by NYC youth (ages 13-18), ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "edba57da-67c8-54d6-b8cc-59ab989e9afe",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 69,
+          "start": 199,
+          "end": 387,
+          "excerpt": "older adults (aged 65+), and immigrants, including transportation, access to information, and community resiliency. DFTA was a co-sponsor of the BigApps 2017 competition and helped mentor ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "7a2733c1-0046-59d7-afef-b2149e3e7e10",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 69,
+          "start": 387,
+          "end": 579,
+          "excerpt": "competitors. The winners received cash awards, marketing and promotion, acceptance into Civic Hall Labs\u2019 civic accelerator program, and their solutions are eligible for a pilot on the LinkNYC ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "33f50038-795c-5b6d-9eb6-52082940a893",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 10,
+          "start": 147,
+          "end": 325,
+          "excerpt": "In 2016, San Jos\u00e9, California , launched Unleash Your Geek, a competition in which citizens were invited to propose innovative solutions to some of the city\u2019s biggest challenges.",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "527069fa-5e8b-5ed2-9357-88861a599302",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 10,
+          "start": 326,
+          "end": 524,
+          "excerpt": "Under the leadership of Mayor Sam Liccardo , San Jos\u00e9 partnered with several organizations, including the Silicon Valley U.S. Patent and Trademark Office, which provided participants with technical ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "85617248-d6ce-5246-a0fc-512481bc81c5",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 10,
+          "start": 524,
+          "end": 576,
+          "excerpt": "assistance in obtaining patents for their solutions.",
+          "searchable": true,
+          "confidence": 1.0
+        }
+      ],
+      "visual_pages": [
+        "guide:10"
+      ]
+    },
+    {
+      "case_id": "followup-10",
+      "case_sha256": "229aea1be8e43015c466480f0f23e2fbba38ba144ade49b95dcbfeef014614c2",
+      "answerability": "full",
+      "decision": "supported",
+      "finding": "History resolves participants to Unleash Your Geek; the Silicon Valley U.S. Patent and Trademark Office provided technical assistance obtaining patents.",
+      "limitations": [
+        "Historical report evidence only; not independently verified current outcomes."
+      ],
+      "supporting_spans": [
+        {
+          "span_id": "527069fa-5e8b-5ed2-9357-88861a599302",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 10,
+          "start": 326,
+          "end": 524,
+          "excerpt": "Under the leadership of Mayor Sam Liccardo , San Jos\u00e9 partnered with several organizations, including the Silicon Valley U.S. Patent and Trademark Office, which provided participants with technical ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "85617248-d6ce-5246-a0fc-512481bc81c5",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 10,
+          "start": 524,
+          "end": 576,
+          "excerpt": "assistance in obtaining patents for their solutions.",
+          "searchable": true,
+          "confidence": 1.0
+        }
+      ],
+      "visual_pages": [
+        "guide:10"
+      ]
+    },
+    {
+      "case_id": "partial-03",
+      "case_sha256": "e6582130669b09abfbb6bc32e1fc043a1cc53c45027d686ba78ece0a15c4448d",
+      "answerability": "partial",
+      "decision": "supported",
+      "finding": "BigApps 2017 focus and winner support are described. Solutions were eligible for a LinkNYC pilot; the report does not establish which pilots started or remain active today.",
+      "limitations": [
+        "No current operating-pilot inventory in the cited report."
+      ],
+      "supporting_spans": [
+        {
+          "span_id": "bcc6db34-c070-510a-be9b-f94fd90b1f30",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 69,
+          "start": 0,
+          "end": 199,
+          "excerpt": "and urban challenges. This year, NYCEDC partnered with Civic Hall Labs to produce the BigApps 2017 competition with a special focus on addressing pressing challenges faced by NYC youth (ages 13-18), ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "edba57da-67c8-54d6-b8cc-59ab989e9afe",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 69,
+          "start": 199,
+          "end": 387,
+          "excerpt": "older adults (aged 65+), and immigrants, including transportation, access to information, and community resiliency. DFTA was a co-sponsor of the BigApps 2017 competition and helped mentor ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "7a2733c1-0046-59d7-afef-b2149e3e7e10",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 69,
+          "start": 387,
+          "end": 579,
+          "excerpt": "competitors. The winners received cash awards, marketing and promotion, acceptance into Civic Hall Labs\u2019 civic accelerator program, and their solutions are eligible for a pilot on the LinkNYC ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "dd7f925e-f53b-5308-8556-d5e4815ce43a",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 69,
+          "start": 579,
+          "end": 685,
+          "excerpt": "communication network citywide, which provides free public Wi-Fi and phone service, among other amenities.",
+          "searchable": true,
+          "confidence": 1.0
+        }
+      ],
+      "visual_pages": []
+    },
+    {
+      "case_id": "direct-34",
+      "case_sha256": "70d1d656496ac4b6207f110023f4c39b6c92ff916499490eb96a8d6e049d7928",
+      "answerability": "full",
+      "decision": "correction_needed",
+      "finding": "Detroit identified high-risk occupied homes and sent volunteers door to door to educate residents. Reported saved-home outcomes are attributed claims, not an independent causal assessment.",
+      "limitations": [
+        "Historical report evidence only; not independently verified current outcomes."
+      ],
+      "supporting_spans": [
+        {
+          "span_id": "cf7795e1-be76-5752-b7d1-73f9a9035828",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 12,
+          "start": 144,
+          "end": 302,
+          "excerpt": "When Detroit, Michigan , made fighting urban blight a priority, it discovered that families losing their homes to foreclosure was a key reason for the crisis.",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "cc37c647-54ab-5fa2-a22a-a570c9cfd3e7",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 12,
+          "start": 527,
+          "end": 726,
+          "excerpt": "One approach to tackling the issue was to launch an outreach campaign in which volunteers combed the city, seeking out residents at risk and educating them about how to avoid foreclosure. The effort ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "b96776a7-43af-5dfb-8020-f919cadcfa53",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 12,
+          "start": 802,
+          "end": 996,
+          "excerpt": "The city identified 5,600 occupied homes at high risk of foreclosure and launched a targeted, volunteer-staffed, door-to-door outreach campaign. The result? Two-thirds of the homes visited were ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "ebdbce08-fb0b-5101-87a3-3431378840bc",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 12,
+          "start": 996,
+          "end": 1022,
+          "excerpt": "diverted from foreclosure.",
+          "searchable": true,
+          "confidence": 1.0
+        }
+      ],
+      "visual_pages": [
+        "guide:12"
+      ]
+    },
+    {
+      "case_id": "comparison-02",
+      "case_sha256": "c24325be21276df465e161cf63bab61cdd71760f413888ab54e9b83826586853",
+      "answerability": "full",
+      "decision": "correction_needed",
+      "finding": "NYC proposed expanded tenant legal help in eviction proceedings; Detroit used targeted homeowner tax-foreclosure outreach. Add page 43 to distinguish full representation from advice according to the historical income threshold.",
+      "limitations": [
+        "Historical report evidence only; not independently verified current outcomes."
+      ],
+      "supporting_spans": [
+        {
+          "span_id": "5c16b79d-75a5-58d7-8e28-42c4e7bf1ad3",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 42,
+          "start": 1483,
+          "end": 1678,
+          "excerpt": "In 2017, Mayor de Blasio and NYC Council Speaker Melissa Mark- Viverito announced plans for New York City to become the first city in the United States to implement a universal access to counsel ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "8383eb2a-0f53-510b-b6fe-f6de8b075e42",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 42,
+          "start": 1678,
+          "end": 1834,
+          "excerpt": "program for all tenants facing eviction in Housing Court. When fully implemented in five years, the City will have the largest tenant legal services program",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "3c374c34-2eb3-5491-b709-fb96036a487e",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 43,
+          "start": 200,
+          "end": 389,
+          "excerpt": "individuals and families; serve an estimated 400,000 New Yorkers annually by providing universal access to legal assistance for all tenants facing eviction; and continue to pursue cases in ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "414289cb-5cbf-5783-87e4-bdc2fd48a51f",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 43,
+          "start": 389,
+          "end": 588,
+          "excerpt": "communities throughout the City where tenants are most at risk of harassment and disseminate information about available legal services. Tenants facing eviction with incomes below 200 percent of the ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "847d55a9-98a3-5803-9f78-21510e4b3065",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 43,
+          "start": 588,
+          "end": 783,
+          "excerpt": "Federal poverty level will receive full representation, while those earning more will receive legal advice and assistance. Access to free legal services to prevent evictions will be critical for ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "cc37c647-54ab-5fa2-a22a-a570c9cfd3e7",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 12,
+          "start": 527,
+          "end": 726,
+          "excerpt": "One approach to tackling the issue was to launch an outreach campaign in which volunteers combed the city, seeking out residents at risk and educating them about how to avoid foreclosure. The effort ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "b96776a7-43af-5dfb-8020-f919cadcfa53",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 12,
+          "start": 802,
+          "end": 996,
+          "excerpt": "The city identified 5,600 occupied homes at high risk of foreclosure and launched a targeted, volunteer-staffed, door-to-door outreach campaign. The result? Two-thirds of the homes visited were ",
+          "searchable": true,
+          "confidence": 1.0
+        }
+      ],
+      "visual_pages": [
+        "guide:12"
+      ]
+    },
+    {
+      "case_id": "followup-08",
+      "case_sha256": "fe8fe826f4bc544cef7f6d07fcc7f9461754bab02bd5033c08793df4a78f4ad1",
+      "answerability": "full",
+      "decision": "correction_needed",
+      "finding": "Both Partners in Service (corporate/nonprofit staff) and seven district managers advised the Detroit effort. Include both rather than guessing which group the broad follow-up means.",
+      "limitations": [
+        "Historical report evidence only; not independently verified current outcomes."
+      ],
+      "supporting_spans": [
+        {
+          "span_id": "929cae11-b4c0-5bdb-8d40-2046d2bd044c",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 12,
+          "start": 303,
+          "end": 501,
+          "excerpt": "Kovari also asked the city\u2019s seven district managers \u2014 neighborhood leaders who have strong relationships with residents, businesses and clergy \u2014 to form an unofficial group of advisers for helping ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "e382bdc8-31e1-5366-a4ca-80f8a2cdc6c4",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 12,
+          "start": 501,
+          "end": 526,
+          "excerpt": "vet strategies and plans.",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "7183e04b-2126-5435-bcf3-f28b6eea869a",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 12,
+          "start": 2031,
+          "end": 2221,
+          "excerpt": "Her first move was to bring together partners who for ages had worked separately to solve the same or highly interrelated problems. She convened an advisory group, made up of staff at major ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "89a9c0c9-fc61-50fa-8505-f6a5cb142634",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 12,
+          "start": 2221,
+          "end": 2249,
+          "excerpt": "corporations and nonprofits.",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "c96cc17f-9ba6-5180-a663-f8c93c8b47d7",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 12,
+          "start": 2250,
+          "end": 2392,
+          "excerpt": "Calling themselves Partners in Service, the members committed to meeting monthly and created a citywide service plan with three primary goals:",
+          "searchable": true,
+          "confidence": 1.0
+        }
+      ],
+      "visual_pages": [
+        "guide:12"
+      ]
+    },
+    {
+      "case_id": "partial-05",
+      "case_sha256": "16506aabb6190506977c03ae24105ededc335d008c29065ee16ee5395fa37ef3",
+      "answerability": "partial",
+      "decision": "supported",
+      "finding": "Detroit outreach is supported; the approved manifest contains NYC and the engagement guide, not a Tokyo report. The requested second report cannot be invented.",
+      "limitations": [
+        "No approved Tokyo report in the manifest."
+      ],
+      "supporting_spans": [
+        {
+          "span_id": "cc37c647-54ab-5fa2-a22a-a570c9cfd3e7",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 12,
+          "start": 527,
+          "end": 726,
+          "excerpt": "One approach to tackling the issue was to launch an outreach campaign in which volunteers combed the city, seeking out residents at risk and educating them about how to avoid foreclosure. The effort ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "b96776a7-43af-5dfb-8020-f919cadcfa53",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 12,
+          "start": 802,
+          "end": 996,
+          "excerpt": "The city identified 5,600 occupied homes at high risk of foreclosure and launched a targeted, volunteer-staffed, door-to-door outreach campaign. The result? Two-thirds of the homes visited were ",
+          "searchable": true,
+          "confidence": 1.0
+        }
+      ],
+      "visual_pages": [
+        "guide:12"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+# Import only after the release checklist passes. Creating a Blueprint deploys once
+# even when automatic deployments are disabled. No databases or paid jobs here.
+previews:
+  generation: "off"
+services:
+  - type: web
+    name: elderhelp-pilot
+    runtime: docker
+    plan: free
+    region: virginia
+    branch: main
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    autoDeployTrigger: "off"
+    healthCheckPath: /readyz
+    maxShutdownDelaySeconds: 90
+    envVars:
+      - key: ELDERHELP_ENVIRONMENT
+        value: pilot
+      - key: ELDERHELP_DATABASE_URL
+        sync: false
+      - key: ELDERHELP_DATABASE_TLS
+        value: verify-full
+      - key: ELDERHELP_DATABASE_CA_FILE
+        value: /etc/secrets/supabase-ca.crt
+      - key: ELDERHELP_TOKEN_SECRET
+        generateValue: true
+      - key: ELDERHELP_GOOGLE_API_KEY
+        sync: false
+      - key: ELDERHELP_FREE_TIER_CONFIRMED
+        value: "false"
+      - key: ELDERHELP_ANSWERS_DAILY_LIMIT
+        value: "20"
+      - key: ELDERHELP_ANSWERS_MINUTE_LIMIT
+        value: "6"
+      - key: ELDERHELP_GENERATION_DAILY_LIMIT
+        value: "60"
+      - key: ELDERHELP_EMBEDDING_DAILY_LIMIT
+        value: "200"
+      - key: ELDERHELP_GENERATION_MODEL
+        value: gemini-3.6-flash
+      - key: ELDERHELP_EMBEDDING_MODEL
+        value: gemini-embedding-2
+      - key: ELDERHELP_CORS_ORIGINS
+        value: '[]'

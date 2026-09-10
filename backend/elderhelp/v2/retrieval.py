@@ -319,8 +319,23 @@ async def retrieve(
     *,
     mode="hybrid",
     reserved=False,
+    evaluation_generation: UUID | None = None,
 ) -> RetrievalResult:
-    generation = await active_generation(database, settings, require_compatible=mode != "keyword")
+    if evaluation_generation is None:
+        generation = await active_generation(
+            database, settings, require_compatible=mode != "keyword"
+        )
+    else:
+        # Internal administrator evaluation only; no public request exposes this option.
+        async with database.sessions() as db:
+            staged = await db.get(Generation, evaluation_generation)
+            if (
+                not staged
+                or staged.status != "validated"
+                or staged.fingerprint != fingerprint(index_configuration(settings))
+            ):
+                raise CorpusUnavailable("Evaluation requires a validated compatible generation")
+        generation = evaluation_generation
     rankings, degraded = [], False
     for part, query in enumerate(plan.subqueries):
         if mode != "dense":
