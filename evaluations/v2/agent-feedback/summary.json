@@ -1,0 +1,85 @@
+{
+  "status": "AI-reviewed; manual spot-check pending",
+  "reviewed_cases": 80,
+  "heldout_reviewed": 0,
+  "manual_spot_checks_completed": 0,
+  "provider_calls": 0,
+  "quality_gate_passed": false,
+  "dataset_sha256": "f0683e9080bcebed8ad48079e00a47da458384f9c42a3ba12f94898bf621d4ff",
+  "decisions": {
+    "correction_needed": 35,
+    "supported": 41,
+    "unresolved": 4
+  },
+  "answerability": {
+    "full": 55,
+    "partial": 8,
+    "insufficient": 17
+  },
+  "categories": {
+    "comparison": {
+      "correction_needed": 10
+    },
+    "direct": {
+      "correction_needed": 19,
+      "supported": 4
+    },
+    "exact": {
+      "supported": 10
+    },
+    "followup": {
+      "correction_needed": 4,
+      "supported": 3
+    },
+    "injection": {
+      "supported": 4
+    },
+    "layout": {
+      "supported": 5,
+      "unresolved": 3
+    },
+    "partial": {
+      "correction_needed": 2,
+      "supported": 6
+    },
+    "unanswerable": {
+      "supported": 9,
+      "unresolved": 1
+    }
+  },
+  "manual_spot_check_cases": [
+    "direct-01",
+    "exact-03",
+    "comparison-04",
+    "followup-07",
+    "layout-01",
+    "unanswerable-04",
+    "partial-01",
+    "injection-01",
+    "direct-19",
+    "layout-08",
+    "partial-05",
+    "unanswerable-20"
+  ],
+  "visual_source_pages": [
+    "guide:10",
+    "guide:11",
+    "guide:12",
+    "guide:14",
+    "guide:15",
+    "guide:6",
+    "guide:7",
+    "nyc:12",
+    "nyc:13",
+    "nyc:23",
+    "nyc:24",
+    "nyc:26",
+    "nyc:28",
+    "nyc:29",
+    "nyc:40",
+    "nyc:41",
+    "nyc:52",
+    "nyc:72",
+    "nyc:81"
+  ]
+}

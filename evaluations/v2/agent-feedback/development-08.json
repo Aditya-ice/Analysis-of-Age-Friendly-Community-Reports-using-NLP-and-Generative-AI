@@ -1,0 +1,243 @@
+{
+  "format": "elderhelp-agent-feedback-v1",
+  "review_type": "ai_reviewed",
+  "agent": "Codex session agent",
+  "model": "session model (exact ID unavailable)",
+  "method": "direct_source_inspection",
+  "reviewed_at": "2026-09-09T21:34:37.905033-04:00",
+  "dataset_sha256": "f0683e9080bcebed8ad48079e00a47da458384f9c42a3ba12f94898bf621d4ff",
+  "index_fingerprint": "27ba26ebd5cd394d748032ecd42da1e488e50286fe6376120d52c1d22ccb6ede",
+  "batch": 8,
+  "status": "AI-reviewed; manual spot-check pending",
+  "reviews": [
+    {
+      "case_id": "layout-01",
+      "case_sha256": "e2e03c56dde7300fd14977f4671fc3e3c1301c95e3df5f5bd6b7f70d822d2a59",
+      "answerability": "full",
+      "decision": "supported",
+      "finding": "Visual roster confirms co-chairs Edward Lewis and Audrey Weiner for 2015-2017; OCR selected spans preserve both.",
+      "limitations": [
+        "Roster affiliations are historical, not current positions."
+      ],
+      "supporting_spans": [
+        {
+          "span_id": "60628bb4-e39c-51bf-8520-8b877b301f24",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 81,
+          "start": 150,
+          "end": 217,
+          "excerpt": "Edward Lewis, MA (Co-Chair) Co-founder Essence Communications, Inc.",
+          "searchable": true,
+          "confidence": 0.88577675875
+        },
+        {
+          "span_id": "df9ccfb3-51bf-51c0-ad62-747d1b3bacb3",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 81,
+          "start": 218,
+          "end": 288,
+          "excerpt": "Audrey Weiner, DSW, MPH (Co-Chair) President & CEO The New Jewish Home",
+          "searchable": true,
+          "confidence": 0.9567281083333333
+        }
+      ],
+      "visual_pages": [
+        "nyc:81"
+      ]
+    },
+    {
+      "case_id": "layout-02",
+      "case_sha256": "76c8eb8d00e8b0ab57b80a2cb4b007afdb751a03d42f6410c77a96b8202312c6",
+      "answerability": "full",
+      "decision": "supported",
+      "finding": "Visual roster groups Linda Fried with Dean, Mailman School of Public Health, Columbia University. Keep all three adjacent spans together.",
+      "limitations": [
+        "Historical roster; no current affiliation claim."
+      ],
+      "supporting_spans": [
+        {
+          "span_id": "92ebf825-e3ea-5cd0-9ca7-eefddde5ca21",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 81,
+          "start": 708,
+          "end": 728,
+          "excerpt": "Linda Fried, MD, MPH",
+          "searchable": true,
+          "confidence": 0.9630541425
+        },
+        {
+          "span_id": "f028d449-d6b8-57eb-a3ff-779958f71e49",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 81,
+          "start": 729,
+          "end": 733,
+          "excerpt": "Dean",
+          "searchable": true,
+          "confidence": 0.96698608
+        },
+        {
+          "span_id": "e691ab71-21ec-5644-a2df-f44b4f563880",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 81,
+          "start": 734,
+          "end": 785,
+          "excerpt": "Mailman School of Public Health Columbia University",
+          "searchable": true,
+          "confidence": 0.9642822371428571
+        }
+      ],
+      "visual_pages": [
+        "nyc:81"
+      ]
+    },
+    {
+      "case_id": "layout-03",
+      "case_sha256": "411068b99e31c210106c3d46d1d04c3b56123741b7a40d9cf3af849fdf9d6ecb",
+      "answerability": "full",
+      "decision": "supported",
+      "finding": "Diosdado Gica is listed as Chief Program Officer, SAGE. Visual inspection agrees with OCR.",
+      "limitations": [
+        "Historical roster only."
+      ],
+      "supporting_spans": [
+        {
+          "span_id": "072e14b0-b29a-5d4d-b07f-4805f124e518",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 81,
+          "start": 786,
+          "end": 835,
+          "excerpt": "Diosdado Gica, MA, PhD Chief Program Officer SAGE",
+          "searchable": true,
+          "confidence": 0.95649809
+        }
+      ],
+      "visual_pages": [
+        "nyc:81"
+      ]
+    },
+    {
+      "case_id": "layout-04",
+      "case_sha256": "c8c5e8faeafea9d8a989c039d9031b440c08228afc563290c4745cf39b499c1b",
+      "answerability": "full",
+      "decision": "supported",
+      "finding": "Tom Kamber is listed as Founder and Executive Director of Older Adults Technology Services (OATS).",
+      "limitations": [
+        "Historical roster only."
+      ],
+      "supporting_spans": [
+        {
+          "span_id": "d0b75918-406c-52c0-b5f0-61cf671a3e6b",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 81,
+          "start": 1060,
+          "end": 1144,
+          "excerpt": "Tom Kamber, PhD Founder & Executive Director Older Adults Technology Services (OATS)",
+          "searchable": true,
+          "confidence": 0.9454667233333334
+        }
+      ],
+      "visual_pages": [
+        "nyc:81"
+      ]
+    },
+    {
+      "case_id": "layout-05",
+      "case_sha256": "5a7f8b180cfc84825ef68ceecb3e391cda6ac8fe2dfb845398dcb92e73c084c1",
+      "answerability": "full",
+      "decision": "supported",
+      "finding": "Beth Finkel is listed as State Director, AARP NYS.",
+      "limitations": [
+        "Historical roster only."
+      ],
+      "supporting_spans": [
+        {
+          "span_id": "ef5d778f-f7c6-5cbf-a2bf-50545ed7a3f7",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 81,
+          "start": 657,
+          "end": 697,
+          "excerpt": "Beth Finkel, MSW State Director AARP NYS",
+          "searchable": true,
+          "confidence": 0.9554269871428571
+        }
+      ],
+      "visual_pages": [
+        "nyc:81"
+      ]
+    },
+    {
+      "case_id": "layout-08",
+      "case_sha256": "944cd4fbd3f504e794db55fbdddf1fad7e4a9238dd93cd7694654512dd39814c",
+      "answerability": "insufficient",
+      "decision": "unresolved",
+      "finding": "PDF chart visually labels Employed 70.9%, Unemployed 27.1%, Not in Labor Force 2.0%. These printed associations need careful human/source verification; excluded extraction must not become certified retrieval evidence.",
+      "limitations": [
+        "Index excludes all page-13 spans. Not proof the report lacks values; do not silently swap surprising publisher labels."
+      ],
+      "supporting_spans": [],
+      "visual_pages": [
+        "nyc:13"
+      ]
+    },
+    {
+      "case_id": "layout-09",
+      "case_sha256": "1460464b16ec353a826defb020fe5acd02d0e3942953e75674e3dc83bb3986ac",
+      "answerability": "insufficient",
+      "decision": "unresolved",
+      "finding": "Bar labels are visible in the original chart, but OCR lost their relationships and the page is excluded. A repaired exact-span representation is required before numerical retrieval evaluation.",
+      "limitations": [
+        "Source contains labelled values; current index cannot safely cite them. No gold approval or extraction change made."
+      ],
+      "supporting_spans": [],
+      "visual_pages": [
+        "nyc:13"
+      ]
+    },
+    {
+      "case_id": "layout-10",
+      "case_sha256": "378d18f0dcc8406d14bbde42253d7e2ed318184452d9e264177570b82bee566b",
+      "answerability": "insufficient",
+      "decision": "unresolved",
+      "finding": "The original gender graphic visibly gives female 58.3% and male 41.7%. Current page-12 spans are unsearchable; distinguish indexing limitation from source unanswerability.",
+      "limitations": [
+        "Retain a retrieval limitation until extraction is repaired and versioned; values are not promoted to supporting spans."
+      ],
+      "supporting_spans": [],
+      "visual_pages": [
+        "nyc:12"
+      ]
+    },
+    {
+      "case_id": "unanswerable-03",
+      "case_sha256": "33a50cc73cf82cba53cfd3f989782c88699789a87fd1f036013169b9c95d65c4",
+      "answerability": "insufficient",
+      "decision": "supported",
+      "finding": "A personal medication recommendation is outside report-research scope. Falls-prevention program descriptions do not justify prescribing a medication.",
+      "limitations": [
+        "This is a scope refusal, not a claim that no medicine or relevant research exists."
+      ],
+      "supporting_spans": [],
+      "visual_pages": []
+    },
+    {
+      "case_id": "unanswerable-04",
+      "case_sha256": "ae3d942b087c5436ba345f8d77383f38101a4d22bd96a7a803a30557c522a8d6",
+      "answerability": "insufficient",
+      "decision": "supported",
+      "finding": "Income alone and historical SCRIE descriptions cannot establish personal eligibility today. Do not turn the historical income threshold into an eligibility decision.",
+      "limitations": [
+        "Missing personal eligibility facts and current authoritative policy; no legal/financial determination."
+      ],
+      "supporting_spans": [],
+      "visual_pages": []
+    }
+  ]
+}

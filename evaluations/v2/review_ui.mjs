@@ -37,7 +37,7 @@ if(typeof document!=='undefined') {
   const updateMode=()=>{document.querySelector('#attestation-text').textContent=mode.value==='ai'
     ?'I am recording an AI review, not human verification, using the stated source-inspection method.'
     :'I am the named human reviewer and personally checked the original sources for these cases.';};
-  mode.addEventListener('change',updateMode);
+  mode.addEventListener('change',()=>{document.querySelector('#attest').checked=false;updateMode();});
   const fields=[...document.querySelectorAll('input,select,textarea')];
   const draftKey='elderhelp-review:'+packet.batch_id;
   try {
@@ -45,10 +45,12 @@ if(typeof document!=='undefined') {
     if(old) {const values=restoreDraft(packet,JSON.parse(old));fields.forEach((f,i)=>{if(values[i]) {f.value=values[i].value;f.checked=values[i].checked;}});}
   } catch(e) {document.querySelector('#status').textContent=e.message;}
   updateMode();
-  document.addEventListener('change',()=>{
+  const saveDraft=()=>{
     try {localStorage.setItem(draftKey,JSON.stringify({binding:JSON.stringify(packet),values:fields.map(f=>({value:f.value,checked:f.checked}))}));}
     catch {document.querySelector('#status').textContent='Local saving unavailable. Export before closing.';}
-  });
+  };
+  document.addEventListener('change',saveDraft);
+  document.addEventListener('input',saveDraft);
   document.querySelector('#export').addEventListener('click',()=>{
     const status=document.querySelector('#status');
     try {

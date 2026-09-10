@@ -61,3 +61,9 @@ def test_offline_batch_versioning_and_ai_separation(tmp_path, monkeypatch):
     from integrity import reviewed
 
     assert not reviewed(record)
+    for field in ("human_verified", "gold_evidence_units", "reviewer", "review"):
+        with pytest.raises(ValueError):
+            validate({**record, field: True}, group, metadata, catalog)
+    for field, value in (("status", "approved"), ("method", "unknown")):
+        with pytest.raises(ValueError):
+            validate({**record, field: value}, group, metadata, catalog)

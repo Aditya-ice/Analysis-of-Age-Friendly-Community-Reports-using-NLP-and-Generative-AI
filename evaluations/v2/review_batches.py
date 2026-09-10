@@ -62,7 +62,7 @@ def packet(cases, metadata, reports, batch_id):
         "cases": [
             {
                 "id": c["id"],
-                "sha256": digest(c),
+                "sha256": c.get("original_case_sha256", digest(c)),
                 "source_revision_ids": sorted({s["revision_id"] for s in c["candidate_support"]}),
                 "searchable_span_ids": [
                     s["span_id"] for s in c["candidate_support"] if s["searchable"]
@@ -100,6 +100,12 @@ def packet(cases, metadata, reports, batch_id):
         ]
         if c["history"]:
             pieces.append(f"<pre>{esc(json.dumps(c['history'], indent=2))}</pre>")
+        if c.get("agent_finding"):
+            pieces.append(
+                "<h3>AI finding — manual spot-check pending</h3>"
+                f"<p>{esc(c['agent_finding'])}</p>"
+                f"<p>Limitations: {esc('; '.join(c['agent_limitations']))}</p>"
+            )
         pieces.append("<h3>Proposed required components</h3><ul>")
         pieces.extend(f"<li>{esc(str(component))}</li>" for component in c["required_components"])
         pieces.append("</ul>")

@@ -1,0 +1,322 @@
+{
+  "format": "elderhelp-agent-feedback-v1",
+  "review_type": "ai_reviewed",
+  "agent": "Codex session agent",
+  "model": "session model (exact ID unavailable)",
+  "method": "direct_source_inspection",
+  "reviewed_at": "2026-09-09T21:30:42.909872-04:00",
+  "dataset_sha256": "f0683e9080bcebed8ad48079e00a47da458384f9c42a3ba12f94898bf621d4ff",
+  "index_fingerprint": "27ba26ebd5cd394d748032ecd42da1e488e50286fe6376120d52c1d22ccb6ede",
+  "batch": 3,
+  "status": "AI-reviewed; manual spot-check pending",
+  "reviews": [
+    {
+      "case_id": "direct-08",
+      "case_sha256": "916887a614786e746cbbbb90dc8344483b4a276ee7782725c842270bfab9f1fd",
+      "answerability": "full",
+      "decision": "correction_needed",
+      "finding": "Survey was required by 2016 legislation to inform a comprehensive plan addressing unpaid caregivers; add the purpose paragraph and page-25 continuation on stakeholder consultation.",
+      "limitations": [
+        "Historical report evidence only; not independently verified current outcomes."
+      ],
+      "supporting_spans": [
+        {
+          "span_id": "ad9e36a9-a307-5473-9c78-3280020d12b0",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 24,
+          "start": 1076,
+          "end": 1274,
+          "excerpt": "In August 2016, Mayor de Blasio signed legislation requiring DFTA to survey unpaid caregivers and caregiver service providers throughout New York City to help inform a comprehensive plan to address ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "1f07faa3-f293-5ed2-993e-ad9645f6ad3d",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 24,
+          "start": 1274,
+          "end": 1468,
+          "excerpt": "the needs of unpaid caregivers in the City. The legislation, Local Law 97, was introduced by NYC Council Aging Committee Chair Margaret Chin, Council Member Debi Rose, and Speaker Melissa Mark- ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "a0d19cc1-fd5e-5aa5-a12c-b2884605df79",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 25,
+          "start": 397,
+          "end": 594,
+          "excerpt": "and findings and recommendations will be issued this summer. The comprehensive plan will be developed in consultation with the NYC Human Resources Administration (HRA), MOPD, the NYC Department of ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "15fd81b1-55b3-56c9-83f9-dd78021f4316",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 25,
+          "start": 594,
+          "end": 700,
+          "excerpt": "Health and Mental Hygiene (DOHMH), academic experts, service providers, advocates, and other stakeholders.",
+          "searchable": true,
+          "confidence": 1.0
+        }
+      ],
+      "visual_pages": [
+        "nyc:24"
+      ]
+    },
+    {
+      "case_id": "direct-09",
+      "case_sha256": "7fbc2d5e1e2a496d707edf86c7338f5056e6418e2f59de1a43eebe39516877d0",
+      "answerability": "full",
+      "decision": "correction_needed",
+      "finding": "DFTA was designated to receive SADC comments/complaints and coordinate with agencies. Do not imply it directly oversaw every program: most oversight belonged to NYS Health.",
+      "limitations": [
+        "Historical report evidence only; not independently verified current outcomes."
+      ],
+      "supporting_spans": [
+        {
+          "span_id": "84b7fc8d-2abb-59bd-a9e8-e912efec12ec",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 25,
+          "start": 1535,
+          "end": 1733,
+          "excerpt": "programs that are supported by Council discretionary funding. The vast majority of SADC providers, however, are being paid by MLTC plans through the State Medicaid program. Thus, the NYS Department ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "176f0d38-0983-5f9a-921f-aad45f4b9aa9",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 25,
+          "start": 1733,
+          "end": 1795,
+          "excerpt": "of Health and not DFTA, has oversight over most SADC programs.",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "ebdfba2d-8c64-5ac4-98ec-74529cf9d7f1",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 25,
+          "start": 1796,
+          "end": 1993,
+          "excerpt": "Local Law 9 of 2015, introduced by NYC Council Aging Committee Chair Margaret Chin, required all SADC programs operating within New York City to register with DFTA, established civil penalties for ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "369e6c66-1d80-54cd-8178-1830f604bc76",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 25,
+          "start": 1993,
+          "end": 2189,
+          "excerpt": "violations of NYS Office for the Aging (NYSOFA) social adult day program regulations, and designated DFTA as the SADC Ombuds Office to receive comments and complaints with respect to SADCs. Since ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "cdedc14e-70bd-5288-86d4-5ba58fb998d7",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 26,
+          "start": 0,
+          "end": 197,
+          "excerpt": "Department of Health, and the Office of the Attorney General. Our intergovernmental partners have worked closely with DFTA\u2019s SADC Ombuds Office, as their assistance is key in addressing complaints ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "06b09ba2-e3f9-5b83-a0ed-f2993eb86f6c",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 26,
+          "start": 197,
+          "end": 247,
+          "excerpt": "received outside of DFTA\u2019s purview and expertise .",
+          "searchable": true,
+          "confidence": 1.0
+        }
+      ],
+      "visual_pages": []
+    },
+    {
+      "case_id": "direct-10",
+      "case_sha256": "a846600617bd759625fbd8186ed369f06adee8bf214dbe60ad643d254c690382",
+      "answerability": "full",
+      "decision": "supported",
+      "finding": "Participants reported better physical/mental health, activity and less isolation. Attribute these to the cited study/report; do not claim randomized causal proof.",
+      "limitations": [
+        "Historical report evidence only; not independently verified current outcomes."
+      ],
+      "supporting_spans": [
+        {
+          "span_id": "7a972f50-53b2-56d7-9c0e-a22f1e1bbbb8",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 26,
+          "start": 603,
+          "end": 797,
+          "excerpt": "DFTA commissioned Fordham University to conduct an impact analysis to understand whether and how participation in senior center activities impacts the overall health and well-being of older New ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "801d7017-2f20-5f66-8f11-718a75e9cb23",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 26,
+          "start": 1586,
+          "end": 1784,
+          "excerpt": "achieving positive outcomes. 6 Senior center participants reported improved physical and mental health, increased participation in health programs, frequent exercising, and positive behavior change ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "5264dede-1374-5c03-a565-8db6b3fbdd82",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 26,
+          "start": 1784,
+          "end": 1983,
+          "excerpt": "in monitoring weight and keeping physically active. 7 Participation in a senior center also helped to reduce social isolation. 8 The study also found that participants often have the lowest incomes, ",
+          "searchable": true,
+          "confidence": 1.0
+        }
+      ],
+      "visual_pages": [
+        "nyc:26"
+      ]
+    },
+    {
+      "case_id": "exact-03",
+      "case_sha256": "c57ee7e293631d56643a0355cb21df6d7088fcf97a3a0b179060662a64202028",
+      "answerability": "full",
+      "decision": "supported",
+      "finding": "Approximately 1.3 million unpaid caregivers is the stated NYC estimate, with an explicit possible undercount caveat.",
+      "limitations": [
+        "Historical report evidence only; not independently verified current outcomes."
+      ],
+      "supporting_spans": [
+        {
+          "span_id": "f85a8e44-87a1-5f70-97e3-aebeac733751",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 24,
+          "start": 357,
+          "end": 556,
+          "excerpt": "In New York City, approximately 1.3 million individuals are unpaid caregivers, providing care for family members who are chronically ill, disabled, or aged. 2 This number could be much larger, given ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "955dda32-a62a-53e7-a9d4-85b034e2deed",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 24,
+          "start": 556,
+          "end": 755,
+          "excerpt": "that people often do not think of themselves as caregivers when they assist family members by running errands, paying bills, preparing meals, picking up medications, helping with dressing, and more. ",
+          "searchable": true,
+          "confidence": 1.0
+        }
+      ],
+      "visual_pages": [
+        "nyc:24"
+      ]
+    },
+    {
+      "case_id": "exact-04",
+      "case_sha256": "c41b415a787c98e09d30988e38405ac62c22a969a6c57d17c96882bbcb14a87e",
+      "answerability": "full",
+      "decision": "supported",
+      "finding": "Fordham University is explicitly named as the commissioned study institution.",
+      "limitations": [
+        "Historical report evidence only; not independently verified current outcomes."
+      ],
+      "supporting_spans": [
+        {
+          "span_id": "7a972f50-53b2-56d7-9c0e-a22f1e1bbbb8",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 26,
+          "start": 603,
+          "end": 797,
+          "excerpt": "DFTA commissioned Fordham University to conduct an impact analysis to understand whether and how participation in senior center activities impacts the overall health and well-being of older New ",
+          "searchable": true,
+          "confidence": 1.0
+        }
+      ],
+      "visual_pages": [
+        "nyc:26"
+      ]
+    },
+    {
+      "case_id": "direct-11",
+      "case_sha256": "9eed75dd90f2358f3a9c0f15b6d14226cc75b54dbf670af88a5e1e58a03b62f5",
+      "answerability": "full",
+      "decision": "correction_needed",
+      "finding": "Use page-28 actions rather than page-27 risk statistics alone: dedicated center, staff training, expanded LGBT programming and caregiving support.",
+      "limitations": [
+        "Historical report evidence only; not independently verified current outcomes."
+      ],
+      "supporting_spans": [
+        {
+          "span_id": "3e7461aa-ef3a-5f53-b711-bb4cf8042a92",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 28,
+          "start": 507,
+          "end": 704,
+          "excerpt": "DFTA has done much work to address the needs of LGBT older adults. In addition to sponsoring the first senior center in the nation that provides services specifically for the LGBT population, DFTA ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "836e9bb7-a94b-5767-b3ed-f995d70ad2f4",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 28,
+          "start": 704,
+          "end": 896,
+          "excerpt": "conducts trainings for case management, senior center, and NORC program staff on working with LGBT older adults. The NYC Council, spearheaded by Council Member Ritchie Torres, Speaker Melissa ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "d8163d41-c953-535a-9a3b-45c2d235716e",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 28,
+          "start": 896,
+          "end": 1091,
+          "excerpt": "Mark-Viverito, and the LGBT Caucus, funded Services and Advocacy for GLBT Elders to expand LGBT senior center programming throughout the five boroughs of New York City. In addition, DFTA funds a ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "5295eb5d-b715-5863-add6-61a55af7049a",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 28,
+          "start": 1091,
+          "end": 1150,
+          "excerpt": "citywide program that serves the LGBT caregiving community.",
+          "searchable": true,
+          "confidence": 1.0
+        }
+      ],
+      "visual_pages": [
+        "nyc:28"
+      ]
+    }
+  ]
+}

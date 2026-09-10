@@ -1,0 +1,607 @@
+{
+  "format": "elderhelp-agent-feedback-v1",
+  "review_type": "ai_reviewed",
+  "agent": "Codex session agent",
+  "model": "session model (exact ID unavailable)",
+  "method": "direct_source_inspection",
+  "reviewed_at": "2026-09-09T21:32:23.305728-04:00",
+  "dataset_sha256": "f0683e9080bcebed8ad48079e00a47da458384f9c42a3ba12f94898bf621d4ff",
+  "index_fingerprint": "27ba26ebd5cd394d748032ecd42da1e488e50286fe6376120d52c1d22ccb6ede",
+  "batch": 5,
+  "status": "AI-reviewed; manual spot-check pending",
+  "reviews": [
+    {
+      "case_id": "direct-17",
+      "case_sha256": "fba5395df1045d9cf9f7fea8149383ee9d9616d8b50036eaf83fa6ce263af9e1",
+      "answerability": "full",
+      "decision": "correction_needed",
+      "finding": "NY Connects supplied free objective long-term-care information regardless of age/income/diagnosis, referrals, counseling, benefit assistance, translations and home visits.",
+      "limitations": [
+        "Historical report evidence only; not independently verified current outcomes."
+      ],
+      "supporting_spans": [
+        {
+          "span_id": "5ef8ef34-99b3-5bdd-a92a-a57ffc1f2860",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 40,
+          "start": 415,
+          "end": 610,
+          "excerpt": "NY Connects is a statewide system that provides free, objective, and comprehensive information on long-term care services and supports regardless of age, income, disability, or diagnosis. As the ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "212a1377-6349-5928-974f-9e5a82060264",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 40,
+          "start": 801,
+          "end": 996,
+          "excerpt": "stakeholders. Services provided by NY Connects include connecting clients\u2019 families to other City and State agencies, providers, and programs; providing person-centered counseling; screening for ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "1ffd5c8d-3f7f-54d5-b902-b39937db632e",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 40,
+          "start": 996,
+          "end": 1194,
+          "excerpt": "Medicaid and assisting with benefits applications such as SNAP, the Senior Citizen Rent Increase Exemption (SCRIE), and Veterans Benefits; translation services; and making home visits if the client ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "0948f6ed-19a5-5b95-ab74-5cc63eafb3cd",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 40,
+          "start": 1194,
+          "end": 1389,
+          "excerpt": "is homebound. A NY Connects office is located in each borough. Through NY Connects, from October 2015 through December 2016, more than 16,000 contacts were made citywide. Approximately 10,000 of ",
+          "searchable": true,
+          "confidence": 1.0
+        }
+      ],
+      "visual_pages": [
+        "nyc:40"
+      ]
+    },
+    {
+      "case_id": "exact-09",
+      "case_sha256": "cd9ee78271593ec8861bd13386848e547ccfae7323259d6433604d7de89a45ea",
+      "answerability": "full",
+      "decision": "supported",
+      "finding": "More than 16,000 contacts, not 16,000 unique people; retain the reporting period. Do not force the approximate subcounts to sum to the total.",
+      "limitations": [
+        "Historical report evidence only; not independently verified current outcomes."
+      ],
+      "supporting_spans": [
+        {
+          "span_id": "0948f6ed-19a5-5b95-ab74-5cc63eafb3cd",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 40,
+          "start": 1194,
+          "end": 1389,
+          "excerpt": "is homebound. A NY Connects office is located in each borough. Through NY Connects, from October 2015 through December 2016, more than 16,000 contacts were made citywide. Approximately 10,000 of ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "5837b7a5-3f55-5102-8fe1-029c7cd3b56e",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 40,
+          "start": 1389,
+          "end": 1580,
+          "excerpt": "these contacts were from individuals seeking services, and 4,000 contacts were from either caregivers or professionals seeking assistance for clients. Thirty percent of the contacts were for ",
+          "searchable": true,
+          "confidence": 1.0
+        }
+      ],
+      "visual_pages": [
+        "nyc:40"
+      ]
+    },
+    {
+      "case_id": "followup-02",
+      "case_sha256": "6699d3c66e8ff9c1465e70b41940c12ffbd0325cc49ac0daac4b9e8f0a835dd9",
+      "answerability": "full",
+      "decision": "supported",
+      "finding": "History resolves the figures to NY Connects; October 2015 through December 2016 is explicit.",
+      "limitations": [
+        "Historical report evidence only; not independently verified current outcomes."
+      ],
+      "supporting_spans": [
+        {
+          "span_id": "5243db68-0887-5c1b-82b6-cf4d47cf4ef2",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 40,
+          "start": 168,
+          "end": 324,
+          "excerpt": "A NY Connects office is located in each borough. Through NY Connects, from October 2015 through December 2016, more than 16,000 contacts were made citywide.",
+          "searchable": true,
+          "confidence": 1.0
+        }
+      ],
+      "visual_pages": [
+        "nyc:40"
+      ]
+    },
+    {
+      "case_id": "direct-18",
+      "case_sha256": "df8e5a11e7e705e7ea84bd39f7c73ac672295e96c43a9d75cb3297adbf939d54",
+      "answerability": "full",
+      "decision": "correction_needed",
+      "finding": "Add page 48 continuation: residential modifications accommodating older tenants and supporting safe comfortable independent aging in place, with benefits for all ages.",
+      "limitations": [
+        "Historical report evidence only; not independently verified current outcomes."
+      ],
+      "supporting_spans": [
+        {
+          "span_id": "f72c0fb5-15ad-51ff-a08f-8a0301a2af7b",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 47,
+          "start": 2518,
+          "end": 2640,
+          "excerpt": "DFTA issued the \u201cAging in Place Guide for Building Owners: Recommended Age-friendly Residential Building Upgrades\u201d in 2016",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "740c4b5e-4011-53ef-a4a7-7bfc27e1495a",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 48,
+          "start": 0,
+          "end": 199,
+          "excerpt": "through a collaboration with the American Institute of Architects New York Design for Aging Committee. The guide recommends residential building modifications to accommodate older tenants. By making ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "6aa5ad64-2d77-5347-a13a-622887973f2d",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 48,
+          "start": 199,
+          "end": 397,
+          "excerpt": "these improvements, building owners can help residents remain in their homes as they age \u2013 safely, comfortably, and independently. While the recommendations are made with older adults in mind, many ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "c9a2d15f-e3be-5034-9b7b-831a4f9285c2",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 48,
+          "start": 397,
+          "end": 596,
+          "excerpt": "of the suggested improvements would make buildings and apartments more livable for residents of all ages. As provided in Local Law 51, the guide was developed in consultation with the NYC Department ",
+          "searchable": true,
+          "confidence": 1.0
+        }
+      ],
+      "visual_pages": []
+    },
+    {
+      "case_id": "direct-19",
+      "case_sha256": "4017af91c3dba1d7ce1d234dbb7254ed3aa45f8a5ffc2655fe5ae314c29132ca",
+      "answerability": "full",
+      "decision": "correction_needed",
+      "finding": "Separate the proposed FHV 25%-of-trips requirement from taxi accessibility and planned citywide Accessible Dispatch. These were proposals/plans, not verified current service.",
+      "limitations": [
+        "Historical report evidence only; not independently verified current outcomes."
+      ],
+      "supporting_spans": [
+        {
+          "span_id": "8847325a-52f9-599f-bc46-c8e093a0985f",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 52,
+          "start": 846,
+          "end": 1042,
+          "excerpt": "and visitors, including those who use wheelchairs. In 2014, TLC created a proposal to introduce wheelchair accessible green and yellow taxis into the City\u2019s fleet over time. To reach the for-hire ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "d1478398-c002-5c1e-b6c4-4d08267fae65",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 52,
+          "start": 1042,
+          "end": 1242,
+          "excerpt": "vehicle (FHV) sector (liveries, car services, and luxury limousines)\u2014which today transports at least 400,000 passengers each day\u2014TLC has proposed a new accessible service requirement. Over the course ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "27f683a7-51eb-5a11-af84-368b71f69fe3",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 52,
+          "start": 1242,
+          "end": 1438,
+          "excerpt": "of several years, FHV companies, which include popular ride-hailing apps, would be required to dispatch a gradually increasing share of trips to wheelchair accessible vehicles until they reach at ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "020e7e2d-b7ef-5243-bdbc-b84fa876dda0",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 52,
+          "start": 1438,
+          "end": 1636,
+          "excerpt": "least 25% of trips. This program would help ensure accessible vehicles are regularly on the road and available to pick up passengers who use wheelchairs in a reliable and timely manner. Following a ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "1e49a829-a8b0-5d32-8f69-2c02bdb3728b",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 52,
+          "start": 1636,
+          "end": 1743,
+          "excerpt": "public comment period and hearing, the TLC Board of Commissioners will vote on the new service requirement.",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "b47ca28f-3695-5d2b-8d35-60ca34ca9bdb",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 52,
+          "start": 2409,
+          "end": 2605,
+          "excerpt": "Currently the program dispatches taxis to passengers for trips that begin in Manhattan. Later this year, TLC will expand service by launching the Citywide Accessible Dispatch program, which would ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "db78105f-73ca-55d9-8141-c039fb382263",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 53,
+          "start": 0,
+          "end": 199,
+          "excerpt": "request trips in yellow and green taxis originating anywhere in the five boroughs. With this expanded coverage area and additional accessible vehicles, New Yorkers and visitors who use mobility aids ",
+          "searchable": true,
+          "confidence": 1.0
+        }
+      ],
+      "visual_pages": [
+        "nyc:52"
+      ]
+    },
+    {
+      "case_id": "direct-20",
+      "case_sha256": "8d5a77e6667f4d8bcefac93778d97d5228b22f2819d28a0bc1c3fa29ab794047",
+      "answerability": "full",
+      "decision": "correction_needed",
+      "finding": "Risk mapping alone is incomplete: add toolkit/outreach, aide training and buddy systems from pages 58-59. Describe historical program strategy, not personalized heat advice.",
+      "limitations": [
+        "Historical report evidence only; not independently verified current outcomes."
+      ],
+      "supporting_spans": [
+        {
+          "span_id": "6cee3320-105b-50c5-bd2e-997f74b16032",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 57,
+          "start": 393,
+          "end": 583,
+          "excerpt": "health, and those who do not have access to air conditioning. DOHMH developed a Heat Vulnerability Index and the resulting map has given the Mayor a charge to mitigate heat citywide, with a ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "59b4e311-35e6-510c-9bdf-3ca94e5bad8f",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 58,
+          "start": 0,
+          "end": 197,
+          "excerpt": "In 2017, NYCEM launched the Community Emergency Planning Toolkit. The toolkit has been introduced to local community organizations, including aging services providers, throughout the five boroughs ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "eae0be69-90c9-5e9e-acab-d7c54250a294",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 58,
+          "start": 197,
+          "end": 396,
+          "excerpt": "and outreach about the toolkit is ongoing. The toolkit addresses various hazards, including extreme heat, and provides guidance on ways communities can mitigate the negative effects of these hazards ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "f75044d1-de12-5063-95f1-b2025ff65677",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 58,
+          "start": 396,
+          "end": 590,
+          "excerpt": "at the local level. In addition, NYCEM is working with DOHMH as well as DFTA to launch an extreme heat awareness campaign. The campaign, through local outreach and print ads, will feature older ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "b4d8f660-29e4-5f74-a0eb-db53cc6bcdc1",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 58,
+          "start": 2628,
+          "end": 2824,
+          "excerpt": "inside the home. Starting in 2017, the City is partnering with home care agencies to promote heat- health messages to New Yorkers and engage HHAs as key players in building climate resiliency. To ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "c51fbf4a-546e-5872-bfed-760828663246",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 59,
+          "start": 1379,
+          "end": 1579,
+          "excerpt": "creation of buddy systems. The City will work with each neighborhood to foster buddy systems between social service and community organizations, volunteers, and vulnerable New Yorkers, to be deployed ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "0413b998-8826-55b3-b7cd-587a03137afc",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 59,
+          "start": 1579,
+          "end": 1703,
+          "excerpt": "during emergencies to conduct telephone and, if necessary, door-to-door and building level checks on vulnerable individuals.",
+          "searchable": true,
+          "confidence": 1.0
+        }
+      ],
+      "visual_pages": []
+    },
+    {
+      "case_id": "direct-29",
+      "case_sha256": "b9113a3f0f92db66db6757cbd779245cbfd3c37ed4802dd8f7568d91fb03aa77",
+      "answerability": "full",
+      "decision": "correction_needed",
+      "finding": "Repeated flooding motivated a dedicated resilience officer, drainage/development strategies, higher floodplain construction and public engagement. Preserve report attribution; no need to reproduce questionable storm chronology as independently verified fact.",
+      "limitations": [
+        "Historical report evidence only; not independently verified current outcomes."
+      ],
+      "supporting_spans": [
+        {
+          "span_id": "26d705a6-f0c0-5984-94c6-48f44723c411",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 7,
+          "start": 127,
+          "end": 317,
+          "excerpt": "The need for resilience is a fact of life \u2014 not just an abstract concept \u2014 in Houston, Texas . \u201cOver three years, we\u2019ve had three big floods in Houston,\u201d Mayor Sylvester Turner said in 2018.",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "aa33948b-92a9-5e3d-be3a-bd17146f4483",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 7,
+          "start": 887,
+          "end": 1087,
+          "excerpt": "Houston\u2019s resiliency plan seeks to ensure the sprawling city\u2019s security and continued growth. A year before Harvey struck, Turner appointed a chief resiliency officer (also known as the \u201cflood czar\u201d).",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "3137cdce-099b-5d44-8b33-6b9bf65537bc",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 7,
+          "start": 1088,
+          "end": 1205,
+          "excerpt": "\u201cI believe there must be a person who reports directly to me and has the sole responsibility of implementing drainage",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "242f5840-17d8-5503-b565-ecd6c3732811",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 7,
+          "start": 1206,
+          "end": 1339,
+          "excerpt": "and flooding strategies,\u201d said Turner. \u201cWe can continue to grow by building smarter than in the past. We just can\u2019t build anywhere .\u201d",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "84875aa1-29d3-536c-a58f-d60151711d89",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 7,
+          "start": 1340,
+          "end": 1535,
+          "excerpt": "In April 2018, the City Council approved Turner\u2019s plan to require that all new and reconstructed homes built in a flood plain be at least two feet higher than the projected 500-year flood level. ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "903da835-275c-5e1d-9204-1e4cf6b10e37",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 7,
+          "start": 1682,
+          "end": 1881,
+          "excerpt": "In order to hear from residents who, nearly a year after Hurricane Harvey, were still struggling due to the loss of their home, or were living in a flood-damaged home due to the high costs of making ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "c17ca1c8-2cb2-51c7-bf48-55095b540d2e",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 7,
+          "start": 1881,
+          "end": 1980,
+          "excerpt": "repairs, the city hosted public meetings and partnered with AARP to cohost tele\u2013town hall meetings.",
+          "searchable": true,
+          "confidence": 1.0
+        }
+      ],
+      "visual_pages": [
+        "guide:7"
+      ]
+    },
+    {
+      "case_id": "comparison-11",
+      "case_sha256": "9417e907d26c046802a226b1be7b44beaf2412c153d7bb6055dea8223eb6a154",
+      "answerability": "full",
+      "decision": "correction_needed",
+      "finding": "NYC buddy networks emphasize checking vulnerable neighbors and trusted communication; Houston emphasizes flood-resilient development/governance plus resident engagement. Compare mechanisms, not hazard severity or measured success.",
+      "limitations": [
+        "Historical report evidence only; not independently verified current outcomes."
+      ],
+      "supporting_spans": [
+        {
+          "span_id": "26e6dff2-55ef-5275-a1aa-01b1d18b6c4b",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 59,
+          "start": 1187,
+          "end": 1379,
+          "excerpt": "health impacts by enhancing the response capacity, climate preparedness, and communication tools of local community-based organizations, while increasing neighborhood volunteerism through the ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "c51fbf4a-546e-5872-bfed-760828663246",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 59,
+          "start": 1379,
+          "end": 1579,
+          "excerpt": "creation of buddy systems. The City will work with each neighborhood to foster buddy systems between social service and community organizations, volunteers, and vulnerable New Yorkers, to be deployed ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "0413b998-8826-55b3-b7cd-587a03137afc",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 59,
+          "start": 1579,
+          "end": 1703,
+          "excerpt": "during emergencies to conduct telephone and, if necessary, door-to-door and building level checks on vulnerable individuals.",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "aa33948b-92a9-5e3d-be3a-bd17146f4483",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 7,
+          "start": 887,
+          "end": 1087,
+          "excerpt": "Houston\u2019s resiliency plan seeks to ensure the sprawling city\u2019s security and continued growth. A year before Harvey struck, Turner appointed a chief resiliency officer (also known as the \u201cflood czar\u201d).",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "84875aa1-29d3-536c-a58f-d60151711d89",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 7,
+          "start": 1340,
+          "end": 1535,
+          "excerpt": "In April 2018, the City Council approved Turner\u2019s plan to require that all new and reconstructed homes built in a flood plain be at least two feet higher than the projected 500-year flood level. ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "903da835-275c-5e1d-9204-1e4cf6b10e37",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 7,
+          "start": 1682,
+          "end": 1881,
+          "excerpt": "In order to hear from residents who, nearly a year after Hurricane Harvey, were still struggling due to the loss of their home, or were living in a flood-damaged home due to the high costs of making ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "c17ca1c8-2cb2-51c7-bf48-55095b540d2e",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 7,
+          "start": 1881,
+          "end": 1980,
+          "excerpt": "repairs, the city hosted public meetings and partnered with AARP to cohost tele\u2013town hall meetings.",
+          "searchable": true,
+          "confidence": 1.0
+        }
+      ],
+      "visual_pages": [
+        "guide:7"
+      ]
+    },
+    {
+      "case_id": "partial-08",
+      "case_sha256": "eadb72d2ce79c2f79c23add7575005ddc0d313d9dd3d6d94d0725d5db2b440ba",
+      "answerability": "partial",
+      "decision": "supported",
+      "finding": "Historic flooding narrative is available; a forecast for next week cannot be derived from this report.",
+      "limitations": [
+        "No live weather data; historical figures are report-attributed only."
+      ],
+      "supporting_spans": [
+        {
+          "span_id": "26d705a6-f0c0-5984-94c6-48f44723c411",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 7,
+          "start": 127,
+          "end": 317,
+          "excerpt": "The need for resilience is a fact of life \u2014 not just an abstract concept \u2014 in Houston, Texas . \u201cOver three years, we\u2019ve had three big floods in Houston,\u201d Mayor Sylvester Turner said in 2018.",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "6c8eb4ed-91a7-5fd4-8f91-ef802d9eddce",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 7,
+          "start": 318,
+          "end": 515,
+          "excerpt": "In August 2017, Hurricane Harvey pounded the city with 50 inches of rain, flooding 300,000 homes and killing dozens. Earlier that year, an April storm brought 17 inches of rain, flooding more than ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "33e62f3a-e312-52ea-8d76-5aa9662c1181",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 7,
+          "start": 515,
+          "end": 697,
+          "excerpt": "700 homes and killing eight people. Over the Memorial Day weekend in 2015, 12 inches of rain soaked Houston in 10 hours, killing seven and forcing 13,000 to seek disaster assistance.",
+          "searchable": true,
+          "confidence": 1.0
+        }
+      ],
+      "visual_pages": [
+        "guide:7"
+      ]
+    }
+  ]
+}

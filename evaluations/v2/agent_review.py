@@ -58,6 +58,12 @@ def load():
 
 def validate(record, cases, metadata, catalog):
     expected = {c["id"]: c for c in cases}
+    if any(k in record for k in ("human_verified", "gold_evidence_units", "reviewer", "review")):
+        raise ValueError("Agent records cannot carry human certification fields")
+    if record.get("status") != "AI-reviewed; manual spot-check pending":
+        raise ValueError("Agent review cannot approve a release or certify manual checks")
+    if record.get("method") not in ("direct_source_inspection", "browser"):
+        raise ValueError("Unknown review method")
     if (
         record.get("format") != "elderhelp-agent-feedback-v1"
         or record.get("review_type") != "ai_reviewed"

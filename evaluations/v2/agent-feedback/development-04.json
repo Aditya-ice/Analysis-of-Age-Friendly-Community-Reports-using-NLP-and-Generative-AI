@@ -1,0 +1,509 @@
+{
+  "format": "elderhelp-agent-feedback-v1",
+  "review_type": "ai_reviewed",
+  "agent": "Codex session agent",
+  "model": "session model (exact ID unavailable)",
+  "method": "direct_source_inspection",
+  "reviewed_at": "2026-09-09T21:31:27.607606-04:00",
+  "dataset_sha256": "f0683e9080bcebed8ad48079e00a47da458384f9c42a3ba12f94898bf621d4ff",
+  "index_fingerprint": "27ba26ebd5cd394d748032ecd42da1e488e50286fe6376120d52c1d22ccb6ede",
+  "batch": 4,
+  "status": "AI-reviewed; manual spot-check pending",
+  "reviews": [
+    {
+      "case_id": "direct-14",
+      "case_sha256": "70455d8f95d0c4aa973834b2442fcb5b8711a6eab021b0f044258da05b223e8a",
+      "answerability": "full",
+      "decision": "correction_needed",
+      "finding": "Volunteers organize documents, budget, balance checkbooks and write checks; seniors sign checks and retain every financial decision. Preserve this autonomy qualifier.",
+      "limitations": [
+        "Historical report evidence only; not independently verified current outcomes."
+      ],
+      "supporting_spans": [
+        {
+          "span_id": "11ef2a2f-0af6-5893-b7f5-7c62f6ea4cb1",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 32,
+          "start": 254,
+          "end": 451,
+          "excerpt": "seniors. Modeled after LiveOn NY\u2019s five-year demonstration project, the program screens and trains volunteers to assist low-income older adults with monthly bill payment tasks. The volunteers meet ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "bf96c38b-470f-5c15-933b-54ec36e0bb47",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 32,
+          "start": 451,
+          "end": 650,
+          "excerpt": "one-on-one with seniors in their own homes to help them organize documents, create and follow a budget, balance their checkbooks, and write checks. The participating seniors sign the checks and make ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "f9f464bb-f6b5-5148-b650-ef15a2002e19",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 32,
+          "start": 650,
+          "end": 847,
+          "excerpt": "all financial decisions. Seniors served by the Bill Payer Program typically live alone and without regular supports. Some are also visually impaired. The program accepts referrals from DFTA-funded ",
+          "searchable": true,
+          "confidence": 1.0
+        }
+      ],
+      "visual_pages": []
+    },
+    {
+      "case_id": "direct-22",
+      "case_sha256": "2a90774dd3196e4d1b271922211036de256527fe53886947b04be36e21662af4",
+      "answerability": "full",
+      "decision": "correction_needed",
+      "finding": "Artists and arts organizations held six-month senior-center residencies with participatory projects and public culminating events. Add program mechanics beyond study claims.",
+      "limitations": [
+        "Historical report evidence only; not independently verified current outcomes."
+      ],
+      "supporting_spans": [
+        {
+          "span_id": "1f460aeb-46a5-53df-b034-95d5d9ad41e2",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 71,
+          "start": 1070,
+          "end": 1266,
+          "excerpt": "Through the SU-CASA initiative, artists and non-profit arts organizations are placed in residence at senior centers across the five boroughs to provide arts programming for older adults. Artistic ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "9afd4091-b3fe-50df-b3da-499e00854312",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 71,
+          "start": 1266,
+          "end": 1464,
+          "excerpt": "partners work in a wide variety of disciplines, including music, theater, dance, poetry, ceramics, photography, writing, and many more. Each SU-CASA program engages participating older adults in an ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "a7a9a968-1538-5e34-bcbb-acf511aab1e9",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 71,
+          "start": 1464,
+          "end": 1657,
+          "excerpt": "art project or a series of cultural programs throughout the course of a six-month residency. Each residency culminates with a program at the senior center, which is open to the public, such as ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "ecbb6b16-a075-5d61-8f78-7f83ee3da70f",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 71,
+          "start": 1657,
+          "end": 1856,
+          "excerpt": "exhibits, readings, performances, open houses, and other cultural interactions. Continuing in the tradition of the highly successful Seniors Partnering with Artists Citywide program, SU-CASA greatly ",
+          "searchable": true,
+          "confidence": 1.0
+        }
+      ],
+      "visual_pages": []
+    },
+    {
+      "case_id": "exact-07",
+      "case_sha256": "cdb68e7f90d4607a6edfae23d0d21ef68be80d5a5273a0afae408aacd7edc2c3",
+      "answerability": "full",
+      "decision": "supported",
+      "finding": "LiveOn NY is explicitly named; preserve spelling and attribute to its five-year demonstration project.",
+      "limitations": [
+        "Historical report evidence only; not independently verified current outcomes."
+      ],
+      "supporting_spans": [
+        {
+          "span_id": "11ef2a2f-0af6-5893-b7f5-7c62f6ea4cb1",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 32,
+          "start": 254,
+          "end": 451,
+          "excerpt": "seniors. Modeled after LiveOn NY\u2019s five-year demonstration project, the program screens and trains volunteers to assist low-income older adults with monthly bill payment tasks. The volunteers meet ",
+          "searchable": true,
+          "confidence": 1.0
+        }
+      ],
+      "visual_pages": []
+    },
+    {
+      "case_id": "exact-14",
+      "case_sha256": "32bb88523b7b3460799b02e7157f684e816381c9a2f7f9cb8ba3185a1a54701e",
+      "answerability": "full",
+      "decision": "supported",
+      "finding": "50 percent of surveyed people age 50+ rated opportunities extremely or very important; this is preference, not actual volunteering participation.",
+      "limitations": [
+        "Historical report evidence only; not independently verified current outcomes."
+      ],
+      "supporting_spans": [
+        {
+          "span_id": "dc561ef2-0aa5-5bb1-877a-370871ad52bd",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 14,
+          "start": 170,
+          "end": 363,
+          "excerpt": "According to the 2018 AARP Home and Community Preferences Survey of people age 50 or older, 50 percent say it\u2019s \u201cextremely or very important\u201d to have volunteer opportunities that allow them to ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "66d244b1-2d28-5270-8ff7-54706f4dd0bc",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 14,
+          "start": 363,
+          "end": 398,
+          "excerpt": "actively engage in their community.",
+          "searchable": true,
+          "confidence": 1.0
+        }
+      ],
+      "visual_pages": [
+        "guide:14"
+      ]
+    },
+    {
+      "case_id": "comparison-07",
+      "case_sha256": "c3c3497f7ba20916548a4cff274acf5059064c9ae574e00905a1ced650b86a49",
+      "answerability": "full",
+      "decision": "correction_needed",
+      "finding": "SU-CASA brings artists to senior centers for participatory residencies; Experienced Class emphasizes older volunteers contributing skills and experience. Avoid assuming SU-CASA participants are its volunteers.",
+      "limitations": [
+        "Historical report evidence only; not independently verified current outcomes."
+      ],
+      "supporting_spans": [
+        {
+          "span_id": "1f460aeb-46a5-53df-b034-95d5d9ad41e2",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 71,
+          "start": 1070,
+          "end": 1266,
+          "excerpt": "Through the SU-CASA initiative, artists and non-profit arts organizations are placed in residence at senior centers across the five boroughs to provide arts programming for older adults. Artistic ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "9afd4091-b3fe-50df-b3da-499e00854312",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 71,
+          "start": 1266,
+          "end": 1464,
+          "excerpt": "partners work in a wide variety of disciplines, including music, theater, dance, poetry, ceramics, photography, writing, and many more. Each SU-CASA program engages participating older adults in an ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "a7a9a968-1538-5e34-bcbb-acf511aab1e9",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 71,
+          "start": 1464,
+          "end": 1657,
+          "excerpt": "art project or a series of cultural programs throughout the course of a six-month residency. Each residency culminates with a program at the senior center, which is open to the public, such as ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "55c0cef1-7cff-5b57-9e23-2b7ffda3ee36",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 14,
+          "start": 399,
+          "end": 559,
+          "excerpt": "Older volunteers bring a wealth of insights and professional experience that can help local leaders improve the lives of people in their communities and states.",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "ae30abf5-4d15-53c1-95d4-b9556d9598a5",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 14,
+          "start": 1887,
+          "end": 2082,
+          "excerpt": "3. Consider how you can leverage the life lessons, skills and influence of the \u201cExperienced Class\u201d to benefit your organization or effort. Make use of the specialized knowledge and \u201csoft skills\u201d ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "e395a05a-bdf1-5a2a-9367-2a226288d8c5",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 14,
+          "start": 2082,
+          "end": 2185,
+          "excerpt": "(such as meeting facilitation and partnership building) that older volunteers bring from their careers.",
+          "searchable": true,
+          "confidence": 1.0
+        }
+      ],
+      "visual_pages": [
+        "guide:14"
+      ]
+    },
+    {
+      "case_id": "comparison-13",
+      "case_sha256": "45099895c49b501c84ff1038483f92a744c092e2982cc16f80e5f8b57a060054",
+      "answerability": "full",
+      "decision": "correction_needed",
+      "finding": "Bill Payer is a specific trained-volunteer support service retaining clients financial control; the guide gives a general professional/life-skills volunteering model, not evidence of program equivalence.",
+      "limitations": [
+        "Historical report evidence only; not independently verified current outcomes."
+      ],
+      "supporting_spans": [
+        {
+          "span_id": "11ef2a2f-0af6-5893-b7f5-7c62f6ea4cb1",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 32,
+          "start": 254,
+          "end": 451,
+          "excerpt": "seniors. Modeled after LiveOn NY\u2019s five-year demonstration project, the program screens and trains volunteers to assist low-income older adults with monthly bill payment tasks. The volunteers meet ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "bf96c38b-470f-5c15-933b-54ec36e0bb47",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 32,
+          "start": 451,
+          "end": 650,
+          "excerpt": "one-on-one with seniors in their own homes to help them organize documents, create and follow a budget, balance their checkbooks, and write checks. The participating seniors sign the checks and make ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "f9f464bb-f6b5-5148-b650-ef15a2002e19",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 32,
+          "start": 650,
+          "end": 847,
+          "excerpt": "all financial decisions. Seniors served by the Bill Payer Program typically live alone and without regular supports. Some are also visually impaired. The program accepts referrals from DFTA-funded ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "55c0cef1-7cff-5b57-9e23-2b7ffda3ee36",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 14,
+          "start": 399,
+          "end": 559,
+          "excerpt": "Older volunteers bring a wealth of insights and professional experience that can help local leaders improve the lives of people in their communities and states.",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "ae30abf5-4d15-53c1-95d4-b9556d9598a5",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 14,
+          "start": 1887,
+          "end": 2082,
+          "excerpt": "3. Consider how you can leverage the life lessons, skills and influence of the \u201cExperienced Class\u201d to benefit your organization or effort. Make use of the specialized knowledge and \u201csoft skills\u201d ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "e395a05a-bdf1-5a2a-9367-2a226288d8c5",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 14,
+          "start": 2082,
+          "end": 2185,
+          "excerpt": "(such as meeting facilitation and partnership building) that older volunteers bring from their careers.",
+          "searchable": true,
+          "confidence": 1.0
+        }
+      ],
+      "visual_pages": []
+    },
+    {
+      "case_id": "partial-07",
+      "case_sha256": "718e8904ded457b03e2e057c8786630d50af872e659807dac1cdbf9e7b9fee6d",
+      "answerability": "partial",
+      "decision": "supported",
+      "finding": "SU-CASA structure is described, but the broader creativity study is not a SU-CASA-specific causal dementia-diagnosis estimate.",
+      "limitations": [
+        "No quantitative causal dementia effect established by these passages."
+      ],
+      "supporting_spans": [
+        {
+          "span_id": "bed3f4f9-22ad-506d-a88a-2cbccd036ee1",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 71,
+          "start": 267,
+          "end": 463,
+          "excerpt": "SU-CASA is a community arts engagement program sponsored by the NYC Council, the NYC Department of Cultural Affairs (DCLA), and DFTA. The SU-CASA program builds upon study findings that correlate ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "35655dd0-fad7-5c6c-ab09-14cf237026d0",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 71,
+          "start": 463,
+          "end": 659,
+          "excerpt": "creative expression with healthy aging. A landmark study conducted in New York City and other cities by Dr. Gene Cohen, an American psychiatrist who pioneered research in geriatric mental health, ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "4a43ce19-610c-594e-84d5-3eeb8ff5d827",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 71,
+          "start": 659,
+          "end": 855,
+          "excerpt": "showed that older adults who are actively engaged in creative activities suffered less from depression, required fewer doctor visits, and took less medication than control group participants. The ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "1f460aeb-46a5-53df-b034-95d5d9ad41e2",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 71,
+          "start": 1070,
+          "end": 1266,
+          "excerpt": "Through the SU-CASA initiative, artists and non-profit arts organizations are placed in residence at senior centers across the five boroughs to provide arts programming for older adults. Artistic ",
+          "searchable": true,
+          "confidence": 1.0
+        }
+      ],
+      "visual_pages": []
+    },
+    {
+      "case_id": "direct-15",
+      "case_sha256": "5aab5df525d806ca80cacf29ec5f38fb2b19d53e88bf2b12b35c404419191a60",
+      "answerability": "full",
+      "decision": "supported",
+      "finding": "SNAP Helps targeted people struggling to afford food, notably low-income older adults and immigrants; FoodHelp redirected to ACCESS NYC for benefit screening. Do not present historical routing as verified today.",
+      "limitations": [
+        "Historical report evidence only; not independently verified current outcomes."
+      ],
+      "supporting_spans": [
+        {
+          "span_id": "ced4537c-04bb-5db0-93cf-e68361861b94",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 34,
+          "start": 282,
+          "end": 476,
+          "excerpt": "Since the start of HRA\u2019s SNAP Helps campaign in April 2015 and its companion website FoodHelp.nyc, approximately 117,000 clients have received assistance. The SNAP Helps campaign encourages New ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "ba094601-93af-5314-aa2d-f8a1a4a52472",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 34,
+          "start": 476,
+          "end": 670,
+          "excerpt": "Yorkers struggling to afford food to seek help, targeting low-income older adults and immigrants. FoodHelp.nyc redirects potential clients to ACCESS NYC where they are able to determine if they ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "3ff2ad84-fcbc-55ce-9c81-ae84cfcad6a7",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 34,
+          "start": 670,
+          "end": 739,
+          "excerpt": "qualify for more than 30 different City, State, and Federal benefits.",
+          "searchable": true,
+          "confidence": 1.0
+        }
+      ],
+      "visual_pages": []
+    },
+    {
+      "case_id": "direct-16",
+      "case_sha256": "17f0c4e66b66550427d781dff684becf24a5300b65baee7ed0823b0a4b051f6d",
+      "answerability": "full",
+      "decision": "correction_needed",
+      "finding": "Nominated page 38 begins mid-sentence. Include page 37: co-led coalition promotes prevention strategies, convenes partners, shares resources, advocates research/policy and supports awareness day.",
+      "limitations": [
+        "Historical report evidence only; not independently verified current outcomes."
+      ],
+      "supporting_spans": [
+        {
+          "span_id": "f3290063-a11f-581e-8667-5cd6b23e7588",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 37,
+          "start": 1911,
+          "end": 2105,
+          "excerpt": "Falls are common among older New Yorkers and are a leading cause of hospitalizations. 21 In light of this fact, the NYC Falls Prevention Coalition was established, co-led by DOHMH and DFTA. The ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "a8cd7db3-93d8-5afe-8f40-5ee839dc989c",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 37,
+          "start": 2105,
+          "end": 2301,
+          "excerpt": "coalition aims to promote and implement proven and promising strategies to reduce the incidence and burden of falls among older adults. The coalition regularly convenes multi-sectoral partners to ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "83268b3d-4f89-560c-a929-88890e11d7c6",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 37,
+          "start": 2301,
+          "end": 2495,
+          "excerpt": "foster collaborations and leverage resources toward achieving shared goals; serves as an information and resource hub for evidence-based falls prevention tools and programs for all New Yorkers, ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "b5e847ac-1232-5ae4-a27d-a4c1ef97084f",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 38,
+          "start": 0,
+          "end": 198,
+          "excerpt": "health and wellness professionals, older adults, and the communities where they live and work; and advocates for research, resources, programming, and policy that reduces the incidence or burden of ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "14c228fb-8e48-5d0d-82dd-a46132115fc6",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 38,
+          "start": 198,
+          "end": 312,
+          "excerpt": "falls. The coalition also spearheads activities and actions in support of National Falls Prevention Awareness Day.",
+          "searchable": true,
+          "confidence": 1.0
+        }
+      ],
+      "visual_pages": []
+    }
+  ]
+}
