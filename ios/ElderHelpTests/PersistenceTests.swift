@@ -6,6 +6,15 @@ import SwiftData
 
 @MainActor
 final class PersistenceTests: XCTestCase {
+    func testPilotKeychainRoundTrip() throws {
+        let previous = PilotKeychain.read()
+        defer { try? PilotKeychain.save(previous) }
+        try PilotKeychain.save("unit-test-pilot-token")
+        XCTAssertEqual(PilotKeychain.read(), "unit-test-pilot-token")
+        try PilotKeychain.save(nil)
+        XCTAssertNil(PilotKeychain.read())
+    }
+
     func testConversationAndCitationRemainOnDevice() throws {
         let container = try ModelContainer(
             for: StoredConversation.self,

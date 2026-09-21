@@ -51,6 +51,9 @@ public struct Citation: Codable, Identifiable, Hashable, Sendable {
     public let publicationDate: String?
     public let pageNumber: Int
     public let excerpt: String
+    public let revisionID: UUID?
+    public let spanID: UUID?
+    public let pageLabel: String?
 
     enum CodingKeys: String, CodingKey {
         case id, publisher, excerpt
@@ -59,6 +62,9 @@ public struct Citation: Codable, Identifiable, Hashable, Sendable {
         case sourceURL = "source_url"
         case publicationDate = "publication_date"
         case pageNumber = "page_number"
+        case revisionID = "revision_id"
+        case spanID = "span_id"
+        case pageLabel = "page_label"
     }
 }
 
@@ -110,16 +116,47 @@ public struct AnswerComplete: Codable, Sendable {
     public let answerMarkdown: String
     public let status: String
     public let citations: [Citation]
+    public let missingParts: [String]?
+    public let corpusGeneration: UUID?
 
     enum CodingKeys: String, CodingKey {
         case status, citations
         case requestID = "request_id"
+        case missingParts = "missing_parts"
+        case corpusGeneration = "corpus_generation"
         case answerMarkdown = "answer_markdown"
     }
 }
 
 public enum AnswerStreamEvent: Sendable {
     case started(UUID)
+    case progress(String, String)
     case delta(String)
     case completed(AnswerComplete)
+}
+
+public struct PilotSession: Codable, Sendable {
+    public let token: String
+    public let expiresAt: Int
+    enum CodingKeys: String, CodingKey { case token; case expiresAt = "expires_at" }
+}
+public struct Capabilities: Codable, Sendable {
+    public let generationAvailable: Bool
+    public let searchAvailable: Bool
+    public let reason: String?
+    enum CodingKeys: String, CodingKey {
+        case generationAvailable = "generation_available"
+        case searchAvailable = "search_available"
+        case reason
+    }
+}
+public struct SearchHit: Codable, Sendable { public let citation: Citation; public let score: Double }
+public struct SearchResults: Codable, Sendable { public let items: [SearchHit]; public let mode: String }
+public func statusLabel(_ status: String) -> String {
+    switch status {
+    case "grounded": "Supported by report evidence"
+    case "partial": "Partial answer — some evidence is missing"
+    case "clarification_required": "Clarification needed"
+    default: "Insufficient evidence in these reports"
+    }
 }

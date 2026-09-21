@@ -1,3 +1,7 @@
+# Android v2 pilot update
+
+The app now uses invite access, verified completion, keyword fallback and explicit follow-up context. See [shared client setup](../docs/CLIENTS_V2.md). Pilot tokens are encrypted with Android Keystore; all Google credentials remain on the server. Regenerate DTOs and shared test fixtures before building.
+
 # ElderHelp Android prototype
 
 Native single-activity Kotlin/Compose app, minimum Android 8 (API 26). Ask streams answers with cancellation/retry and citation links. Reports are cached in Room; completed answers and citations remain on-device for offline viewing and deletion. No accounts or provider credentials are used. Android backups are disabled for local history.

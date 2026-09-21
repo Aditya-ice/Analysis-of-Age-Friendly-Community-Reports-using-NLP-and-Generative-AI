@@ -15,13 +15,21 @@ class BudgetProvider:
     async def structured(self, *args, **kwargs):
         if self.generation_left <= 0:
             raise RuntimeError("Generation call budget exceeded")
-        # Count before dispatch, including ambiguous provider failures.
+        prepare = getattr(self.provider, "before_dispatch", None)
+        if prepare:
+            await prepare("generation")
+            kwargs["paced"] = True
+        # Waiting for a rate slot is not a dispatched call.
         self.generation_left -= 1
         return await self.provider.structured(*args, **{**kwargs, "reserved": True})
 
     async def embed(self, *args, **kwargs):
         if self.embedding_left <= 0:
             raise RuntimeError("Embedding call budget exceeded")
+        prepare = getattr(self.provider, "before_dispatch", None)
+        if prepare:
+            await prepare("embedding")
+            kwargs["paced"] = True
         self.embedding_left -= 1
         return await self.provider.embed(*args, **{**kwargs, "reserved": True})
 

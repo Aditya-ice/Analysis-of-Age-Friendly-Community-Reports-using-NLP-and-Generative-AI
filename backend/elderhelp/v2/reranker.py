@@ -5,6 +5,7 @@ import hashlib
 import json
 import math
 import platform
+import threading
 from pathlib import Path
 
 import numpy as np
@@ -43,7 +44,7 @@ class OnnxRanker:
         self.lock = asyncio.Lock()
         self.ready = True
 
-    def score(self, question: str, content: str):
+    def score(self, question: str, content: str, *, stop: threading.Event | None = None):
         # Full query up to 128 WordPiece tokens. Longer inputs fail explicitly into RRF.
         query = self.tokenizer.encode(question, add_special_tokens=False).ids
         if len(query) > 128:
@@ -63,6 +64,8 @@ class OnnxRanker:
         best = -float("inf")
         names = {item.name for item in self.session.get_inputs()}
         for offset in range(0, len(sequences), 2):
+            if stop is not None and stop.is_set():
+                raise RuntimeError("Reranking cancelled")
             batch = sequences[offset : offset + 2]
             length = max(len(ids) for ids, _ in batch)
             feeds = {
@@ -82,20 +85,34 @@ class OnnxRanker:
             raise ValueError("Invalid reranker score")
         return 1 / (1 + math.exp(-max(-60, min(60, best))))
 
-    def _rank(self, query, candidates):
+    def _rank(self, query, candidates, stop):
         for candidate in candidates:
-            candidate.score = self.score(query, candidate.title + "\n" + candidate.content)
+            if stop.is_set():
+                raise RuntimeError("Reranking cancelled")
+            candidate.score = self.score(
+                query, candidate.title + "\n" + candidate.content, stop=stop
+            )
         return sorted(candidates, key=lambda c: (-c.score, str(c.id)))
 
     async def rerank(self, query, candidates):
         async with self.lock:
-            task = asyncio.create_task(asyncio.to_thread(self._rank, query, candidates))
+            stop = threading.Event()
+            task = asyncio.create_task(asyncio.to_thread(self._rank, query, candidates, stop))
             try:
                 return await asyncio.shield(task)
             except asyncio.CancelledError:
-                # A native ONNX call cannot be interrupted; retain the lock until it exits.
+                # Finish only the current native batch, not every remaining candidate.
+                # Retain the lock until the native worker has actually exited.
+                stop.set()
+                while not task.done():
+                    try:
+                        await asyncio.shield(task)
+                    except asyncio.CancelledError:
+                        continue  # Repeated disconnect/timeout must not release a live worker.
+                    except Exception:
+                        break
                 try:
-                    await task
+                    task.result()
                 except Exception:
                     pass
                 raise

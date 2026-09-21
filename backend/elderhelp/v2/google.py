@@ -1,4 +1,4 @@
-"""Gemini Developer API only. Enabling live calls requires explicit free-tier confirmation."""
+"""Gemini Developer API with explicit free or budgeted ingestion authorization."""
 
 import asyncio
 import json
@@ -10,7 +10,16 @@ from google import genai
 from google.genai import types
 
 from elderhelp.observability import request_context
-from elderhelp.v2.quota import QuotaExceeded, daily, google_retry_after, pause_google, reserve
+from elderhelp.v2.quota import (
+    QuotaExceeded,
+    daily,
+    google_retry_after,
+    pace,
+    pause_google,
+    release,
+    reserve,
+)
+from elderhelp.v2.spending import reserve_embedding_spend
 
 
 class ProviderUnavailable(RuntimeError):
@@ -34,7 +43,7 @@ class Gemini:
         if (
             not settings.google_api_key
             or not settings.google_api_key.get_secret_value()
-            or not settings.free_tier_confirmed
+            or not (settings.free_tier_confirmed or settings.paid_ingestion_confirmed)
         ):
             raise ProviderUnavailable(
                 "Configure a billing-disabled Google project and confirm free tier"
@@ -50,15 +59,40 @@ class Gemini:
         )
         self.embedding_slots = asyncio.Semaphore(2)
 
-    async def embed(self, text: str, *, reserved: bool = False) -> list[float]:
+    async def before_dispatch(self, kind):
+        retry_after = await google_retry_after(self.database)
+        if retry_after:
+            raise QuotaExceeded(retry_after)
+        limit = (
+            self.settings.embedding_minute_limit
+            if kind == "embedding"
+            else self.settings.generation_minute_limit
+        )
+        await pace(self.database, kind, limit)
+
+    async def prepare(self, kind, reserved, paced):
+        reservation = None
+        if not reserved:
+            limit = (
+                self.settings.embedding_daily_limit
+                if kind == "embedding"
+                else self.settings.generation_daily_limit
+            )
+            reservation = daily(kind, 1, limit)
+            await reserve(self.database, [reservation])
+        try:
+            if not paced:
+                await self.before_dispatch(kind)
+        except BaseException:
+            if reservation:
+                await release(self.database, {reservation[0]: 1})
+            raise
+
+    async def embed(self, text: str, *, reserved: bool = False, paced=False) -> list[float]:
         async with self.embedding_slots:
-            retry_after = await google_retry_after(self.database)
-            if retry_after:
-                raise QuotaExceeded(retry_after)
-            if not reserved:
-                await reserve(
-                    self.database, [daily("embedding", 1, self.settings.embedding_daily_limit)]
-                )
+            await self.prepare("embedding", reserved, paced)
+            if self.settings.paid_ingestion_confirmed:
+                await reserve_embedding_spend(self.database, self.settings, text)
             try:
                 async with asyncio.timeout(self.settings.provider_timeout_seconds):
                     response = await self.client.aio.models.embed_content(
@@ -87,14 +121,10 @@ class Gemini:
                     raise
                 raise ProviderUnavailable("Google embedding unavailable") from None
 
-    async def structured(self, schema, system: str, payload: dict, *, reserved=False):
-        retry_after = await google_retry_after(self.database)
-        if retry_after:
-            raise QuotaExceeded(retry_after)
-        if not reserved:
-            await reserve(
-                self.database, [daily("generation", 1, self.settings.generation_daily_limit)]
-            )
+    async def structured(self, schema, system: str, payload: dict, *, reserved=False, paced=False):
+        if self.settings.paid_ingestion_confirmed:
+            raise ProviderUnavailable("Paid generation awaits complete-workflow spending controls")
+        await self.prepare("generation", reserved, paced)
         started = time.monotonic()
         try:
             async with asyncio.timeout(self.settings.provider_timeout_seconds):

@@ -18,10 +18,11 @@ struct ReportDetailView: View {
                 if let questions = detail?.suggestedQuestions, !questions.isEmpty {
                     Text("Questions to explore").font(.title2.bold()).accessibilityAddTraits(.isHeader)
                     ForEach(questions, id: \.self) { question in
-                        Label(question, systemImage: "questionmark.bubble")
+                        NavigationLink(question) { AskView(apiClient: apiClient, reportID: report.id, question: question) }
                             .frame(minHeight: 44, alignment: .leading)
                     }
                 }
+                NavigationLink("Ask about this report") { AskView(apiClient: apiClient, reportID: report.id) }
                 Link(destination: report.sourceURL) {
                     Label("Open publisher's page", systemImage: "arrow.up.right.square")
                         .frame(minHeight: 50)

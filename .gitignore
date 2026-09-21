@@ -27,3 +27,6 @@ models/
 # Local wheel-build and ONNX telemetry artifacts
 build/
 :memory:.ses
+
+# Swift Package Manager local build
+ios/.build/

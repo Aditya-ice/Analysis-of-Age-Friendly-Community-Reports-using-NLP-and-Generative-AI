@@ -1,0 +1,22 @@
+{
+  "status": "AI-reviewed; agent spot-check complete; human spot-check pending",
+  "case_ids": [
+    "direct-01",
+    "exact-03",
+    "comparison-04",
+    "followup-07",
+    "layout-01",
+    "unanswerable-04",
+    "partial-01",
+    "injection-01",
+    "direct-19",
+    "layout-08",
+    "partial-05",
+    "unanswerable-20"
+  ],
+  "dataset_sha256": "f0683e9080bcebed8ad48079e00a47da458384f9c42a3ba12f94898bf621d4ff",
+  "agent_spot_checks_completed": 12,
+  "human_spot_checks_completed": 0,
+  "human_feedback": "pending",
+  "selection": "One per category, then numerical claim, excluded chart, missing comparison, ambiguous refusal"
+}

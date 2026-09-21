@@ -76,3 +76,7 @@ uv run python evaluations/v2/capacity.py --database-url postgresql://USER:PASS@l
 ```
 
 The serving-only macOS smoke previously peaked at about 152 MiB. Free-host Linux memory under two complete live workflows, warm-service verified-completion p95 ≤30 seconds, cold-start latency, actual free quota use and human-reviewed answer quality are **not measured yet**. Missing quotas or human review delay release; they never trigger paid fallback or weaker verification.
+
+## Agent-assisted evidence review (September 9, 2026)
+
+All 80 development candidates now have separate AI findings: 41 supported, 35 requiring corrections, and four unresolved. These are evidence-review outcomes, not RAG accuracy measurements. The 40 held-out cases remain excluded; human gold and release approval are unchanged. A 12-case manual packet is pending. See [the review report](AGENT_EVIDENCE_REVIEW.md) for methods, limitations, and reproduction commands.

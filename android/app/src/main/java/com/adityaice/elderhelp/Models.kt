@@ -12,6 +12,7 @@ data class ReportSummary(
     val community: String,
     val publication_date: String? = null,
     val source_url: String,
+    val publication_precision: String = "unknown",
 )
 
 @Serializable
@@ -26,12 +27,17 @@ data class ReportDetail(
     val description: String? = null,
     val suggested_questions: List<String> = emptyList(),
     val page_count: Int,
+    val publication_precision: String = "unknown",
+    val revision_id: String? = null,
+    val acquired_at: String? = null,
 )
 
 @Serializable
 data class ReportList(
     val items: List<ReportSummary>,
     val total: Int,
+    val offset: Int,
+    val limit: Int,
 )
 
 @Serializable
@@ -65,6 +71,9 @@ data class Citation(
     val publication_date: String? = null,
     val page_number: Int,
     val excerpt: String,
+    val revision_id: String? = null,
+    val span_id: String? = null,
+    val page_label: String? = null,
 )
 
 @Serializable
@@ -72,5 +81,40 @@ data class AnswerComplete(
     val request_id: String,
     val answer_markdown: String,
     val status: String,
-    val citations: List<Citation>,
+    val citations: List<Citation> = emptyList(),
+    val missing_parts: List<String> = emptyList(),
+    val corpus_generation: String? = null,
+)
+
+@Serializable
+data class PilotSession(
+    val token: String,
+    val expires_at: Int,
+)
+
+@Serializable
+data class Capabilities(
+    val generation_available: Boolean,
+    val search_available: Boolean,
+    val reason: String? = null,
+    val corpus_generation: String? = null,
+    val supported_filters: List<String> = emptyList(),
+)
+
+@Serializable
+data class SearchHit(
+    val citation: Citation,
+    val score: Double,
+)
+
+@Serializable
+data class SearchResponse(
+    val items: List<SearchHit>,
+    val mode: String,
+    val degraded: Boolean = false,
+)
+
+@Serializable
+data class SessionRequest(
+    val invite_code: String,
 )

@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#173e3c"><title>ElderHelp · Report research</title><link rel="stylesheet" href="/assets/style.css"><script type="module" src="/assets/app.mjs"></script></head>
+<body>
+<a class="skip" href="#main">Skip to research workspace</a>
+<header><a class="brand" href="/" aria-label="ElderHelp home"><span class="mark" aria-hidden="true">e.</span>ElderHelp</a><span class="badge">Research pilot</span></header>
+<main id="main">
+<div class="intro"><p class="eyebrow">AGE-FRIENDLY COMMUNITIES</p><h1>Better questions.<br>Evidence you can inspect.</h1><p>Explore what approved community reports said, with the exact passages behind each answer.</p></div>
+<nav aria-label="Workspace"><button data-tab="ask" aria-current="page">Ask</button><button data-tab="reports">Reports</button><button data-tab="history">History</button></nav>
+<p id="notice" class="notice" role="status" aria-live="polite"></p>
+<section id="ask" aria-label="Ask about reports">
+<div class="workspace"><div>
+<details id="access"><summary>Pilot access <span id="access-state">· invite required</span></summary><form id="login"><label for="invite">Invite code</label><input id="invite" type="password" autocomplete="off" minlength="12" maxlength="256" required><button>Connect to pilot</button><button id="logout" type="button" class="secondary">Forget access token</button></form><p>Access expires after a short session. History stays on this browser.</p></details>
+<form id="question-form"><label for="question">What would you like to understand?</label><textarea id="question" maxlength="2000" rows="4" placeholder="What transport commitments did the 2017 NYC report make?" required></textarea><p class="hint">Up to 2,000 characters · English seed reports</p><label for="report-filter">Report</label><select id="report-filter"><option value="">All approved reports</option></select><label class="check"><input id="followup" type="checkbox"> Follow up on this conversation</label><div class="actions"><button id="ask-button">Ask ElderHelp</button><button id="search-button" type="button" class="secondary">Search passages</button><button id="cancel" type="button" class="secondary" hidden>Stop</button><button id="retry" type="button" class="secondary" hidden>Retry answer</button><button id="new-question" type="button" class="quiet">New question</button></div></form>
+<p id="progress" role="status" aria-live="polite"></p><article id="answer" hidden></article><section id="search-results" aria-label="Matching passages"></section>
+</div><aside><h2>From reports to evidence</h2><ol><li>Search the approved corpus.</li><li>Check claims against source passages.</li><li>Read the answer and inspect its citations.</li></ol><p>Answers concern historical report findings. They do not confirm services available today.</p><p><strong>Use non-sensitive research questions.</strong> Questions and relevant evidence are sent to Google for processing under its unpaid-service terms.</p><a href="https://ai.google.dev/gemini-api/terms" target="_blank" rel="noopener noreferrer">Read Google's service terms ↗</a><p class="hint">Free capacity is limited. When answer quota runs out, keyword search and your local history remain available. A sleeping host may take a while to wake.</p></aside></div>
+</section>
+<section id="reports" aria-label="Approved report library" hidden><div class="section-top"><h2>The report library</h2><button id="refresh" class="secondary">Refresh reports</button></div><p>Saved metadata is available offline. Publisher links may lead to external PDFs.</p><label for="library-query">Filter by title, community or publisher</label><input id="library-query" type="search"><div id="report-list" class="cards"></div></section>
+<section id="history" aria-label="Local history" hidden><div class="section-top"><h2>Your research history</h2><button id="clear-history" class="secondary">Clear all history</button></div><p>Only completed answers are saved, on this browser. Saved conversations are never added to a new question automatically.</p><div id="history-list" class="cards"></div></section>
+<dialog id="sheet" aria-labelledby="sheet-title"><div class="section-top"><h2 id="sheet-title">Source</h2><button id="close-sheet" class="secondary">Close</button></div><div id="sheet-content"></div></dialog>
+</main><footer>ElderHelp · An evidence-based research pilot · No guaranteed always-on availability</footer>
+</body></html>

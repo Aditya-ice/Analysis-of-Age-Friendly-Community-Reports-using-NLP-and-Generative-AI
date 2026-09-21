@@ -1,0 +1,22 @@
+{
+  "items": [
+    {
+      "citation": {
+        "id": "S1",
+        "report_id": "1aa2870c-bf64-4f29-94c2-e4d670a36d2d",
+        "revision_id": "2aa2870c-bf64-4f29-94c2-e4d670a36d2d",
+        "span_id": "3aa2870c-bf64-4f29-94c2-e4d670a36d2d",
+        "report_title": "Age-friendly NYC",
+        "publisher": "City of New York",
+        "source_url": "https://example.org/report",
+        "publication_date": "2017",
+        "page_number": 12,
+        "page_label": "10",
+        "excerpt": "The 2017 report describes safe housing support."
+      },
+      "score": 1.0
+    }
+  ],
+  "mode": "keyword",
+  "degraded": false
+}

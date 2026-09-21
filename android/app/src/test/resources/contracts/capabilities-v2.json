@@ -1,0 +1,12 @@
+{
+  "generation_available": true,
+  "search_available": true,
+  "reason": null,
+  "corpus_generation": "4aa2870c-bf64-4f29-94c2-e4d670a36d2d",
+  "supported_filters": [
+    "report_ids",
+    "community",
+    "year_from",
+    "year_to"
+  ]
+}
