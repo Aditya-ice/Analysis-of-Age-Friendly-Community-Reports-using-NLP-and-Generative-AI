@@ -192,6 +192,8 @@ async def activate(database, generation_id: UUID, configuration: dict) -> None:
         # Serialize activations even when there is not yet an active row.
         await db.execute(text("SELECT pg_advisory_xact_lock(813248)"))
         generation = await db.get(Generation, generation_id)
+        if generation is None or generation.status != "validated":
+            raise ValueError("Generation changed after validation; validate again")
         if generation.fingerprint != fingerprint(configuration):
             raise ValueError("Generation is incompatible with the serving configuration")
         active = await db.get(ActiveCorpus, 1, with_for_update=True)

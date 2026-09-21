@@ -1,0 +1,572 @@
+{
+  "format": "elderhelp-agent-feedback-v1",
+  "review_type": "ai_reviewed",
+  "agent": "Codex session agent",
+  "model": "session model (exact ID unavailable)",
+  "method": "direct_source_inspection",
+  "reviewed_at": "2026-09-09T17:12:48.619376-04:00",
+  "dataset_sha256": "f0683e9080bcebed8ad48079e00a47da458384f9c42a3ba12f94898bf621d4ff",
+  "index_fingerprint": "27ba26ebd5cd394d748032ecd42da1e488e50286fe6376120d52c1d22ccb6ede",
+  "batch": 2,
+  "status": "AI-reviewed; manual spot-check pending",
+  "reviews": [
+    {
+      "case_id": "direct-05",
+      "case_sha256": "6fad92828ade064e4b009678544a5722932b85d339a5b44c55d29b312d831445",
+      "answerability": "full",
+      "decision": "correction_needed",
+      "finding": "IMAGE-NYC mapped current/projected aging populations to support equitable localized resource planning and connections across sectors. Include the explanation beyond the heading.",
+      "limitations": [
+        "Historical report evidence only; not independently verified current outcomes."
+      ],
+      "supporting_spans": [
+        {
+          "span_id": "1b74ee8d-5172-5e76-9897-d51112c332b4",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 61,
+          "start": 389,
+          "end": 588,
+          "excerpt": "The Age-friendly NYC Commission\u2019s Public Safety Working Group is overseeing a new collaboration between the New York Academy of Medicine and the City University of New York Center for Urban Research ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "ce160938-b352-5a24-951e-3b733c5b8e4d",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 61,
+          "start": 588,
+          "end": 780,
+          "excerpt": "to create IMAGE-NYC, an open-source interactive map of the current and projected aging population in NYC. Funded by the Fan Fox and Leslie R. Samuels Foundation, this map will facilitate more ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "0d25d478-7a07-5f9a-9466-b4c82dbf29a6",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 61,
+          "start": 780,
+          "end": 978,
+          "excerpt": "informed planning and more equitable and localized deployment of resources for older people by government agencies, elected officials, health care and supportive service providers, researchers, and ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "2fc76de7-1cb7-525f-b754-4aa95bda7a5b",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 61,
+          "start": 978,
+          "end": 1172,
+          "excerpt": "funders in New York City. In addition, by providing location-specific, relevant information, this map will help to catalyze connections within and between sectors, institutions, and individuals ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "e1a963fc-e03a-575f-a3d8-345dfd73ebcb",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 61,
+          "start": 1172,
+          "end": 1265,
+          "excerpt": "leading to increased social cohesion, which supports aging in place and community resilience.",
+          "searchable": true,
+          "confidence": 1.0
+        }
+      ],
+      "visual_pages": []
+    },
+    {
+      "case_id": "direct-28",
+      "case_sha256": "4961ae756884b9f99c0c61946e9243128bf9a508e746a5ce42e83b9aa56bb047",
+      "answerability": "full",
+      "decision": "correction_needed",
+      "finding": "Contest used smartphone feedback on five driving metrics, prizes and continued self-monitoring. Avoid treating participant improvements as causal population-wide crash reduction.",
+      "limitations": [
+        "Historical report evidence only; not independently verified current outcomes."
+      ],
+      "supporting_spans": [
+        {
+          "span_id": "02ff97c3-feaa-5679-aa24-81e1c3b6d597",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 6,
+          "start": 690,
+          "end": 887,
+          "excerpt": "Drivers downloaded a smartphone app to log their daily travels and track five metrics: speed, acceleration, braking, cornering and the extent to which the driver was distracted by his or her phone ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "00419ef8-b333-54bb-bd6a-7b56ef77504c",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 6,
+          "start": 887,
+          "end": 905,
+          "excerpt": "while on the road.",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "e78079c2-9d64-5636-97e0-d7ec24681ac4",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 6,
+          "start": 906,
+          "end": 1062,
+          "excerpt": "When the three-month contest ended, four winners were named, receiving prizes from $500 to $2,000. Ninety-eight other top scorers were awarded smaller sums.",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "0a3cc1b8-7af8-5139-8588-8d3e68290501",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 6,
+          "start": 1290,
+          "end": 1490,
+          "excerpt": "As importantly, after the competition ended, residents could still use the app to monitor and improve their driving. (See page 13 for more about safe driving.) The program was one of 10 finalists for ",
+          "searchable": true,
+          "confidence": 1.0
+        }
+      ],
+      "visual_pages": [
+        "guide:6"
+      ]
+    },
+    {
+      "case_id": "exact-12",
+      "case_sha256": "cb74b6649628a6d1a126278ce3e5f4e2d54535f8b0add2783624638936f3edb2",
+      "answerability": "full",
+      "decision": "supported",
+      "finding": "The guide attributes 94 percent to NHTSA; phrase as what the guide reported, not a newly verified universal causal estimate.",
+      "limitations": [
+        "Historical report evidence only; not independently verified current outcomes."
+      ],
+      "supporting_spans": [
+        {
+          "span_id": "1208720c-7adf-5e6c-af90-26df0ee9d988",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 6,
+          "start": 146,
+          "end": 336,
+          "excerpt": "According to the National Highway Traffic Safety Administration, 94 percent of vehicle crashes can be tied to a human choice or error. One way to address the problem is to capitalize on the ",
+          "searchable": true,
+          "confidence": 1.0
+        }
+      ],
+      "visual_pages": [
+        "guide:6"
+      ]
+    },
+    {
+      "case_id": "comparison-01",
+      "case_sha256": "a7be229c4d3d3c2d1e4c7421950e323a3fc44d5359f8a8cb5502b0dbb09f739c",
+      "answerability": "full",
+      "decision": "correction_needed",
+      "finding": "NYC emphasizes senior-center feedback, education and enforcement; Boston combines a 2030 fatality-elimination goal with app-based driver behavior feedback and a contest. No comparative effectiveness conclusion.",
+      "limitations": [
+        "Historical report evidence only; not independently verified current outcomes."
+      ],
+      "supporting_spans": [
+        {
+          "span_id": "2d854fa5-55f9-55aa-a885-6569b412ccea",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 54,
+          "start": 1873,
+          "end": 2062,
+          "excerpt": "population, 25 they account for almost half of pedestrian fatalities. 26 The disproportionate burden of pedestrian fatalities among older adults contributed to an increase in education and ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "5fce0118-2f90-5ee8-8b41-34ee6d62dc46",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 54,
+          "start": 2062,
+          "end": 2260,
+          "excerpt": "enforcement efforts focused on older adult safety. Vision Zero initiatives include partnering with senior centers to obtain specific feedback from older adults about street safety improvements, and ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "099c7161-b3e8-5991-b7e1-e8e624f4db23",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 54,
+          "start": 2260,
+          "end": 2313,
+          "excerpt": "launching a senior outreach and enforcement campaign.",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "57431eba-1afe-5112-a868-0f5cfe6974f5",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 6,
+          "start": 403,
+          "end": 596,
+          "excerpt": "In Boston, Massachusetts , Mayor Martin J. Walsh \u2019s Vision Zero Boston initiative aims to eliminate traffic fatalities by 2030. As part of that effort, the city partnered with Cambridge Mobile ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "02ff97c3-feaa-5679-aa24-81e1c3b6d597",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 6,
+          "start": 690,
+          "end": 887,
+          "excerpt": "Drivers downloaded a smartphone app to log their daily travels and track five metrics: speed, acceleration, braking, cornering and the extent to which the driver was distracted by his or her phone ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "e78079c2-9d64-5636-97e0-d7ec24681ac4",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 6,
+          "start": 906,
+          "end": 1062,
+          "excerpt": "When the three-month contest ended, four winners were named, receiving prizes from $500 to $2,000. Ninety-eight other top scorers were awarded smaller sums.",
+          "searchable": true,
+          "confidence": 1.0
+        }
+      ],
+      "visual_pages": [
+        "guide:6"
+      ]
+    },
+    {
+      "case_id": "comparison-14",
+      "case_sha256": "18369d499d5d6f0fde62118ecfc95ebe86fd7340693508aad9d28aed12f41e62",
+      "answerability": "full",
+      "decision": "correction_needed",
+      "finding": "NYC offers a population/resource-planning map; the guide describes city-level challenge identification with Boston/Tulsa examples. Compare purpose and data use rather than claiming the same implemented system.",
+      "limitations": [
+        "Historical report evidence only; not independently verified current outcomes."
+      ],
+      "supporting_spans": [
+        {
+          "span_id": "ce160938-b352-5a24-951e-3b733c5b8e4d",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 61,
+          "start": 588,
+          "end": 780,
+          "excerpt": "to create IMAGE-NYC, an open-source interactive map of the current and projected aging population in NYC. Funded by the Fan Fox and Leslie R. Samuels Foundation, this map will facilitate more ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "0d25d478-7a07-5f9a-9466-b4c82dbf29a6",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 61,
+          "start": 780,
+          "end": 978,
+          "excerpt": "informed planning and more equitable and localized deployment of resources for older people by government agencies, elected officials, health care and supportive service providers, researchers, and ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "1d88adf5-3bcf-5e89-9b03-c4c5e6331d0a",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 6,
+          "start": 0,
+          "end": 110,
+          "excerpt": "Identify a Challenge City leaders are uniquely positioned to identify challenges that impact the city at large",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "f6979baa-c970-5f43-9196-38ef0064e4ad",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 6,
+          "start": 1868,
+          "end": 2067,
+          "excerpt": "G.T. Bynum , the mayor of Tulsa, Oklahoma , believes data can help cities make better decisions and unite residents \u201cI ran for mayor on a platform of utilizing data evidence and evaluations not just ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "f911d7e9-66af-5199-94a0-09809afc9ea6",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 6,
+          "start": 2067,
+          "end": 2198,
+          "excerpt": "to improve city services,\u201d explains Bynum, \u201cbut as a way of pulling together people who might normally not agree with one another.\u201d",
+          "searchable": true,
+          "confidence": 1.0
+        }
+      ],
+      "visual_pages": []
+    },
+    {
+      "case_id": "followup-05",
+      "case_sha256": "98b8b2cc8ffc6abcaf0e661dae85726a8123dca6dd8fdfe509a84255026d1fc1",
+      "answerability": "full",
+      "decision": "supported",
+      "finding": "History resolves the initiative to Vision Zero Boston; explicit goal year is 2030.",
+      "limitations": [
+        "Historical report evidence only; not independently verified current outcomes."
+      ],
+      "supporting_spans": [
+        {
+          "span_id": "57431eba-1afe-5112-a868-0f5cfe6974f5",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 6,
+          "start": 403,
+          "end": 596,
+          "excerpt": "In Boston, Massachusetts , Mayor Martin J. Walsh \u2019s Vision Zero Boston initiative aims to eliminate traffic fatalities by 2030. As part of that effort, the city partnered with Cambridge Mobile ",
+          "searchable": true,
+          "confidence": 1.0
+        }
+      ],
+      "visual_pages": [
+        "guide:6"
+      ]
+    },
+    {
+      "case_id": "partial-02",
+      "case_sha256": "fe8ab3d23c2b2f96a4b9602199c297131d2d0de75c4c9cfd15e8619a33e88833",
+      "answerability": "partial",
+      "decision": "supported",
+      "finding": "The 2030 goal is explicit, but achievement today cannot be established by this 2018 publication.",
+      "limitations": [
+        "No current outcome verification in the seed reports."
+      ],
+      "supporting_spans": [
+        {
+          "span_id": "57431eba-1afe-5112-a868-0f5cfe6974f5",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 6,
+          "start": 403,
+          "end": 596,
+          "excerpt": "In Boston, Massachusetts , Mayor Martin J. Walsh \u2019s Vision Zero Boston initiative aims to eliminate traffic fatalities by 2030. As part of that effort, the city partnered with Cambridge Mobile ",
+          "searchable": true,
+          "confidence": 1.0
+        }
+      ],
+      "visual_pages": [
+        "guide:6"
+      ]
+    },
+    {
+      "case_id": "direct-06",
+      "case_sha256": "08586332405c6209de13486144a67d88e7163f64c662e87864b7c66ccaef8a14",
+      "answerability": "full",
+      "decision": "correction_needed",
+      "finding": "Include page 44 continuation: rebranding, community/elected/faith partnerships, easier forms and walk-in access. The history resolves SCRIE; do not determine personal current eligibility.",
+      "limitations": [
+        "Historical outreach only; personal current eligibility is outside corpus evidence."
+      ],
+      "supporting_spans": [
+        {
+          "span_id": "1d38a0f1-4e3d-5e3d-b885-e560bef33de1",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 43,
+          "start": 2523,
+          "end": 2719,
+          "excerpt": "DOF has been focused on providing exceptional customer service for these programs, improving the application process, and enrolling as many qualified tenants into the program as possible. DOF has ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "28f20308-b4db-5fe1-9ed5-d083b0fe96fa",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 43,
+          "start": 2719,
+          "end": 2919,
+          "excerpt": "raised awareness of the program by rebranding it as the NYC Rent Freeze Program. In partnership with elected officials, community groups, and faith-based organizations, DOF has promoted these programs",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "18e99b7c-16ac-5c3f-8e33-8cc55adaad0c",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 44,
+          "start": 0,
+          "end": 198,
+          "excerpt": "and educated people about program requirements and how to apply. DOF has overhauled all of the department\u2019s applications to make them easier to understand and complete. As a result, processing time ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "2b02ada6-207a-596b-bca0-fa029011411a",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 44,
+          "start": 198,
+          "end": 398,
+          "excerpt": "is down to three to five days for initial applications and six to seven days for renewal applications. Along with increased outreach and the development of simpler application forms, DOF expanded the ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "d492f486-6b07-5754-bcb4-315b7a99eb35",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 44,
+          "start": 398,
+          "end": 593,
+          "excerpt": "Manhattan walk-in center and is committed to ensuring all of the agency\u2019s applications and worksites are more ADA compliant, including DOF\u2019s SCRIE/DRIE walk-in centers in the Bronx and Brooklyn, ",
+          "searchable": true,
+          "confidence": 1.0
+        }
+      ],
+      "visual_pages": []
+    },
+    {
+      "case_id": "followup-01",
+      "case_sha256": "2cd6fd65952489632b8d880bb6b1a90ad3d34ee90eed3ebfa03aa7dfc255ac27",
+      "answerability": "full",
+      "decision": "correction_needed",
+      "finding": "Include page 44 continuation: rebranding, community/elected/faith partnerships, easier forms and walk-in access. The history resolves SCRIE; do not determine personal current eligibility.",
+      "limitations": [
+        "Historical outreach only; personal current eligibility is outside corpus evidence."
+      ],
+      "supporting_spans": [
+        {
+          "span_id": "1d38a0f1-4e3d-5e3d-b885-e560bef33de1",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 43,
+          "start": 2523,
+          "end": 2719,
+          "excerpt": "DOF has been focused on providing exceptional customer service for these programs, improving the application process, and enrolling as many qualified tenants into the program as possible. DOF has ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "28f20308-b4db-5fe1-9ed5-d083b0fe96fa",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 43,
+          "start": 2719,
+          "end": 2919,
+          "excerpt": "raised awareness of the program by rebranding it as the NYC Rent Freeze Program. In partnership with elected officials, community groups, and faith-based organizations, DOF has promoted these programs",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "18e99b7c-16ac-5c3f-8e33-8cc55adaad0c",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 44,
+          "start": 0,
+          "end": 198,
+          "excerpt": "and educated people about program requirements and how to apply. DOF has overhauled all of the department\u2019s applications to make them easier to understand and complete. As a result, processing time ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "2b02ada6-207a-596b-bca0-fa029011411a",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 44,
+          "start": 198,
+          "end": 398,
+          "excerpt": "is down to three to five days for initial applications and six to seven days for renewal applications. Along with increased outreach and the development of simpler application forms, DOF expanded the ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "d492f486-6b07-5754-bcb4-315b7a99eb35",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 44,
+          "start": 398,
+          "end": 593,
+          "excerpt": "Manhattan walk-in center and is committed to ensuring all of the agency\u2019s applications and worksites are more ADA compliant, including DOF\u2019s SCRIE/DRIE walk-in centers in the Bronx and Brooklyn, ",
+          "searchable": true,
+          "confidence": 1.0
+        }
+      ],
+      "visual_pages": []
+    },
+    {
+      "case_id": "partial-04",
+      "case_sha256": "8ce6e23b07cc9524971fad2707b7aabdc11c8fa5a2d5bff7f216742c05901f87",
+      "answerability": "partial",
+      "decision": "correction_needed",
+      "finding": "Include page 44 continuation: rebranding, community/elected/faith partnerships, easier forms and walk-in access. The history resolves SCRIE; do not determine personal current eligibility.",
+      "limitations": [
+        "Historical outreach only; personal current eligibility is outside corpus evidence."
+      ],
+      "supporting_spans": [
+        {
+          "span_id": "1d38a0f1-4e3d-5e3d-b885-e560bef33de1",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 43,
+          "start": 2523,
+          "end": 2719,
+          "excerpt": "DOF has been focused on providing exceptional customer service for these programs, improving the application process, and enrolling as many qualified tenants into the program as possible. DOF has ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "28f20308-b4db-5fe1-9ed5-d083b0fe96fa",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 43,
+          "start": 2719,
+          "end": 2919,
+          "excerpt": "raised awareness of the program by rebranding it as the NYC Rent Freeze Program. In partnership with elected officials, community groups, and faith-based organizations, DOF has promoted these programs",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "18e99b7c-16ac-5c3f-8e33-8cc55adaad0c",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 44,
+          "start": 0,
+          "end": 198,
+          "excerpt": "and educated people about program requirements and how to apply. DOF has overhauled all of the department\u2019s applications to make them easier to understand and complete. As a result, processing time ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "2b02ada6-207a-596b-bca0-fa029011411a",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 44,
+          "start": 198,
+          "end": 398,
+          "excerpt": "is down to three to five days for initial applications and six to seven days for renewal applications. Along with increased outreach and the development of simpler application forms, DOF expanded the ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "d492f486-6b07-5754-bcb4-315b7a99eb35",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 44,
+          "start": 398,
+          "end": 593,
+          "excerpt": "Manhattan walk-in center and is committed to ensuring all of the agency\u2019s applications and worksites are more ADA compliant, including DOF\u2019s SCRIE/DRIE walk-in centers in the Bronx and Brooklyn, ",
+          "searchable": true,
+          "confidence": 1.0
+        }
+      ],
+      "visual_pages": []
+    }
+  ]
+}

@@ -1,0 +1,313 @@
+{
+  "format": "elderhelp-agent-feedback-v1",
+  "review_type": "ai_reviewed",
+  "agent": "Codex session agent",
+  "model": "session model (exact ID unavailable)",
+  "method": "direct_source_inspection",
+  "reviewed_at": "2026-09-09T21:33:46.778562-04:00",
+  "dataset_sha256": "f0683e9080bcebed8ad48079e00a47da458384f9c42a3ba12f94898bf621d4ff",
+  "index_fingerprint": "27ba26ebd5cd394d748032ecd42da1e488e50286fe6376120d52c1d22ccb6ede",
+  "batch": 7,
+  "status": "AI-reviewed; manual spot-check pending",
+  "reviews": [
+    {
+      "case_id": "direct-35",
+      "case_sha256": "9d2bb7d755d2c7dd873afac420588ae60898a62c9184cf6e46691a942948f405",
+      "answerability": "full",
+      "decision": "supported",
+      "finding": "Smart Driver teaches skills, age-related adaptation, technology and law changes; CarFit helps older drivers add/use vehicle safety features. Neither description certifies individual driving fitness.",
+      "limitations": [
+        "Historical report evidence only; not independently verified current outcomes."
+      ],
+      "supporting_spans": [
+        {
+          "span_id": "13f783c2-faa6-5283-8f7e-06beddfe80bb",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 15,
+          "start": 233,
+          "end": 430,
+          "excerpt": "About a decade ago, an AARP staff member who knew of Kolodziejczak\u2019s expertise asked her to assist with AARP CarFit, a program that helps older drivers add or use safety features in their vehicles.",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "525ec18c-c89a-5d6d-9da0-4f1dc5ff3fa6",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 15,
+          "start": 431,
+          "end": 628,
+          "excerpt": "That\u2019s why Sherry Kolodziejczak , an occupational therapist, is a volunteer instructor for the AARP Smart Driver course, which enables older drivers to maintain their skills, adjust to age-related ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "db85c2fd-50bf-5383-b3c1-3376d941390f",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 15,
+          "start": 628,
+          "end": 715,
+          "excerpt": "challenges, and learn about the advances in car technology and changes in driving laws.",
+          "searchable": true,
+          "confidence": 1.0
+        }
+      ],
+      "visual_pages": [
+        "guide:15"
+      ]
+    },
+    {
+      "case_id": "comparison-10",
+      "case_sha256": "ecc795dd299dfc0294c4be4efb671abecb7660fbf0ca491031f37d6eb89d69de",
+      "answerability": "full",
+      "decision": "correction_needed",
+      "finding": "NYC pairs targeted street outreach/enforcement with pedestrian-safety work; the guide describes driver education and vehicle fit. Compare interventions and audiences, not proven superiority.",
+      "limitations": [
+        "Historical report evidence only; not independently verified current outcomes."
+      ],
+      "supporting_spans": [
+        {
+          "span_id": "16279316-1a73-5084-84f8-b13eaf336212",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 62,
+          "start": 0,
+          "end": 200,
+          "excerpt": "of pedestrians and drivers, a two-pronged effort is implemented. Members of DOT\u2019s Street Team target people using all modes of transportation in specific geographic locations, distributing flyers and ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "c30bef7f-ecc2-5fe0-b7af-25acba093c4e",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 62,
+          "start": 200,
+          "end": 397,
+          "excerpt": "engaging the public about the initiative. The NYPD is involved in providing foot patrol during the education effort. This is followed by a period of enforcement by the NYPD, which targets the most ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "5479495e-e3db-5466-82fe-2bb0d7708e43",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 62,
+          "start": 794,
+          "end": 987,
+          "excerpt": "senior centers at priority locations as part of Vision Zero outreach. Additionally, DOT and DFTA collaborated and developed \u201cStreetwise,\u201d an educational program featuring older adults in their ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "ba706aa6-2468-515c-afbf-20db977f26c7",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 62,
+          "start": 1196,
+          "end": 1392,
+          "excerpt": "NYPD officers target enforcement against motorists observed committing Vision Zero hazardous offenses, and in particular, failure to yield. This enforcement is concentrated within areas with high ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "13f783c2-faa6-5283-8f7e-06beddfe80bb",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 15,
+          "start": 233,
+          "end": 430,
+          "excerpt": "About a decade ago, an AARP staff member who knew of Kolodziejczak\u2019s expertise asked her to assist with AARP CarFit, a program that helps older drivers add or use safety features in their vehicles.",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "525ec18c-c89a-5d6d-9da0-4f1dc5ff3fa6",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 15,
+          "start": 431,
+          "end": 628,
+          "excerpt": "That\u2019s why Sherry Kolodziejczak , an occupational therapist, is a volunteer instructor for the AARP Smart Driver course, which enables older drivers to maintain their skills, adjust to age-related ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "db85c2fd-50bf-5383-b3c1-3376d941390f",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 15,
+          "start": 628,
+          "end": 715,
+          "excerpt": "challenges, and learn about the advances in car technology and changes in driving laws.",
+          "searchable": true,
+          "confidence": 1.0
+        }
+      ],
+      "visual_pages": [
+        "guide:15"
+      ]
+    },
+    {
+      "case_id": "followup-09",
+      "case_sha256": "a12f340217ad78639ee500631216296ac1e86da780f7ef91ce3eaad753cfcc9a",
+      "answerability": "full",
+      "decision": "correction_needed",
+      "finding": "History identifies Sherry Kolodziejczak. Her occupational-therapy/ALS clinic experience supported driver education; join the sentence about head injuries/strokes across columns, not extraction order.",
+      "limitations": [
+        "Historical report evidence only; not independently verified current outcomes."
+      ],
+      "supporting_spans": [
+        {
+          "span_id": "525ec18c-c89a-5d6d-9da0-4f1dc5ff3fa6",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 15,
+          "start": 431,
+          "end": 628,
+          "excerpt": "That\u2019s why Sherry Kolodziejczak , an occupational therapist, is a volunteer instructor for the AARP Smart Driver course, which enables older drivers to maintain their skills, adjust to age-related ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "80e56469-de43-50dd-9aaf-123c70b74527",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 15,
+          "start": 1474,
+          "end": 1669,
+          "excerpt": "As the director of the ALS Care Clinic and other therapy programs at Crestwood Medical Center in Huntsville, Alabama , Kolodziejczak interacts with patients who want to get back behind the wheel ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "7abc6577-0522-5b6e-9b76-e57dca0fc222",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 15,
+          "start": 1669,
+          "end": 1685,
+          "excerpt": "after recovering",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "25f9d4df-e202-5a2a-bb47-9f21c2e8384d",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 15,
+          "start": 53,
+          "end": 84,
+          "excerpt": "from head injuries and strokes.",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "13f783c2-faa6-5283-8f7e-06beddfe80bb",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 15,
+          "start": 233,
+          "end": 430,
+          "excerpt": "About a decade ago, an AARP staff member who knew of Kolodziejczak\u2019s expertise asked her to assist with AARP CarFit, a program that helps older drivers add or use safety features in their vehicles.",
+          "searchable": true,
+          "confidence": 1.0
+        }
+      ],
+      "visual_pages": [
+        "guide:15"
+      ]
+    },
+    {
+      "case_id": "partial-09",
+      "case_sha256": "1ded60d1106d20f838bbebc4257d249d614fbceead7b9a672990b7fca3f59d16",
+      "answerability": "partial",
+      "decision": "supported",
+      "finding": "CarFit purpose is supported; a report cannot assess this user or vehicle medically.",
+      "limitations": [
+        "Individual fitness-to-drive assessment unavailable; not medical advice."
+      ],
+      "supporting_spans": [
+        {
+          "span_id": "13f783c2-faa6-5283-8f7e-06beddfe80bb",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 15,
+          "start": 233,
+          "end": 430,
+          "excerpt": "About a decade ago, an AARP staff member who knew of Kolodziejczak\u2019s expertise asked her to assist with AARP CarFit, a program that helps older drivers add or use safety features in their vehicles.",
+          "searchable": true,
+          "confidence": 1.0
+        }
+      ],
+      "visual_pages": [
+        "guide:15"
+      ]
+    },
+    {
+      "case_id": "exact-06",
+      "case_sha256": "438daae1d4155ef05d4ab90858fb378057c9430a2229c2e1674f0ba7fa3869e1",
+      "answerability": "full",
+      "decision": "supported",
+      "finding": "The report states $98 million annually for NYS, not NYC or DFTA alone. Do not confuse the $27m discretionary or $17m DFTA amounts with that total.",
+      "limitations": [
+        "Historical report evidence only; not independently verified current outcomes."
+      ],
+      "supporting_spans": [
+        {
+          "span_id": "74db5521-9568-57e4-88e4-3807913f0bab",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 23,
+          "start": 410,
+          "end": 608,
+          "excerpt": "New York State (NYS) receives $98 million in Federal Title XX funding annually, which is allocated to counties. Of this amount, $66 million funds Adult Protective and Domestic Violence Services, $5 ",
+          "searchable": true,
+          "confidence": 1.0
+        }
+      ],
+      "visual_pages": [
+        "nyc:23"
+      ]
+    },
+    {
+      "case_id": "exact-10",
+      "case_sha256": "a35bbf468a1c78c3515142ae77b237e0f81167aa2564f1dd2f315d8a33989e96",
+      "answerability": "full",
+      "decision": "supported",
+      "finding": "Local Law 46 of 2015 explicitly required the cultural plan; this is historical attribution, not current-law advice.",
+      "limitations": [
+        "Historical report evidence only; not independently verified current outcomes."
+      ],
+      "supporting_spans": [
+        {
+          "span_id": "f6a57b7c-f699-5a9f-a95e-855df16536e4",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 72,
+          "start": 58,
+          "end": 255,
+          "excerpt": "Mayor de Blasio signed Local Law 46 of 2015, introduced by NYC Council Member Stephen Levin, requiring the City to produce a cultural plan to serve as a guide for the future of arts and culture in ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "d3b48b4d-7100-53bc-b072-ff864aa79923",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 72,
+          "start": 255,
+          "end": 455,
+          "excerpt": "New York City. Starting in 2016, DCLA worked with artists, cultural organizations, NYC agencies, arts and culture experts, and community residents to collect data and public input to inform the plan, ",
+          "searchable": true,
+          "confidence": 1.0
+        }
+      ],
+      "visual_pages": [
+        "nyc:72"
+      ]
+    }
+  ]
+}

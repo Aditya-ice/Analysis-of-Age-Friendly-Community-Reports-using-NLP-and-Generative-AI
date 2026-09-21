@@ -1,8 +1,10 @@
 """Content-free PostgreSQL counters; admission survives process restarts."""
 
+import asyncio
 from datetime import UTC, datetime, timedelta
+from zoneinfo import ZoneInfo
 
-from sqlalchemy import delete, update
+from sqlalchemy import delete, func, select, update
 from sqlalchemy.dialects.postgresql import insert
 
 from elderhelp.v2.models import QuotaCounter
@@ -49,9 +51,38 @@ async def release(database, amounts: dict[str, int]):
 
 
 def daily(name: str, amount: int, limit: int):
-    now = datetime.now(UTC)
+    zone = ZoneInfo("America/Los_Angeles") if name in ("generation", "embedding") else UTC
+    now = datetime.now(zone)
     end = (now + timedelta(days=1)).replace(hour=0, minute=0, second=0, microsecond=0)
     return f"{name}:{now:%Y-%m-%d}", amount, limit, end
+
+
+async def pace(database, name: str, limit: int):
+    """Space dispatches using a shared database clock, with no transaction while waiting."""
+    if limit < 1:
+        raise QuotaExceeded()
+    interval = timedelta(seconds=60 / limit + 0.05)
+    while True:
+        async with database.sessions() as db, db.begin():
+            now = func.clock_timestamp()
+            statement = insert(QuotaCounter).values(
+                key=f"google:{name}:pace", used=1, expires_at=now + interval
+            )
+            granted = await db.scalar(
+                statement.on_conflict_do_update(
+                    index_elements=[QuotaCounter.key],
+                    set_={"expires_at": now + interval, "used": 1},
+                    where=QuotaCounter.expires_at <= now,
+                ).returning(QuotaCounter.key)
+            )
+            if granted:
+                return
+            remaining = await db.scalar(
+                select(
+                    func.extract("epoch", QuotaCounter.expires_at - func.clock_timestamp())
+                ).where(QuotaCounter.key == f"google:{name}:pace")
+            )
+        await asyncio.sleep(min(60, max(0.05, float(remaining))))
 
 
 async def pause_google(database, seconds=60):

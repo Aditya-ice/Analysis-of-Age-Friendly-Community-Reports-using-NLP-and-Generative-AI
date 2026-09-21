@@ -2,7 +2,7 @@
 
 ElderHelp is being rebuilt as a research assistant for approved age-friendly community reports. The v2 backend retrieves exact passages, creates structured claims, and verifies them before displaying any answer text. It distinguishes historical report commitments from current services and falls back to keyword search when generation is unavailable.
 
-**Implementation is ongoing.** Backend engineering checks are recorded in [the checkpoint ledger](docs/IMPLEMENTATION_STATUS.md). Live Google evaluation, human-reviewed quality gates, platform client verification and free hosted deployment are separate remaining stages. The project does not claim production uptime or measured corpus accuracy yet.
+**Implementation is ongoing.** Backend engineering checks are recorded in [the checkpoint ledger](docs/IMPLEMENTATION_STATUS.md). Fixture-based iOS and Android simulator checks pass. Live Google evaluation, human-reviewed quality gates, assistive-technology checks and free hosted deployment remain outstanding. The project does not claim production uptime or measured corpus accuracy yet.
 
 ## Local setup
 
@@ -50,6 +50,7 @@ Tests use provider doubles; the optional real ONNX smoke test runs after downloa
 
 ## Documentation and preserved work
 
+- [Free Render/Supabase setup, verified TLS, roles, backup and release gates](infra/free-pilot/README.md)
 - [Corpus reconciliation, activation and rollback](docs/CORPUS_OPERATIONS.md)
 - [Safe ingestion, extraction and private backup/restore](docs/INGESTION_V2.md)
 - [Hybrid retrieval and CPU ONNX reranking](docs/RETRIEVAL_V2.md)

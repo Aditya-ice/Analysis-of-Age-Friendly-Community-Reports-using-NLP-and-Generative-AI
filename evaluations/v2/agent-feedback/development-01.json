@@ -1,0 +1,504 @@
+{
+  "format": "elderhelp-agent-feedback-v1",
+  "review_type": "ai_reviewed",
+  "agent": "Codex session agent",
+  "model": "session model (exact ID unavailable)",
+  "method": "direct_source_inspection",
+  "reviewed_at": "2026-09-09T17:11:51.183306-04:00",
+  "dataset_sha256": "f0683e9080bcebed8ad48079e00a47da458384f9c42a3ba12f94898bf621d4ff",
+  "index_fingerprint": "27ba26ebd5cd394d748032ecd42da1e488e50286fe6376120d52c1d22ccb6ede",
+  "batch": 1,
+  "status": "AI-reviewed; manual spot-check pending",
+  "reviews": [
+    {
+      "case_id": "direct-01",
+      "case_sha256": "383dff209dfa3a5d47ab3732ffbd0d5b5242254904358aaafa86d230853025f5",
+      "answerability": "full",
+      "decision": "correction_needed",
+      "finding": "Replace heading-only nominations with the plan and benchmark passages: commitment increased by 5,000 to 15,000 senior units; distinguish commitments from financed/completed units.",
+      "limitations": [
+        "Historical report evidence only; not independently verified current outcomes."
+      ],
+      "supporting_spans": [
+        {
+          "span_id": "f9c2efbb-8c86-5e63-93e7-03ab6a70062e",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 41,
+          "start": 538,
+          "end": 737,
+          "excerpt": "New York five-borough, 10-year strategy includes a plan to create or preserve 10,000 units of affordable senior housing for New Yorkers. The fixed incomes of both older adults and veterans have made ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "b4b62763-52e0-5414-87d2-f3879e56e7d4",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 41,
+          "start": 936,
+          "end": 1098,
+          "excerpt": "housing program dedicated to those earning between zero and $40,000 per year will increase by 10,000, from 40,000 units to 50,000 units. Of the 10,000 additional ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "47c4130c-a305-5280-9651-2e9ed0fdee93",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 41,
+          "start": 1098,
+          "end": 1274,
+          "excerpt": "units, 5,000 will house older New Yorkers and 500 will serve veterans. As a result of the new benchmark, the City\u2019s senior housing commitment has increased by 5,000, to 15,000 ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "d894c621-2ad5-5d06-88dd-603fa2b520fc",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 41,
+          "start": 1274,
+          "end": 1474,
+          "excerpt": "units of the 200,000 total units in the Housing New York plan. To date, the NYC Department of Housing Preservation and Development (HPD) and the NYC Housing Development Corporation have financed more ",
+          "searchable": true,
+          "confidence": 1.0
+        }
+      ],
+      "visual_pages": [
+        "nyc:41"
+      ]
+    },
+    {
+      "case_id": "partial-01",
+      "case_sha256": "8de3e9d69f4dd6213120d892cd078d818ece7282012b9ecbbfb3071f4ea89c6a",
+      "answerability": "partial",
+      "decision": "correction_needed",
+      "finding": "Historical housing commitments are supported, but the report cannot verify completion in 2026. Include substantive benchmark passages instead of headings.",
+      "limitations": [
+        "No 2026 outcome evidence in these historical sources."
+      ],
+      "supporting_spans": [
+        {
+          "span_id": "f9c2efbb-8c86-5e63-93e7-03ab6a70062e",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 41,
+          "start": 538,
+          "end": 737,
+          "excerpt": "New York five-borough, 10-year strategy includes a plan to create or preserve 10,000 units of affordable senior housing for New Yorkers. The fixed incomes of both older adults and veterans have made ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "47c4130c-a305-5280-9651-2e9ed0fdee93",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 41,
+          "start": 1098,
+          "end": 1274,
+          "excerpt": "units, 5,000 will house older New Yorkers and 500 will serve veterans. As a result of the new benchmark, the City\u2019s senior housing commitment has increased by 5,000, to 15,000 ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "d894c621-2ad5-5d06-88dd-603fa2b520fc",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 41,
+          "start": 1274,
+          "end": 1474,
+          "excerpt": "units of the 200,000 total units in the Housing New York plan. To date, the NYC Department of Housing Preservation and Development (HPD) and the NYC Housing Development Corporation have financed more ",
+          "searchable": true,
+          "confidence": 1.0
+        }
+      ],
+      "visual_pages": [
+        "nyc:41"
+      ]
+    },
+    {
+      "case_id": "direct-02",
+      "case_sha256": "6a5e5711937cb6999fe7c658b72ffc78adbdaa8397a442b4d5d6632b707c2cea",
+      "answerability": "full",
+      "decision": "correction_needed",
+      "finding": "Purpose is reducing isolation, enhancing social connections and identifying higher-level care needs; include the continuation into regular trained-volunteer visits.",
+      "limitations": [
+        "Historical report evidence only; not independently verified current outcomes."
+      ],
+      "supporting_spans": [
+        {
+          "span_id": "15e04ae1-bcca-54e7-98f6-f45688cb9235",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 29,
+          "start": 266,
+          "end": 464,
+          "excerpt": "1) The launch of new programs, operated directly by case management agencies; and 2) The expansion of the existing City meals on Wheels friendly visiting program. This program aims to reduce social ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "6ec43c03-4cf6-50e6-b667-fe9592461291",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 29,
+          "start": 464,
+          "end": 656,
+          "excerpt": "isolation and enhance vital social connections. It also seeks to help identify more intensive physical and mental health needs, in which case, the program will connect clients to higher level ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "e4d3f4cd-58e0-5f99-a04e-baefbf517452",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 29,
+          "start": 656,
+          "end": 855,
+          "excerpt": "intervention. Case management clients who are socially isolated are paired with trained volunteers who visit the clients regularly. Volunteer coordinators at case management programs recruit, train, ",
+          "searchable": true,
+          "confidence": 1.0
+        }
+      ],
+      "visual_pages": [
+        "nyc:29"
+      ]
+    },
+    {
+      "case_id": "direct-33",
+      "case_sha256": "e9a6d5e1973b8521fbd0eabe432bc21c64aed4a576bdb0bf7f18ac92a8791600",
+      "answerability": "full",
+      "decision": "correction_needed",
+      "finding": "Encore Generation to Generation connected older volunteers with youth through a San Jose mayoral assignment and flexible volunteer messaging. Read across the two columns, excluding the photo caption.",
+      "limitations": [
+        "Historical report evidence only; not independently verified current outcomes."
+      ],
+      "supporting_spans": [
+        {
+          "span_id": "e73f7aae-2771-576a-b8de-17ef04abebcc",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 11,
+          "start": 242,
+          "end": 442,
+          "excerpt": "Khoury found that opportunity by joining Encore.org \u2019s Generation to Generation campaign, an effort aimed at getting older adults to interact more with young people. Hired as an Encore Fellow, Khoury ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "8c45072a-3095-5538-914e-906ca1dfc632",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 11,
+          "start": 442,
+          "end": 465,
+          "excerpt": "was assigned to work in",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "bf104eed-96b6-5f91-99c6-ae652ac5ea35",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 11,
+          "start": 608,
+          "end": 750,
+          "excerpt": "the office of San Jos\u00e9, California , Mayor Sam Liccardo to help increase the participation of people age 50 and over in volunteering programs.",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "3f8eb193-5c7c-5e83-aae2-9596bca5a890",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 11,
+          "start": 1013,
+          "end": 1210,
+          "excerpt": "About her assignments, Khoury says, \u201cI thought of it like a product campaign.\u201d She worked to refine the messaging of programs that needed volunteers. To connect with recent retirees, she urged the ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "d0c9c96a-b358-58be-ac35-25d8efff281a",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 11,
+          "start": 1210,
+          "end": 1271,
+          "excerpt": "programs to emphasize the flexibility of the time commitment.",
+          "searchable": true,
+          "confidence": 1.0
+        }
+      ],
+      "visual_pages": [
+        "guide:11"
+      ]
+    },
+    {
+      "case_id": "exact-05",
+      "case_sha256": "b5c144ac94f1ada9c29942213c526d93aa574320a87cd56fb57afa3752a87a25",
+      "answerability": "full",
+      "decision": "supported",
+      "finding": "The continuation paragraph explicitly states 21 case-management contracts covering all 59 Community Districts.",
+      "limitations": [
+        "Historical report evidence only; not independently verified current outcomes."
+      ],
+      "supporting_spans": [
+        {
+          "span_id": "ef52440b-d612-5797-b64f-2a018087cdfb",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 29,
+          "start": 0,
+          "end": 195,
+          "excerpt": "a Friendly Visiting Program within its contracted case management agencies. DFTA oversees 21 case management contracts covering all 59 Community Districts. Through the Friendly Visiting Program, ",
+          "searchable": true,
+          "confidence": 1.0
+        }
+      ],
+      "visual_pages": [
+        "nyc:29"
+      ]
+    },
+    {
+      "case_id": "exact-13",
+      "case_sha256": "54a40c9969d27043eedae4cd802e859cf86265433f80636be03331353c3c9e1a",
+      "answerability": "full",
+      "decision": "supported",
+      "finding": "The opening paragraph explicitly dates retirement from Cisco to 2014.",
+      "limitations": [
+        "Historical report evidence only; not independently verified current outcomes."
+      ],
+      "supporting_spans": [
+        {
+          "span_id": "6432ecc3-43da-5e40-9a3f-7f88587f17b3",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 11,
+          "start": 38,
+          "end": 230,
+          "excerpt": "When Dima Khoury retired in 2014 after spending nearly two decades at Cisco, where she served as director of software engineering, she \u201cwanted to do something in the community, something more ",
+          "searchable": true,
+          "confidence": 1.0
+        }
+      ],
+      "visual_pages": [
+        "guide:11"
+      ]
+    },
+    {
+      "case_id": "comparison-04",
+      "case_sha256": "e922b1f21a00fca1dacedee418039aa1f8fe9f7f7b56a5d12f52cc0cd4726d6e",
+      "answerability": "full",
+      "decision": "correction_needed",
+      "finding": "Compare the consumer-driven village model (social activities, volunteering, referrals, assistance) with targeted older-adult volunteering for youth in San Jose. Do not imply equivalent measured impact.",
+      "limitations": [
+        "Historical report evidence only; not independently verified current outcomes."
+      ],
+      "supporting_spans": [
+        {
+          "span_id": "7687fef2-43d8-5326-a0a4-fcdd627700d3",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 76,
+          "start": 36,
+          "end": 236,
+          "excerpt": "Aging in Place villages represent an emerging consumer-driven, social support model that aims to enhance the social engagement, independence, and well-being of community-dwelling older adults through ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "45c1e2f2-a3c1-5faa-bca2-2737b4cd2de7",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 76,
+          "start": 236,
+          "end": 433,
+          "excerpt": "a combination of social activities, volunteer opportunities, service referral, and direct assistance. In December 2016, the Age- friendly NYC Commission\u2019s Public Safety Working Group, with support ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "e73f7aae-2771-576a-b8de-17ef04abebcc",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 11,
+          "start": 242,
+          "end": 442,
+          "excerpt": "Khoury found that opportunity by joining Encore.org \u2019s Generation to Generation campaign, an effort aimed at getting older adults to interact more with young people. Hired as an Encore Fellow, Khoury ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "bf104eed-96b6-5f91-99c6-ae652ac5ea35",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 11,
+          "start": 608,
+          "end": 750,
+          "excerpt": "the office of San Jos\u00e9, California , Mayor Sam Liccardo to help increase the participation of people age 50 and over in volunteering programs.",
+          "searchable": true,
+          "confidence": 1.0
+        }
+      ],
+      "visual_pages": []
+    },
+    {
+      "case_id": "comparison-08",
+      "case_sha256": "95e994724c1f80a3ebaa1b986f2f842f0ad2567861bde725bf19e7e0ddd628e0",
+      "answerability": "full",
+      "decision": "correction_needed",
+      "finding": "Friendly Visiting pairs isolated clients with trained visitors; Generation to Generation recruits older adults to youth-serving work. These are different directions of participation, not comparative effectiveness evidence.",
+      "limitations": [
+        "Historical report evidence only; not independently verified current outcomes."
+      ],
+      "supporting_spans": [
+        {
+          "span_id": "6ec43c03-4cf6-50e6-b667-fe9592461291",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 29,
+          "start": 464,
+          "end": 656,
+          "excerpt": "isolation and enhance vital social connections. It also seeks to help identify more intensive physical and mental health needs, in which case, the program will connect clients to higher level ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "e4d3f4cd-58e0-5f99-a04e-baefbf517452",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 29,
+          "start": 656,
+          "end": 855,
+          "excerpt": "intervention. Case management clients who are socially isolated are paired with trained volunteers who visit the clients regularly. Volunteer coordinators at case management programs recruit, train, ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "e73f7aae-2771-576a-b8de-17ef04abebcc",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 11,
+          "start": 242,
+          "end": 442,
+          "excerpt": "Khoury found that opportunity by joining Encore.org \u2019s Generation to Generation campaign, an effort aimed at getting older adults to interact more with young people. Hired as an Encore Fellow, Khoury ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "bf104eed-96b6-5f91-99c6-ae652ac5ea35",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 11,
+          "start": 608,
+          "end": 750,
+          "excerpt": "the office of San Jos\u00e9, California , Mayor Sam Liccardo to help increase the participation of people age 50 and over in volunteering programs.",
+          "searchable": true,
+          "confidence": 1.0
+        }
+      ],
+      "visual_pages": [
+        "nyc:29",
+        "guide:11"
+      ]
+    },
+    {
+      "case_id": "followup-07",
+      "case_sha256": "1c2d9c25bde217e77a4c1c9de27fb64aaed410ee7c30aeb6b38693ca36640fbf",
+      "answerability": "full",
+      "decision": "correction_needed",
+      "finding": "History resolves her to Dima Khoury. Assignment was the office of San Jose Mayor Sam Liccardo; join the split sentence across columns rather than citing its photo caption.",
+      "limitations": [
+        "Historical report evidence only; not independently verified current outcomes."
+      ],
+      "supporting_spans": [
+        {
+          "span_id": "e73f7aae-2771-576a-b8de-17ef04abebcc",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 11,
+          "start": 242,
+          "end": 442,
+          "excerpt": "Khoury found that opportunity by joining Encore.org \u2019s Generation to Generation campaign, an effort aimed at getting older adults to interact more with young people. Hired as an Encore Fellow, Khoury ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "8c45072a-3095-5538-914e-906ca1dfc632",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 11,
+          "start": 442,
+          "end": 465,
+          "excerpt": "was assigned to work in",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "bf104eed-96b6-5f91-99c6-ae652ac5ea35",
+          "revision_id": "b8324ba8-06e0-5aa3-903d-e187ed1a6206",
+          "report_slug": "engaging-community-2018",
+          "pdf_page": 11,
+          "start": 608,
+          "end": 750,
+          "excerpt": "the office of San Jos\u00e9, California , Mayor Sam Liccardo to help increase the participation of people age 50 and over in volunteering programs.",
+          "searchable": true,
+          "confidence": 1.0
+        }
+      ],
+      "visual_pages": [
+        "guide:11"
+      ]
+    },
+    {
+      "case_id": "direct-03",
+      "case_sha256": "c5de23f2e8e18233862ac3a538d2156410575a7c4987db8a1aae61547495d3a0",
+      "answerability": "full",
+      "decision": "correction_needed",
+      "finding": "ThriveNYC embedded practitioners in 15 senior centers and planned 10 more sites from July 2017. Include both numerical continuation spans and distinguish planned expansion from outcomes.",
+      "limitations": [
+        "Historical report evidence only; not independently verified current outcomes."
+      ],
+      "supporting_spans": [
+        {
+          "span_id": "5c046915-363d-5c78-9e73-e6f62833d773",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 28,
+          "start": 1207,
+          "end": 1386,
+          "excerpt": "First Lady Chirlane McCray released ThriveNYC: A Mental Health Roadmap for All, the most comprehensive mental health plan of any city or state in the nation, in November 2015. As ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "6238bfda-3232-57be-b8db-bac2035e0592",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 28,
+          "start": 1386,
+          "end": 1575,
+          "excerpt": "part of ThriveNYC, mental health practitioners were embedded in 15 DFTA-sponsored senior centers citywide. Each month, between 1,500 and 2,200 seniors attend engagement activities, such as ",
+          "searchable": true,
+          "confidence": 1.0
+        },
+        {
+          "span_id": "f659a314-e0a7-5ea3-8aed-d447c9594f37",
+          "revision_id": "10bb427c-697c-584e-9544-551735ae7583",
+          "report_slug": "age-friendly-nyc-2017",
+          "pdf_page": 28,
+          "start": 1575,
+          "end": 1746,
+          "excerpt": "mindfulness meditation sessions and psychoeducational groups at the 15 senior centers. Geriatric mental health services will expand to 10 more sites starting in July 2017.",
+          "searchable": true,
+          "confidence": 1.0
+        }
+      ],
+      "visual_pages": [
+        "nyc:28"
+      ]
+    }
+  ]
+}

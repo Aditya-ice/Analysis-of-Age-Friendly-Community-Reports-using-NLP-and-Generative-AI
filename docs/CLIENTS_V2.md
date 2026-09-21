@@ -22,4 +22,9 @@ The server binds to loopback, performs no Google calls and returns explicitly sy
 
 Set the iOS simulator environment `ELDERHELP_API_BASE_URL=http://localhost:8765`. For Android emulator builds use `-PelderhelpApiUrl=http://10.0.2.2:8765/`; only the debug manifest allows cleartext test traffic. Production URLs must use HTTPS.
 
-Current checks: browser protocol tests pass, and the browser invite → partial answer → exact citation → report library → saved history flow was inspected against the fixture server. The static-serving regression confirms backend code and PDFs cannot be downloaded through asset routes. Swift core compiles locally, but this machine's command-line tools have no XCTest or iOS simulator. Full simulator and Android build/navigation verification run in CI and must pass before this stage is accepted. Full Xcode is selected on the macOS CI host. Live staging flows, assistive-technology review and hosted offline/sleep tests remain release gates.
+Current checks: browser protocol tests pass, and the browser invite → partial answer → exact citation → report library → saved history flow was inspected against the fixture server. The static-serving regression confirms backend code and PDFs cannot be downloaded through asset routes. Swift core compiles locally, but this machine's command-line tools have no XCTest or iOS simulator. At `80f3073`, PR12 CI passes the full iOS simulator flow (including Keychain round-trip, citation date and printed page label) and Android build/lint/emulator navigation. Simulator builds use ad-hoc signing and simulator-only Keychain entitlements; no Apple distribution identity is required. Full Xcode is selected on the macOS CI host. Live staging flows, assistive-technology review and hosted offline/sleep tests remain release gates.
+
+Additional browser fixture checks on 2026-09-09 confirmed that HTTP 429 retains
+keyword search, provider verification failure displays no draft, failed requests
+are absent from saved history, and deleting the synthetic conversation removes
+it from IndexedDB-backed history.

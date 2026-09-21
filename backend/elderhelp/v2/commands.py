@@ -78,3 +78,13 @@ def invite_revoke(invite_id: UUID):
         return {"revoked": str(invite_id)}
 
     run(revoke)
+
+
+@app.command()
+def prune(generation: UUID, archive_directory: str, apply: bool = False):
+    """Preview inactive-generation pruning; --apply requires a prior full backup/restore drill."""
+    from pathlib import Path
+
+    from elderhelp.v2.maintenance import prune as prune_generation
+
+    run(lambda db: prune_generation(db, generation, Path(archive_directory), apply=apply))
